@@ -1,0 +1,34 @@
+# Introduction
+
+Welcome to Creating Simple GUI Applications where we’re going to use
+Python and Qt to do just that.
+
+I’m Martin Fitzpatrick - a scientific programmer with 8+ years Python
+experience and 5 years experience building applications with PyQt.
+
+So why did I make this course?
+
+If you want to learn to build GUI applications with Python the learning
+curve can be pretty steep. There seems to be a lot you need to know just
+to get something to work.
+
+Many tutorials offer nothing but screencasts and miss the simple
+concepts that actually matter. Like writing any code, successfully
+writing PyQt GUI applications is all about thinking in the right way.
+
+It’s not difficult to get a GUI application up and running in Python you
+just need to know where to start.
+
+
+In this course I’m going to give you the real useful basics that you
+need to get building PyQt applications as quickly as possible.
+
+I’ll include explanations, diagrams, walkthroughs and code to make sure
+you know what you’re doing every step of the way.
+
+By the end of the first 8 minute lesson you will have a running Qt
+application - ready to customise as you like.
+
+So, lets get started!
+
+

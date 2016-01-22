@@ -1,0 +1,32 @@
+# Mozzarella Ashbadger
+
+## Web browser
+
+tbc.
+
+
+## Navigation
+
+tbc.
+
+
+## Printing 
+
+tbc.
+
+
+## File operations
+
+tbc.
+
+
+## Help
+
+tbc.
+
+
+## Tabbed browsing
+
+tbc.
+
+
