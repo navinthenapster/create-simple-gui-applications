@@ -2,13 +2,4 @@
 02-getting-started.txt
 03-basic-qt-features.txt
 04-mozzarella-ashbadger.txt
-05-qt-designer.txt
-06-calculon.txt
-07-packaging.txt
-08-multithreading.txt
-08-qt-graphics.txt
-09-model-based-views copy.txt
-10-databases.txt
-11-the end.txt
-12-pyquicktips.txt
 13-resources.txt

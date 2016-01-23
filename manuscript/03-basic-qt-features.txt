@@ -12,6 +12,13 @@ good. This will be short, so we can get straight into the code.
 At the core of every Qt Application is a QApplication class. You need
 one - and only one - of these for an application.
 
+
+QApplication holds the Qt event loop
+One QApplication instance required
+You application sits waiting in the event loop until an action is taken
+QApplication.exec_()
+
+
 QApplication holds the application event loop. During execution your
 application sits in the event loop waiting for something to happen.
 
@@ -73,6 +80,13 @@ So, lets create a window!
 We’re going to subclass QMainWindow in our own class we’re calling
 MainWindow. MainWindow is our class, QMainWindow is the Qt parent class.
 We’re going to add a pass in here as a placeholder.
+
+QMainWindow
+Main focus for user of your application
+Every application needs at least one
+(Can have more than one main window!)
+Application will exit when last main window is closed
+
 
 Now we’ll create the window instance. We need to do this after we create
 the QApplication instance but before we enter the event loop.
@@ -152,6 +166,23 @@ subclassing the object. We’ll demonstrate this later.
 That’s great. But imagine you want to catch an event on 20 or 30
 buttons. Subclassing now becomes an incredibly tedious way of catch,
 interpreting and handling these events.
+
+
+~~~~ python
+class CustomButton(Qbutton)
+
+    def keyPressEvent(self, e):
+        # My custom event handling
+        super(CustomButton, self).keyPressEvent(e)
+
+
+class CustomButton99(Qbutton)
+
+    def keyPressEvent(self, e):
+        # My custom event handling
+        super(CustomButton99, self).keyPressEvent(e)
+~~~~
+
 
 Thankfully, Qt offers something a little neater: Signals. Instead of
 intercepting the raw event, signals allow you to ‘listen’ and receive a
@@ -269,9 +300,22 @@ By default some widgets will also pass events to their parent widget if
 they are not handled. If you have dealt with an event and do not want it
 to propogate you can flag this by calling .accept() on the event.
 
+~~~~ python
+class CustomButton(Qbutton)
+	
+	def event(self, e):
+		e.accept()
+~~~~
+
 Alternatively, if you do want it to propogate calling .ignore() will
 achieve this.
 
+~~~~ python
+class CustomButton(Qbutton)
+	
+	def event(self, e):
+		e.ignore()
+~~~~
 
 
 So, that’s enough for this time. In this lesson we’ve covered signals,
@@ -285,6 +329,45 @@ widget. See you next time.
 ## Actions, Toolbars and Menus
 
 tbc.
+
+QAction
+Customizable with labels, status tooltips, and icons
+Provides .hovered, .triggered and .toggled signals
+Can be added to toolbars and menus
+
+[toolbar image]
+Toolbars
+Bar of icon buttons at the top of your application
+
+Icons, toggles, drop-down menus
+Any widget can be inserted
+
+[qtdoc-signals]
+
+
+[qtdoc-buttonstyle]
+
+Menus 
+Drop-down menus at the top of your application
+Standards include File, Edit
+Nested, hierarchical
+Keyboard shortcuts and icons
+
+[menu-image]
+
+[keysequence]
+
+
+QToolbar
+QAction
+Icons
+Status tips
+Signals .triggered and .toggled
+QMenu
+Including accelerator keys for Windows
+Keyboard shortcuts
+
+
 
 
 
@@ -447,6 +530,20 @@ attributes, take a look at the Qt documentation.
 
 ## Layouts
 
+
+Linear position
+QHBoxLayout (horizontal)
+QVBoxLayout (vertical)
+Grid position
+QGridLayout
+Stacked (z) in front of one another
+QStackedLayout
+
+[layout-vboxlayout]
+[layout-hboxlayout]
+[layout-stackedlayout]
+
+
 So you have a window, and you want to put something in it. But how do
 you tell Qt where to place it? Layouts.
 
@@ -552,6 +649,16 @@ QStackedLayout. Until next time!
 
 
 ## Dialogs
+
+
+
+Get input from the user
+Settings, configuration
+OK and Cancel buttons
+“Special dialogs”
+e.g. file open, save
+
+[dialog]
 
 So, time for another standard feature of GUIs - dialog boxes.
 

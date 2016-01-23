@@ -1,1 +1,59 @@
 # Getting Started
+
+## Installation Windows
+
+Download from www.qt.io
+You probably want the Community edition
+Are you releasing your project under GPL, LGPL license?
+Your platform will be automatically detected, and the correct files installed
+
+## PyQt for Python 3
+
+Official build from PyQt developer
+Riverbank Computing
+Download from riverbankcomputing.com
+You must select the correct platform yourself — 32 or 64 bit (x32 or x64)
+
+[Windows system image]
+
+## PyQt5 for Python2.7
+
+Not provided by Riverbank
+Available to download from a blog at:
+blog.abstractfactory.io/pyqt5-1-1-for-python-2-7/
+No installer included — download and unpack (.rar) with 7zip, then copy to your Python site-packages folder
+
+
+## Installation Mac
+
+You can safely skip this lecture
+Note: Some other methods of installation may cause problems when trying to package applications for distribution
+If you have a problem, you can already try it this way later!
+
+MacOS X ships with Python pre-installed
+But…
+It’s often out of date
+Installing PyQt5 can be tricky
+Can complicate distributing applications
+Mess it up and you can break your system
+
+Best installed on Mac via Homebrew
+Pre-built, pre-linked and guaranteed to work together
+Also installs non-system Python
+You can develop without worrying about breaking your system
+
+
+## Installation Linux
+
+
+Install with “Software Center” on Ubuntu
+You can install for Python3 or 2.7
+		python3-pyqt5
+		python-pyqt5
+This will install Qt5 automatically if not already installed
+
+You can also install from the command line with:
+
+    apt-get install python3-pyqt5
+    
+    
