@@ -29,7 +29,7 @@ with the GUI.
 
 
 
-QApplication holds the application event loop. During execution your
+`QApplication` holds the application event loop. During execution your
 application sits in the event loop waiting for something to happen.
 
 Every interaction with your application creates an event - a press of a
@@ -66,9 +66,7 @@ The source code for your very first application is shown below. Type it is verba
 and be careful not to make mistakes. Helpfully, if you do write something wrong Python
 will let you know about it when you try to run it. 
 
-<<(code/creating_a_window_end.py)
-
-
+<<(code/creating_a_window_1.py)
 
 
 I start by importing the PyQt5 classes - not all of them, just the ones
@@ -109,15 +107,17 @@ it.
 
 So, lets create a window!
 
+<<(code/creating_a_window_end.py)
+
 We’re going to subclass `QMainWindow` in our own class we’re calling
 MainWindow. MainWindow is our class, `QMainWindow` is the Qt parent class.
 We’re going to add a pass in here as a placeholder.
 
-`QMainWindow`
-Main focus for user of your application
-Every application needs at least one
-(Can have more than one main window!)
-Application will exit when last main window is closed
+I> ### `QMainWindow`
+I>
+I> Main focus for user of your application
+I> Every application needs at least one (...can have more than one!)
+I> Application will exit when last main window is closed
 
 
 Now we’ll create the window instance. We need to do this after we create
@@ -128,8 +128,13 @@ the `QApplication` instance but before we enter the event loop.
     window.show()
 
 
-Note that you must always call  `.show()` on a newly created `QMainWindow` as they
-are created invisible by default. If you launch the application you should now
+E> ### I can't see my window!
+E> 
+E> You must *always* call  `.show()` on a newly created `QMainWindow` as they
+E> are created invisible by default.
+
+
+If you launch the application you should now
 see your main window. Notice that Qt automatically creates a window with the normal
 window decorations, and you can drag it around and resize it like any normal window.
 
@@ -146,9 +151,13 @@ __init__ function or it won’t work and you’ll get an error.
 
 So the first thing we’re going to do is set the window title.
 
-My Awesome App
+    window.setWindowTitle("My Awesome App")
 
-Lets run that!
+
+If you run this you should now see your window title displayed on the top
+of the window. This is commonly used to display application names, or 
+the name of the currently opened document.
+
 
 And here we have it. The window title is now on the top of the window.
 
@@ -165,19 +174,20 @@ Finally, we call `.setCentralWidget()` on the the window. This is a
 `QMainWindow` specific function that allows you to set the widget that
 goes in the middle of the window.
 
-So we’ll run that.
+If you launch your application you should see your window again, but this time
+with the `QLabel` widget in the middle. 
 
-And look at that. We’ve got a window. With a widget in it.
+I> ### Widget hunger?
+I>
+I> We'll cover more widgets in detail shortly
+I> but if you're impatient and would like to jump ahead you can take a look at the
+I> [QWidget documentation][qt5-doc-widgets]. Try adding the different widgets to your window!
 
-This. is. Awesome.
 
-So that’s it for now!
-
-In this lesson we’ve covered the `QApplication` class, the `QMainWindow`
-class, the event loop and added a simple widget to a window. Next we’ll
-look at the other basic Qt features that we can use to build our awesome
-app.
-
+In this section we've covered the `QApplication` class, the `QMainWindow`
+class, the event loop and experimented with adding a simple widget to a window. In the next
+section we'll take a look at the mechanisms Qt provides for widgets and windows to 
+communicate with one another — and your application.
 
 
 ## Signals, Slots, Events
@@ -741,6 +751,7 @@ So, that’s it! A short and simple introduction to dialogs in Qt.
 
 
 [qt5-doc]: http://doc.qt.io/qt-5/  "Qt5 Documentation"
+[qt5-doc-widgets]: http://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes "Basic Qt Widgets"
 [all-the-source-download]: http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip
 
 
