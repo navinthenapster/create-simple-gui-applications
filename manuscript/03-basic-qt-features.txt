@@ -8,7 +8,7 @@ feel free to experiment around it — particularly with reference to the [Qt Doc
 
 T> ### Source Code
 T>
-T> Remember that if you get stuck at any time, the source code is available to download from:  
+T> If you get stuck at any time, the source code is available to download from:  
 T> [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip]
 T> [all-the-source-download]
 
@@ -66,7 +66,7 @@ this case we know the class names from Qt don’t clash with one another
 and they don’t clash with anything in Python itself. It will also save
 us a lot of typing.
 
-Next we create our QApplication instance. Here we pass in sys.argv: this
+Next we create our `QApplication` instance. Here we pass in sys.argv: this
 allows us to pass command line arguments into our application. We’ll
 need to import sys as we don’t have that in the namespace.
 
@@ -89,20 +89,20 @@ So yep, there is nothing to see.
 
 So, lets create a window!
 
-Every application needs at least one QMainWindow to enable you to see
+Every application needs at least one `QMainWindow` to enable you to see
 anything… at all. You need at least one but you can have more…. 1, 2,
-30, whatever you like. QMainWindow is just like any other widget…except
+30, whatever you like. `QMainWindow` is just like any other widget…except
 for one thing: your application will exit when the last main window is
 closed. So if you have 3 or 4 of them whichever is closed last will end
 it.
 
 So, lets create a window!
 
-We’re going to subclass QMainWindow in our own class we’re calling
-MainWindow. MainWindow is our class, QMainWindow is the Qt parent class.
+We’re going to subclass `QMainWindow` in our own class we’re calling
+MainWindow. MainWindow is our class, `QMainWindow` is the Qt parent class.
 We’re going to add a pass in here as a placeholder.
 
-QMainWindow
+`QMainWindow`
 Main focus for user of your application
 Every application needs at least one
 (Can have more than one main window!)
@@ -110,12 +110,12 @@ Application will exit when last main window is closed
 
 
 Now we’ll create the window instance. We need to do this after we create
-the QApplication instance but before we enter the event loop.
+the `QApplication` instance but before we enter the event loop.
 
 window = MainWindow() window.show()
 
 Now this bit is very important because if you don’t do the show you’ll
-see nothing… at all. QMainWindows are created invisible by default.
+see nothing… at all. `QMainWindow` is created invisible by default.
 
 So lets launch the application
 
@@ -152,8 +152,8 @@ namespace (Qt “dot”) is full of all sorts of attributes that you can use
 to customise and control Qt widgets. We’ll cover that a bit more later,
 it’s worth a look.
 
-Finally, we call setCentralWidget on the the window. This is a
-QMainWindow specific function that allows you to set the widget that
+Finally, we call `.setCentralWidget()` on the the window. This is a
+`QMainWindow` specific function that allows you to set the widget that
 goes in the middle of the window.
 
 So we’ll run that.
@@ -164,7 +164,7 @@ This. is. Awesome.
 
 So that’s it for now!
 
-In this lesson we’ve covered the QApplication class, the QMainWindow
+In this lesson we’ve covered the `QApplication` class, the `QMainWindow`
 class, the event loop and added a simple widget to a window. Next we’ll
 look at the other basic Qt features that we can use to build our awesome
 app.
@@ -188,20 +188,17 @@ That’s great. But imagine you want to catch an event on 20 or 30
 buttons. Subclassing now becomes an incredibly tedious way of catch,
 interpreting and handling these events.
 
-~~~ python
-class CustomButton(Qbutton)
+    class CustomButton(Qbutton)
 
-    def keyPressEvent(self, e):
-        # My custom event handling
-        super(CustomButton, self).keyPressEvent(e)
+        def keyPressEvent(self, e):
+            # My custom event handling
+            super(CustomButton, self).keyPressEvent(e)
     
-    
-class CustomButton99(Qbutton)
+    class CustomButton99(Qbutton)
 
-    def keyPressEvent(self, e):
-        # My custom event handling
-        super(CustomButton99, self).keyPressEvent(e)
-~~~
+        def keyPressEvent(self, e):
+            # My custom event handling
+            super(CustomButton99, self).keyPressEvent(e)
 
 
 Thankfully, Qt offers something a little neater: Signals. Instead of
@@ -219,19 +216,19 @@ cover that later.
 
 So, lets have a look at these things in practise…
 
-If you take a look at the documentation for the QMainWindow we’ve
+If you take a look at the documentation for the `QMainWindow` we’ve
 created you’ll see that it has all 3 defined. Some signals are inherited
-from QWidget, which means they are shared by every type of widget.
+from `QWidget`, which means they are shared by every type of widget.
 
-For example the signal windowTitleChanged is actually a global QWidget
+For example the signal `.windowTitleChanged` is actually a global QWidget
 signal.
 
-So lets demonstrate the windowTitleChanged signal.
+So lets demonstrate the `.windowTitleChanged` signal.
 
 We start by creating an function that will behave as a ‘slot’ for our
 signal.
 
-Then we use .connect on the windowTitleChanged signal. We pass the
+Then we use .connect on the `.windowTitleChanged` signal. We pass the
 function that we want to be called with the signal data. In this case
 the signal sends a string, containing the new window title.
 
@@ -246,20 +243,21 @@ make it work.
 To start with, lets see how to send less data. For example we’ll create
 a function that accepts two parameters, with default values. However,
 neither of these is a string. How can we connect our
-windowTitleChanged() signal to this function?
+`.windowTitleChanged` signal to this function?
 
 We can use a lambda.
 
 The basic principle is to use a lambda as the slot, then in the lambda
-throw away the unwanted value while calling the real target. So, lamba
-x: fn()
+throw away the unwanted value while calling the real target. So, 
+
+    lamba x: fn()
 
 Let’s try that.
 
 Now, imagine we want to send more data. We can do the same thing, right?
 Well, mostly.
 
-lamba x: fn(x, some_more_data)
+    lamba x: fn(x, some_more_data)
 
 Let’s test that.
 
@@ -277,7 +275,7 @@ variable had in that namespace.
 So, what can we do? If we pass the extra data in as a named parameter to
 the lambda, we create a new namespace and voila it works.
 
-lambda x, data=data: fn(x, data)
+    lambda x, data=data: fn(x, data)
 
 So, now you should be able to pass just about anything to any function
 using signals!
@@ -320,22 +318,18 @@ By default some widgets will also pass events to their parent widget if
 they are not handled. If you have dealt with an event and do not want it
 to propogate you can flag this by calling .accept() on the event.
 
-~~~~ python
-class CustomButton(Qbutton)
-	
-	def event(self, e):
-		e.accept()
-~~~~
+    class CustomButton(Qbutton)
+    
+        def event(self, e):
+            e.accept()
 
 Alternatively, if you do want it to propogate calling .ignore() will
 achieve this.
 
-~~~~ python
-class CustomButton(Qbutton)
-	
-	def event(self, e):
-		e.ignore()
-~~~~
+    class CustomButton(Qbutton)
+    
+        def event(self, e):
+            e.ignore()
 
 
 So, that’s enough for this time. In this lesson we’ve covered signals,
@@ -404,26 +398,26 @@ A full list of widgets is available on the Qt documentation. But lets
 have a look at them quickly.
 
 To do this we’re going to take the skeleton of our application and
-replace the QLabel with a QWidget. This is the generic form of a Qt
+replace the `QLabel` with a `QWidget`. This is the generic form of a Qt
 widget.
 
 Here we’re not using it directly. We apply a list of widgets - in a
-layout, which we will cover shortly - and then add the QWidget as the
+layout, which we will cover shortly - and then add the `QWidget` as the
 central widget for the window. The result is that we fill the window
-with widgets, with the QWidget acting as a container.
+with widgets, with the `QWidget` acting as a container.
 
-Note that it’s possible to use this QWidget layout trick to create
+Note that it’s possible to use this `QWidget` layout trick to create
 custom compound widgets.
 
 Lets have a look at the widgets. From top to bottom
 
-QCheckbox - a checkbox QComboBox - a dropdown list box QDateEdit &
-QDateTimeEdit - for editing dates and datetimes QDial - rotateable dial
-QDoubleSpinbox - a number spinner for floats QFontComboBox - a list of
-fonts QLCDNumber - a quite ugly LCD display QLabel - just a label, not
-interactive QLineEdit - enter a line of text QProgressBar - a progress
-bar QPushButton - a button QRadioButton - a toggle set QSlider - a
-slider QSpinBox - an integer spinner QTimeEdit - for editing times
+`QCheckbox` - a checkbox `QComboBox` - a dropdown list box `QDateEdit` &
+`QDateTimeEdit` - for editing dates and datetimes `QDial` - rotateable dial
+`QDoubleSpinbox` - a number spinner for floats `QFontComboBox` - a list of
+fonts `QLCDNumber` - a quite ugly LCD display `QLabel` - just a label, not
+interactive `QLineEdit` - enter a line of text `QProgressBar` - a progress
+bar `QPushButton` - a button `QRadioButton` - a toggle set `QSlider` - a
+slider `QSpinBox` - an integer spinner `QTimeEdit` - for editing times
 
 There are actually more widgets than this, but they don’t fit so well!
 You can see them all by checking the documentation. Here we’re going to
@@ -431,48 +425,48 @@ take a closer look at the a subset of the most useful.
 
 —
 
-So, lets start with QLabel. This is just a simple text label. You set
+So, lets start with `QLabel`. This is just a simple text label. You set
 the text by passing it in as you create it, or you can call setText.
 
 You can adjust the size of the font.
 
-You can set the alignment on text using .setAlignment and a alignment
-from the Qt. namespace.
+You can set the alignment on text using `.setAlignment` and an alignment
+from the `Qt.` namespace.
 
 You can also (weirdly) use QLabel to display an image using setPixmap.
 
 God Save the Queen
 
-Set .setScaledContents(True) and the image will scale to fit the window.
+Set `.setScaledContents(True)` and the image will scale to fit the window.
 
 —
 
-Next QCheckBox(). Pretty simple, click it to check it.
+Next `QCheckBox()`. Pretty simple, click it to check it.
 
-You can also set it checked using .setChecked(True)
+You can also set it checked using `.setChecked(True)`
 
-…or using .setCheckState and Qt.Checked
+…or using `.setCheckState` and `Qt.Checked`
 
 Checkboxes also support tri-state, that is being on, off, or neither. To
-set this use Qt.PartiallyChecked
+set this use `Qt.PartiallyChecked`
 
 Lets look at the signals. We can connect to stateChanged to receive the
 current state.
 
 Here we can see that checked = 2, unchecked = 0, and partially checked
-=1. You don’t need to remember these values, the Qt.Checked namespace
+=1. You don’t need to remember these values, the `Qt.Checked` namespace
 variable == 2 for example.
 
-If you set the value to Qt.PartiallyChecked the checkbox will become
-tristate. You can also setTriState(True) to set tristate support on a
+If you set the value to `Qt.PartiallyChecked` the checkbox will become
+tristate. You can also `.setTriState(True)` to set tristate support on a
 fully-checked or unchecked checkbox.
 
 —
 
-Next is the QComboBox a drop-down list. You can add items to the list
+Next is the `QComboBox` a drop-down list. You can add items to the list
 using addItems and passing in a Python list of strings.
 
-The currentIndexChanged signal informs you when the selected item is
+The `currentIndexChanged` signal informs you when the selected item is
 updated.
 
 By default it passes the index of the item selected.
@@ -483,19 +477,19 @@ specific version.
 
 —
 
-Next QListBox. It’s very similar to QComboBox, differing mainly in the
+Next `QListBox`. It’s very similar to `QComboBox`, differing mainly in the
 signals available.
 
-QListBox offers an currentItemChanged signal which sends the QListItem
-(the element of the list box), and a currentTextChanged signal which
+`QListBox` offers an `currentItemChanged` signal which sends the `QListItem`
+(the element of the list box), and a `currentTextChanged` signal which
 sends the text.
 
 —
 
-QLineEdit is a box for entering a single line of text. You can type
+`QLineEdit` is a box for entering a single line of text. You can type
 anything you like.
 
-You can set a maximum length for the text with setMaxLength.
+You can set a maximum length for the text with `.setMaxLength`.
 
 You can add placeholder text to be shown when nothing is entered.
 
@@ -506,12 +500,12 @@ selection has changed.
 
 For when the text in the box has been edited and when it has been
 changed. The distinction here is between user edits and programmatic
-changes. The textEdited signal is only sent when the user edits text. —
+changes. The `textEdited` signal is only sent when the user edits text. —
 
-QSpinBox provides a small numerical input box with arrows to increase
-and decrease the value. QSpinBox supports integers.
+`QSpinBox` provides a small numerical input box with arrows to increase
+and decrease the value. `QSpinBox` supports integers.
 
-You can set the range using setMinimum and setMaximum, or setRange to
+You can set the range using `setMinimum` and `setMaximum`, or `setRange` to
 set both simultaneously.
 
 Prefixes and suffixes can be added to the number, for example currency
@@ -527,11 +521,11 @@ including the prefix and suffix.
 
 —
 
-QDoubleSpinBox is basically identical, except that is supports floats.
+`QDoubleSpinBox` is basically identical, except that is supports floats.
 
 —
 
-QSlider is a slider functions much like a QDoubleSpinBox
+`QSlider` is a slider functions much like a `QDoubleSpinBox`
 
 There is an additional sliderMoved signal that is triggered whenever the
 slider moves position and a sliderPressed signal that emits whenever the
@@ -539,7 +533,7 @@ slider is clicked.
 
 —
 
-Finally QDial is a rotateable widget that functions just like the
+Finally `QDial` is a rotateable widget that functions just like the
 slider, but appears as an analogue dial.
 
 — That’s the end of this brief tour through the Qt widgets available in
@@ -552,10 +546,10 @@ attributes, take a look at the Qt documentation.
 
 
 Linear position
-QHBoxLayout (horizontal)
-QVBoxLayout (vertical)
+`QHBoxLayout` (horizontal)
+`QVBoxLayout` (vertical)
 Grid position
-QGridLayout
+`QGridLayout`
 Stacked (z) in front of one another
 QStackedLayout
 
@@ -572,25 +566,25 @@ interface graphically using the Qt Designer. However, in this tutorial
 we will be exploring using code only. It’s a better way to understand
 how these things work.
 
-There are three positional layouts available in Qt. The VBoxLayout,
-QHBoxLayout and QGridLayout. There is also QStackedLayout which allows
+There are three positional layouts available in Qt. The `VBoxLayout`,
+`QHBoxLayout` and `QGridLayout`. There is also `QStackedLayout` which allows
 you to place widgets one on top of the other.
 
-With QVBoxLayout you arrange widgets one above the other linearly.
+With `QVBoxLayout` you arrange widgets one above the other linearly.
 Adding a widget adds it to the bottom of the column.
 
-QHBoxLayout is the same, except moving horizontally. Adding a widget
+`QHBoxLayout` is the same, except moving horizontally. Adding a widget
 adds it to the right hand side.
 
-QGridLayout allows you to specify using row,column indices where to
+`QGridLayout` allows you to specify using row,column indices where to
 place the widget.
 
-Finally, QStackedLayout allows you to place widgets one in front of the
+Finally, `QStackedLayout` allows you to place widgets one in front of the
 other. You could use this for drawing layers in a graphics application,
-or for imitating a tab-like interface. Note there is also QStackedWidget
+or for imitating a tab-like interface. Note there is also `QStackedWidget`
 which is a container widget that works in exactly the same way. This is
-useful if you want to add a stack directly to a QMainWindow with
-setCentralWidget.
+useful if you want to add a stack directly to a `QMainWindow` with
+`.setCentralWidget`.
 
 So lets have a look at each of these.
 
@@ -598,13 +592,13 @@ To demonstrate this we’re going to create a custom widget, with a solid
 color background. Don’t worry about this for now, it’s just for
 demonstration purposes.
 
-Once it’s complete we add it to the mainwindow using setCentralWidget
+Once it’s complete we add it to the mainwindow using `.setCentralWidget`
 and we get a solid red window.
 
-So lets add some things to a QVBoxLayout. We still need to add a widget
-to the mainwindow so we create a empty QWidget and set the layout on
+So lets add some things to a `QVBoxLayout`. We still need to add a widget
+to the mainwindow so we create a empty `QWidget` and set the layout on
 that. Our coloured widgets will arrange themselves in the layout,
-contained within the QWidget in the window.
+contained within the `QWidget` in the window.
 
 First lets just add the red widget again.
 
@@ -615,56 +609,56 @@ We can add two more colours.
 As we add widgets they line themselves up vertically in the order they
 are added.
 
-If we change the QVBoxLayout to a QHBoxLayout the boxes now flow left to
+If we change the `QVBoxLayout` to a `QHBoxLayout` the boxes now flow left to
 right.
 
 You can nest widgets inside one another using addLayout. Let’s add a
-QVBoxLayout into the main QHBoxLayout. If we add some widgets to the
-QVBoxLayout, they’ll be arranged vertically in the first slot of the
+`QVBoxLayout` into the main `QHBoxLayout`. If we add some widgets to the
+`QVBoxLayout`, they’ll be arranged vertically in the first slot of the
 parent layout.
 
-You can set the spacing around the layout using setContentMargins.
+You can set the spacing around the layout using `.setContentMargins`.
 
-…or set the spacing between elements using setSpacing.
+…or set the spacing between elements using `.setSpacing`.
 
-As useful as they are, if you try and using QVBox and QHBoxLayouts for
+As useful as they are, if you try and using `QVBoxLayout` and `QHBoxLayout` for
 laying out multiple elements, e.g. for a form, you’ll find it very
 difficult to ensure differently sized widgets line up. The solution to
-this is QGridLayout.
+this is `QGridLayout`.
 
-QGridLayouts allow you to position items specifically in a grid. You
+`QGridLayout` allows you to position items specifically in a grid. You
 specify row and column positions for each widget. You can skip elements,
 and they will be left empty.
 
 —
 
-The final layout we’ll cover is the QStackedLayout. As described, this
+The final layout we’ll cover is the `QStackedLayout`. As described, this
 layout allows you to position elements directly in front of one another.
 You can then select which widget you want to show.
 
 This is exactly how tabbed views work - only one view (‘tab’) is show at
 any one time.
 
-You can add elements to a QStackedLayout as normal. By default the
+You can add elements to a `QStackedLayout` as normal. By default the
 latest-added widget is shown.
 
-You can choose to show another widget by calling setCurrentIndex() or
-setCurrentWidget().
+You can choose to show another widget by calling `.setCurrentIndex()` or
+`.setCurrentWidget()`.
 
 I’m going to create a quick demo to show how you could use
-QStackedLayout to provide a tab-like interface.
+`QStackedLayout` to provide a tab-like interface.
 
 But… helpfully. Qt actually provide a built-in TabWidget that provides
 this kind of layout out of the box - albeit in widget form.
 
-I’ll re-create the demo using QTabWidget and demonstrate some features.
+I’ll re-create the demo using `QTabWidget` and demonstrate some features.
 
 
 So that’s it!
 
 In this lesson we introduced the 3 main classes of positional layouts
-QHBoxLayout, QVBoxLayout, QGridLayout and the special layout
-QStackedLayout. Until next time!
+`QHBoxLayout`, `QVBoxLayout`, `QGridLayout` and the special layout
+`QStackedLayout`. Until next time!
 
 
 
@@ -682,13 +676,13 @@ e.g. file open, save
 
 So, time for another standard feature of GUIs - dialog boxes.
 
-In Qt, Dialog boxes are handled by the QDialog class. Creating a dialog
+In Qt, Dialog boxes are handled by the `QDialog` class. Creating a dialog
 box is incredibly easy, so lets do it.
 
 Here I’m adding it to the function we added to the toolbar button click
 - meaning any toolbar button clicking will show a dialog.
 
-We create the dialog instance, giving it self - QMainWindow - as a
+We create the dialog instance, giving it self - `QMainWindow` - as a
 parent. This will make the dialog a modal window of QMainWindow (meaning
 it will completely block interaction with it).
 
@@ -705,27 +699,27 @@ Ok. So lets make it a bit more interesting and set the dialog title.
 Great. But what about some buttons?
 
 To extend it further we’re going to need to subclass the QDialog type,
-just like we did for QMainWindow. Init super init.
+just like we did for `QMainWindow`. Init super init.
 
 Dialog box buttons are defined in a very specific way. You can ignore
-this and use QButton, but by following this standard you ensure your
+this and use `QButton`, but by following this standard you ensure your
 buttons will obey the host operating system layouts (Ok on left vs.
 right for example). You don’t want to mess with that unless you want to
 annoy people.
 
-So to define buttons we use namespace attributes from QDialogButtonBox.
+So to define buttons we use namespace attributes from `QDialogButtonBox`.
 To get multiple buttons we just OR them together (using a pipe).
 
 We create a buttonbox instance, passing in the button definition we’ve
 created.
 
 We then connect the .accepted and .rejected signals to the handlers for
-.accept and .reject on the QDialog (that we’ve inhereted).
+`.accept()` and `.reject()` on the `QDialog` (that we’ve inhereted).
 
 So lets try that!
 
 Now, to see the buttons we need to add them to a layout and set the
-layout on the QDialog.
+layout on the `QDialog`.
 
 …and there you go. A dialog with some buttons in it. Of course you can
 go ahead and add any other content you like to the layout as normal.
