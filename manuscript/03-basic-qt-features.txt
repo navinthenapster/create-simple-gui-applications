@@ -53,10 +53,23 @@ I> - QApplication.exec_()
 
 ### Creating your App
 
-So, lets create our application!
+So, lets create our application! Create yourself a new Python file, you can call it 
+whatever you like (e.g. `MyApp.py`).
 
-Here I’ve created a new Python file - I called it MyApp.py you can call
-it what you like.
+W> ### Backup!
+W>
+W> We'll be editing within this file as we go along,
+W> and coming back to earlier versions of your code, so remember to keep regular backups
+W> along the way. For example, after each section save a file named `MyApp_section.py`
+
+The source code for your very first application is shown below. Type it is verbatim,
+and be careful not to make mistakes. Helpfully, if you do write something wrong Python
+will let you know about it when you try to run it. 
+
+<<(code/creating_a_window_end.py)
+
+
+
 
 I start by importing the PyQt5 classes - not all of them, just the ones
 we need for this application.
@@ -87,8 +100,6 @@ to see. That is because we didn’t create a window.
 
 So yep, there is nothing to see.
 
-So, lets create a window!
-
 Every application needs at least one `QMainWindow` to enable you to see
 anything… at all. You need at least one but you can have more…. 1, 2,
 30, whatever you like. `QMainWindow` is just like any other widget…except
@@ -112,19 +123,17 @@ Application will exit when last main window is closed
 Now we’ll create the window instance. We need to do this after we create
 the `QApplication` instance but before we enter the event loop.
 
-window = MainWindow() window.show()
 
-Now this bit is very important because if you don’t do the show you’ll
-see nothing… at all. `QMainWindow` is created invisible by default.
+    window = MainWindow()
+    window.show()
 
-So lets launch the application
 
-We have a window. Look at that. Awesome.
+Note that you must always call  `.show()` on a newly created `QMainWindow` as they
+are created invisible by default. If you launch the application you should now
+see your main window. Notice that Qt automatically creates a window with the normal
+window decorations, and you can drag it around and resize it like any normal window.
 
-You can resize, drag it around and you have the normal window
-decorations.
-
-That is it, you’ve created a Qt Application!
+Congratulations — you've created your first Qt application!
 
 That’s not very interesting so the next step is to add some content to
 the window.  We’ve already created our MainWindow subclass so we’re
