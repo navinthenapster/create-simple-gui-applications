@@ -1,22 +1,32 @@
 # Basic Qt Features
 
-## Creating a Window
+Welcome to your first steps in create graphical applications! In this chapter you will
+be introduced to the key basic features of Qt (PyQt) that you will find yourself using
+in any applications you create. We will develop a series of small applications,
+adding (and removing!) features step-by-step. Use the code given as your guide, and 
+feel free to experiment around it — particularly with reference to the [Qt Documentation][qt5-doc].
 
-In this section we'll cover the absolute basics required to get your
-PyQt application up and running. We'll start by introducing a few key
-concepts to help you understand how a Qt application functions under the
-good. This will be short, so we can get straight into the code.
+T> ### Source Code
+T>
+T> Remember that if you get stuck at any time, the source code is available to download from:  
+T> [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip]
+T> [all-the-source-download]
+
+## My first Window
+
+So, lets get started by creating our very first windowed application. Before getting
+the window on the screen, there are a few key concepts to introduce about how
+applications are organised in the Qt world. If you're already familiar with event
+loops you can safely skip to the next section.
 
 ### The Event loop and `QApplication`
 
-At the core of every Qt Application is a QApplication class. You need
-one - and only one - of these for an application.
+The core of every Qt Applications is the `QApplication` class. Every application
+needs one — and only one — `QApplication` object to function. This object holds
+the *event loop* of your application — the core loop governs all user interaction
+with the GUI.
 
 
-QApplication holds the Qt event loop
-One QApplication instance required
-You application sits waiting in the event loop until an action is taken
-QApplication.exec_()
 
 
 QApplication holds the application event loop. During execution your
@@ -31,6 +41,17 @@ control) to the handler for the specific type of event. The event
 handler deals with the event, then passes control back to the event loop
 to wait for more events. There is only one running event loop per
 application.
+
+
+I> ### Key Points
+I>
+I> - QApplication holds the Qt event loop
+I> - One QApplication instance required
+I> - You application sits waiting in the event loop until an action is taken
+I> - QApplication.exec_()
+
+
+### Creating your App
 
 So, lets create our application!
 
@@ -53,7 +74,7 @@ If you know you won’t be accepting command line arguments for your
 application you can just pass in an empty list: open square bracket,
 close square bracket.
 
-Next we need to call app..exec_() to start up the event loop. The
+Next we need to call `app..exec_()` to start up the event loop. The
 underscore is there because exec is a reserved word in Python and can’t
 be used as a function name. In PyQt5 this is handled by adding an
 underscore to the name of the function in Qt. This occurs in a few other
@@ -167,21 +188,20 @@ That’s great. But imagine you want to catch an event on 20 or 30
 buttons. Subclassing now becomes an incredibly tedious way of catch,
 interpreting and handling these events.
 
-
-~~~~ python
+~~~ python
 class CustomButton(Qbutton)
 
     def keyPressEvent(self, e):
         # My custom event handling
         super(CustomButton, self).keyPressEvent(e)
-
-
+    
+    
 class CustomButton99(Qbutton)
 
     def keyPressEvent(self, e):
         # My custom event handling
         super(CustomButton99, self).keyPressEvent(e)
-~~~~
+~~~
 
 
 Thankfully, Qt offers something a little neater: Signals. Instead of
@@ -712,6 +732,13 @@ go ahead and add any other content you like to the layout as normal.
 
 So, that’s it! A short and simple introduction to dialogs in Qt.
 
+
+
+
+
+
+[qt5-doc]: http://doc.qt.io/qt-5/  "Qt5 Documentation"
+[all-the-source-download]: http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip
 
 
 
