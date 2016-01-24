@@ -171,6 +171,9 @@ class, the event loop and experimented with adding a simple widget to a window. 
 section we'll take a look at the mechanisms Qt provides for widgets and windows to 
 communicate with one another — and your application.
 
+{icon=floppy-o}
+G> Save a copy of your file as `MyApp_window.py` as we'll need it again later.
+
 
 ## Signals, Slots, Events
 
@@ -216,8 +219,12 @@ think of them as pre-provided function endpoints for signals.
 Finally, PyQt allows you to easily define your own signals and we’ll
 cover that later.
 
-So, lets have a look at these things in practise…
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
 
+#### Basic signals
+
+So, lets have a look at these things in practise…
 If you take a look at the documentation for the `QMainWindow` we’ve
 created you’ll see that it has all 3 defined. Some signals are inherited
 from `QWidget`, which means they are shared by every type of widget.
@@ -225,7 +232,10 @@ from `QWidget`, which means they are shared by every type of widget.
 For example the signal `.windowTitleChanged` is actually a global `QWidget`
 signal.
 
-So lets demonstrate the `.windowTitleChanged` signal.
+So lets demonstrate the `.windowTitleChanged` signal. Load up your 
+`MyApp_window.py` file and make a copy.
+
+<<(code/signals_slots_and_events_1.py)
 
 We start by creating an function that will behave as a ‘slot’ for our
 signals.
@@ -236,6 +246,8 @@ the signal sends a string, containing the new window title.
 
 If we run that, we see that we receive the notification that the window
 title has changed.
+
+#### Customising signal data
 
 —— As you use signals you’ll often find that you want to be able to
 customise the data that is sent with them. Unfortunately there is no way
@@ -276,6 +288,7 @@ the lambda, we create a new namespace and voila it works.
 
     lambda x, data=data: fn(x, data)
 
+
 E> You *must* use named parameters
 E>
 E> 
@@ -285,9 +298,12 @@ E> variable had in that namespace.
 
 
 So, now you should be able to pass just about anything to any function
-using signals!
+using signals! The final code now looks like this:
 
-——
+<<(code/signals_slots_and_events_2.py)
+
+
+#### Custom Signals
 
 The final bit of signals we’re going to cover is custom signals. These
 allow you to use the Qt event loop to send data around your application.
@@ -347,6 +363,10 @@ widget. See you next time.
 
 ## Actions, Toolbars and Menus
 
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+
+
 tbc.
 ### Actions
 
@@ -357,6 +377,8 @@ Can be added to toolbars and menus
 
 
 ### Toolbars
+
+<<(code/toolbars_and_menus_1.py)
 
 [toolbar image]
 Toolbars
@@ -370,6 +392,7 @@ Any widget can be inserted
 
 [qtdoc-buttonstyle]
 
+<<(code/toolbars_and_menus_2.py)
 
 ### Menus
 
@@ -378,6 +401,8 @@ Drop-down menus at the top of your application
 Standards include File, Edit
 Nested, hierarchical
 Keyboard shortcuts and icons
+
+<<(code/toolbars_and_menus_3.py)
 
 [menu-image]
 
@@ -393,8 +418,13 @@ QMenu
 Including accelerator keys for Windows
 Keyboard shortcuts
 
+The completed code, showing the toolbar buttons and menus is shown below.
+
+<<(code/toolbars_and_menus_end.py)
 
 
+{icon=floppy-o}
+G> Save a copy of your file as `MyApp_menus.py` as we'll need it again later.
 
 
 ## Widgets
@@ -406,8 +436,15 @@ made up of multiple widgets, arranged within the window.
 Qt comes with a large selection of widgets available, and even allows
 you to create your own custom and customised widgets.
 
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+
+### Big ol' list of widgets
+
 A full list of widgets is available on the Qt documentation. But lets
 have a look at them quickly.
+
+<<(code/widgets_list.py)
 
 To do this we’re going to take the skeleton of our application and
 replace the `QLabel` with a `QWidget`. This is the generic form of a Qt
@@ -437,6 +474,8 @@ take a closer look at the a subset of the most useful.
 
 —
 
+<<(code/widgets_1.py)
+
 So, lets start with `QLabel`. This is just a simple text label. You set
 the text by passing it in as you create it, or you can call setText.
 
@@ -445,6 +484,8 @@ You can adjust the size of the font.
 You can set the alignment on text using `.setAlignment` and an alignment
 from the `Qt.` namespace.
 
+<<(code/widgets_2.py)
+
 You can also (weirdly) use QLabel to display an image using setPixmap.
 
 God Save the Queen
@@ -452,6 +493,7 @@ God Save the Queen
 Set `.setScaledContents(True)` and the image will scale to fit the window.
 
 —
+<<(code/widgets_3.py)
 
 Next `QCheckBox()`. Pretty simple, click it to check it.
 
@@ -474,6 +516,7 @@ tristate. You can also `.setTriState(True)` to set tristate support on a
 fully-checked or unchecked checkbox.
 
 —
+<<(code/widgets_4.py)
 
 Next is the `QComboBox` a drop-down list. You can add items to the list
 using addItems and passing in a Python list of strings.
@@ -488,6 +531,8 @@ the signal by using [str] (think of the signal as a dict) to get that
 specific version.
 
 —
+<<(code/widgets_5.py)
+
 
 Next `QListBox`. It’s very similar to `QComboBox`, differing mainly in the
 signals available.
@@ -497,6 +542,8 @@ signals available.
 sends the text.
 
 —
+<<(code/widgets_6.py)
+
 
 `QLineEdit` is a box for entering a single line of text. You can type
 anything you like.
@@ -513,6 +560,11 @@ selection has changed.
 For when the text in the box has been edited and when it has been
 changed. The distinction here is between user edits and programmatic
 changes. The `textEdited` signal is only sent when the user edits text. —
+
+
+-
+
+<<(code/widgets_7.py)
 
 `QSpinBox` provides a small numerical input box with arrows to increase
 and decrease the value. `QSpinBox` supports integers.
@@ -535,7 +587,9 @@ including the prefix and suffix.
 
 `QDoubleSpinBox` is basically identical, except that is supports floats.
 
+
 —
+<<(code/widgets_8.py)
 
 `QSlider` is a slider functions much like a `QDoubleSpinBox`
 
@@ -544,6 +598,7 @@ slider moves position and a sliderPressed signal that emits whenever the
 slider is clicked.
 
 —
+<<(code/widgets_9.py)
 
 Finally `QDial` is a rotateable widget that functions just like the
 slider, but appears as an analogue dial.
@@ -556,6 +611,9 @@ attributes, take a look at the Qt documentation.
 
 ## Layouts
 
+
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
 
 Linear position
 `QHBoxLayout` (horizontal)
@@ -604,6 +662,8 @@ To demonstrate this we’re going to create a custom widget, with a solid
 color background. Don’t worry about this for now, it’s just for
 demonstration purposes.
 
+<<(code/layout_1.py)
+
 Once it’s complete we add it to the mainwindow using `.setCentralWidget`
 and we get a solid red window.
 
@@ -613,6 +673,9 @@ that. Our coloured widgets will arrange themselves in the layout,
 contained within the `QWidget` in the window.
 
 First lets just add the red widget again.
+
+<<(code/layout_2.py)
+
 
 Notice the border, this is the layout spacing.
 
@@ -624,14 +687,21 @@ are added.
 If we change the `QVBoxLayout` to a `QHBoxLayout` the boxes now flow left to
 right.
 
+    layout = QHBoxLayout()
+
 You can nest widgets inside one another using addLayout. Let’s add a
 `QVBoxLayout` into the main `QHBoxLayout`. If we add some widgets to the
 `QVBoxLayout`, they’ll be arranged vertically in the first slot of the
 parent layout.
 
+<<(code/layout_4.py)
+
 You can set the spacing around the layout using `.setContentMargins`.
 
 …or set the spacing between elements using `.setSpacing`.
+
+    layout1.setContentsMargins(0,0,0,0)
+    layout1.setSpacing(20)
 
 As useful as they are, if you try and using `QVBoxLayout` and `QHBoxLayout` for
 laying out multiple elements, e.g. for a form, you’ll find it very
@@ -642,11 +712,15 @@ this is `QGridLayout`.
 specify row and column positions for each widget. You can skip elements,
 and they will be left empty.
 
+<<(code/layout_6.py)
+
 —
 
 The final layout we’ll cover is the `QStackedLayout`. As described, this
 layout allows you to position elements directly in front of one another.
 You can then select which widget you want to show.
+
+<<(code/layout_7.py)
 
 This is exactly how tabbed views work - only one view (‘tab’) is show at
 any one time.
@@ -660,10 +734,14 @@ You can choose to show another widget by calling `.setCurrentIndex()` or
 I’m going to create a quick demo to show how you could use
 `QStackedLayout` to provide a tab-like interface.
 
+<<(code/layout_8.py)
+
 But… helpfully. Qt actually provide a built-in TabWidget that provides
 this kind of layout out of the box - albeit in widget form.
 
 I’ll re-create the demo using `QTabWidget` and demonstrate some features.
+
+<<(code/layout_9.py)
 
 
 So that’s it!
@@ -676,6 +754,8 @@ In this lesson we introduced the 3 main classes of positional layouts
 
 ## Dialogs
 
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_menus.py` and save it under a new name for this section.
 
 
 Get input from the user
