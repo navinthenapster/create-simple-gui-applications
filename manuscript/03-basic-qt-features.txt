@@ -59,7 +59,11 @@ and be careful not to make mistakes. If you do mess up, Python should let you kn
 what's wrong when you run it. If you don't feel like typing it all in, you can 
 [download the source code][all-the-source-download].
 
+{pagebreak}
+
 <<(code/creating_a_window_1.py)
+
+{pagebreak}
 
 Let's go through the code line by line. 
 
@@ -103,7 +107,11 @@ will always exit when the last main window is closed.
 
 Let's add a `QMainWindow` to our application.
 
+{pagebreak}
+
 <<(code/creating_a_window_2.py)
+
+{pagebreak}
 
 I> ### `QMainWindow`
 I>
@@ -129,7 +137,11 @@ block. This allows the window behaviour to be self contained. So
 lets add our own subclass of `QMainWindow` — we can call it `MainWindow` to
 keep things simple.
 
+{pagebreak}
+
 <<(code/creating_a_window_end.py)
+
+{pagebreak}
 
 We write the `__init__` block with a small bit of boilerplate to take
 the arguments (none currently) and pass them up to the `__init__` of
@@ -235,7 +247,11 @@ signal.
 So lets demonstrate the `.windowTitleChanged` signal. Load up your 
 `MyApp_window.py` file and make a copy.
 
+{pagebreak}
+
 <<(code/signals_slots_and_events_1.py)
+
+{pagebreak}
 
 We start by creating an function that will behave as a ‘slot’ for our
 signals.
@@ -300,8 +316,11 @@ E> variable had in that namespace.
 So, now you should be able to pass just about anything to any function
 using signals! The final code now looks like this:
 
+{pagebreak}
+
 <<(code/signals_slots_and_events_2.py)
 
+{pagebreak}
 
 #### Custom Signals
 
@@ -378,7 +397,11 @@ Can be added to toolbars and menus
 
 ### Toolbars
 
+{pagebreak}
+
 <<(code/toolbars_and_menus_1.py)
+
+{pagebreak}
 
 [toolbar image]
 Toolbars
@@ -392,7 +415,11 @@ Any widget can be inserted
 
 [qtdoc-buttonstyle]
 
+{pagebreak}
+
 <<(code/toolbars_and_menus_2.py)
+
+{pagebreak}
 
 ### Menus
 
@@ -402,7 +429,11 @@ Standards include File, Edit
 Nested, hierarchical
 Keyboard shortcuts and icons
 
+{pagebreak}
+
 <<(code/toolbars_and_menus_3.py)
+
+{pagebreak}
 
 [menu-image]
 
@@ -420,8 +451,11 @@ Keyboard shortcuts
 
 The completed code, showing the toolbar buttons and menus is shown below.
 
+{pagebreak}
+
 <<(code/toolbars_and_menus_end.py)
 
+{pagebreak}
 
 {icon=floppy-o}
 G> Save a copy of your file as `MyApp_menus.py` as we'll need it again later.
@@ -444,7 +478,11 @@ G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for th
 A full list of widgets is available on the Qt documentation. But lets
 have a look at them quickly.
 
+{pagebreak}
+
 <<(code/widgets_list.py)
+
+{pagebreak}
 
 To do this we’re going to take the skeleton of our application and
 replace the `QLabel` with a `QWidget`. This is the generic form of a Qt
@@ -474,7 +512,11 @@ take a closer look at the a subset of the most useful.
 
 —
 
+{pagebreak}
+
 <<(code/widgets_1.py)
+
+{pagebreak}
 
 So, lets start with `QLabel`. This is just a simple text label. You set
 the text by passing it in as you create it, or you can call setText.
@@ -484,7 +526,11 @@ You can adjust the size of the font.
 You can set the alignment on text using `.setAlignment` and an alignment
 from the `Qt.` namespace.
 
+{pagebreak}
+
 <<(code/widgets_2.py)
+
+{pagebreak}
 
 You can also (weirdly) use QLabel to display an image using setPixmap.
 
@@ -493,7 +539,12 @@ God Save the Queen
 Set `.setScaledContents(True)` and the image will scale to fit the window.
 
 —
+
+{pagebreak}
+
 <<(code/widgets_3.py)
+
+{pagebreak}
 
 Next `QCheckBox()`. Pretty simple, click it to check it.
 
@@ -516,7 +567,12 @@ tristate. You can also `.setTriState(True)` to set tristate support on a
 fully-checked or unchecked checkbox.
 
 —
+
+{pagebreak}
+
 <<(code/widgets_4.py)
+
+{pagebreak}
 
 Next is the `QComboBox` a drop-down list. You can add items to the list
 using addItems and passing in a Python list of strings.
@@ -531,8 +587,12 @@ the signal by using [str] (think of the signal as a dict) to get that
 specific version.
 
 —
+
+{pagebreak}
+
 <<(code/widgets_5.py)
 
+{pagebreak}
 
 Next `QListBox`. It’s very similar to `QComboBox`, differing mainly in the
 signals available.
@@ -542,8 +602,12 @@ signals available.
 sends the text.
 
 —
+
+{pagebreak}
+
 <<(code/widgets_6.py)
 
+{pagebreak}
 
 `QLineEdit` is a box for entering a single line of text. You can type
 anything you like.
@@ -564,7 +628,11 @@ changes. The `textEdited` signal is only sent when the user edits text. —
 
 -
 
+{pagebreak}
+
 <<(code/widgets_7.py)
+
+{pagebreak}
 
 `QSpinBox` provides a small numerical input box with arrows to increase
 and decrease the value. `QSpinBox` supports integers.
@@ -589,7 +657,12 @@ including the prefix and suffix.
 
 
 —
+
+{pagebreak}
+
 <<(code/widgets_8.py)
+
+{pagebreak}
 
 `QSlider` is a slider functions much like a `QDoubleSpinBox`
 
@@ -598,7 +671,12 @@ slider moves position and a sliderPressed signal that emits whenever the
 slider is clicked.
 
 —
+
+{pagebreak}
+
 <<(code/widgets_9.py)
+
+{pagebreak}
 
 Finally `QDial` is a rotateable widget that functions just like the
 slider, but appears as an analogue dial.
@@ -662,7 +740,11 @@ To demonstrate this we’re going to create a custom widget, with a solid
 color background. Don’t worry about this for now, it’s just for
 demonstration purposes.
 
+{pagebreak}
+
 <<(code/layout_1.py)
+
+{pagebreak}
 
 Once it’s complete we add it to the mainwindow using `.setCentralWidget`
 and we get a solid red window.
@@ -674,8 +756,11 @@ contained within the `QWidget` in the window.
 
 First lets just add the red widget again.
 
+{pagebreak}
+
 <<(code/layout_2.py)
 
+{pagebreak}
 
 Notice the border, this is the layout spacing.
 
@@ -694,7 +779,11 @@ You can nest widgets inside one another using addLayout. Let’s add a
 `QVBoxLayout`, they’ll be arranged vertically in the first slot of the
 parent layout.
 
+{pagebreak}
+
 <<(code/layout_4.py)
+
+{pagebreak}
 
 You can set the spacing around the layout using `.setContentMargins`.
 
@@ -712,7 +801,11 @@ this is `QGridLayout`.
 specify row and column positions for each widget. You can skip elements,
 and they will be left empty.
 
+{pagebreak}
+
 <<(code/layout_6.py)
+
+{pagebreak}
 
 —
 
@@ -720,7 +813,11 @@ The final layout we’ll cover is the `QStackedLayout`. As described, this
 layout allows you to position elements directly in front of one another.
 You can then select which widget you want to show.
 
+{pagebreak}
+
 <<(code/layout_7.py)
+
+{pagebreak}
 
 This is exactly how tabbed views work - only one view (‘tab’) is show at
 any one time.
@@ -734,14 +831,22 @@ You can choose to show another widget by calling `.setCurrentIndex()` or
 I’m going to create a quick demo to show how you could use
 `QStackedLayout` to provide a tab-like interface.
 
+{pagebreak}
+
 <<(code/layout_8.py)
+
+{pagebreak}
 
 But… helpfully. Qt actually provide a built-in TabWidget that provides
 this kind of layout out of the box - albeit in widget form.
 
 I’ll re-create the demo using `QTabWidget` and demonstrate some features.
 
+{pagebreak}
+
 <<(code/layout_9.py)
+
+{pagebreak}
 
 
 So that’s it!
