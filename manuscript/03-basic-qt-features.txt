@@ -23,23 +23,15 @@ loops you can safely skip to the next section.
 
 The core of every Qt Applications is the `QApplication` class. Every application
 needs one — and only one — `QApplication` object to function. This object holds
-the *event loop* of your application — the core loop governs all user interaction
-with the GUI.
+the *event loop* of your application — the core loop which governs all user 
+interaction with the GUI.
 
-
-
-
-`QApplication` holds the application event loop. During execution your
-application sits in the event loop waiting for something to happen.
-
-Every interaction with your application creates an event - a press of a
-key, a click of a mouse, even mouse movement - and these events are
-added to an event queue.
-
-If the event loop finds something in the queue, it passes the event (and
-control) to the handler for the specific type of event. The event
-handler deals with the event, then passes control back to the event loop
-to wait for more events. There is only one running event loop per
+Each interaction with your application — whether a press of a key, click of a mouse,
+or mouse movement — generates an *event* which is placed on the *event queue*.
+In the event loop, the queue is checked on each iteration and if a waiting event
+is found, the event and control is passed to the specific *event handler* for the event. 
+The event handler deals with the event, then passes control back to the event
+loop to wait for more events. There is only *one* running event loop per 
 application.
 
 
@@ -48,127 +40,117 @@ I>
 I> - QApplication holds the Qt event loop
 I> - One QApplication instance required
 I> - You application sits waiting in the event loop until an action is taken
-I> - QApplication.exec_()
+I> - There is only *one* event loop
 
 
 ### Creating your App
 
-So, lets create our application! Create yourself a new Python file, you can call it 
-whatever you like (e.g. `MyApp.py`).
+So, lets create your first application! To start create a new Python file — you 
+can call it whatever you like (e.g. `MyApp.py`).
 
 W> ### Backup!
 W>
-W> We'll be editing within this file as we go along,
-W> and coming back to earlier versions of your code, so remember to keep regular backups
-W> along the way. For example, after each section save a file named `MyApp_section.py`
+W> We'll be editing within this file as we go along, and you may want to come
+W> back to earlier versions of your code, so remember to keep regular backups
+W> along the way. For example, after each section save a file named `MyApp_<section>.py`
 
-The source code for your very first application is shown below. Type it is verbatim,
-and be careful not to make mistakes. Helpfully, if you do write something wrong Python
-will let you know about it when you try to run it. 
+The source code for your very first application is shown below. Type it in verbatim,
+and be careful not to make mistakes. If you do mess up, Python should let you know
+what's wrong when you run it. If you don't feel like typing it all in, you can 
+[download the source code][all-the-source-download].
 
 <<(code/creating_a_window_1.py)
 
+Let's go through the code line by line. 
 
-I start by importing the PyQt5 classes - not all of them, just the ones
-we need for this application.
+We start by importing the PyQt5 classes that we need for the application,
+from the `QtWidgets`, `QtGui` and `QtCore` submodules.
 
-This kind of global import is generally frowned upon in Python but in
-this case we know the class names from Qt don’t clash with one another
-and they don’t clash with anything in Python itself. It will also save
-us a lot of typing.
+I> This kind of global import `from <module> import *` is generally
+I> frowned upon in Python. However, in this case we know that the 
+I> PyQt classnames don't conflict with one another, or with Python itself.
+I> Importing them all saves a lot of typing, and helps with PyQt4 compatibility.
 
-Next we create our `QApplication` instance. Here we pass in sys.argv: this
-allows us to pass command line arguments into our application. We’ll
-need to import sys as we don’t have that in the namespace.
+Next we create an instance of `QApplication`, passing in `sys.arg` (which contains 
+command line arguments). This allows us to pass command line arguments to our
+application. If you know you won't be accepting command line arguments you can
+pass in an empty list instead, e.g.
 
-If you know you won’t be accepting command line arguments for your
-application you can just pass in an empty list: open square bracket,
-close square bracket.
+    app = QApplication([])
 
-Next we need to call `app..exec_()` to start up the event loop. The
-underscore is there because exec is a reserved word in Python and can’t
-be used as a function name. In PyQt5 this is handled by adding an
-underscore to the name of the function in Qt. This occurs in a few other
-places so watch out for that.
+Finally, we call `app..exec_()` to start up the event loop.
 
-So, lets launch the application!
+I> The underscore is there because `exec` is a reserved word in Python and can’t
+I> be used as a function name. PyQt5 handles this by appending an underscore to the 
+I> name used in the C++ library. You'll also see it for `.print_()`.
 
-The spinning icon indicates something is running…. but there is nothing
-to see. That is because we didn’t create a window.
+So, lets launch your application. You can run it from the command line like any
+other Python script, for example:
 
-So yep, there is nothing to see.
+    python MyApp.py
+    
+Or, for Python 3:
 
-Every application needs at least one `QMainWindow` to enable you to see
-anything… at all. You need at least one but you can have more…. 1, 2,
-30, whatever you like. `QMainWindow` is just like any other widget…except
-for one thing: your application will exit when the last main window is
-closed. So if you have 3 or 4 of them whichever is closed last will end
-it.
+    python3 MyApp.py
 
-So, lets create a window!
+The application should run without errors, yet there will be no indication of 
+anything happening, aside from perhaps a busy indicator. This is completely 
+normal — we haven't told Qt to create a window yet!
 
-<<(code/creating_a_window_end.py)
+Every application needs at least one `QMainWindow`, though you can have more
+than one if you ned to. However, no matter how many you have, your application
+will always exit when the last main window is closed.
 
-We’re going to subclass `QMainWindow` in our own class we’re calling
-MainWindow. MainWindow is our class, `QMainWindow` is the Qt parent class.
-We’re going to add a pass in here as a placeholder.
+Let's add a `QMainWindow` to our application.
+
+<<(code/creating_a_window_2.py)
 
 I> ### `QMainWindow`
 I>
-I> Main focus for user of your application
-I> Every application needs at least one (...can have more than one!)
-I> Application will exit when last main window is closed
+I> - Main focus for user of your application
+I> - Every application needs at least one (...but can have more)
+I> - Application will exit when last main window is closed
 
-
-Now we’ll create the window instance. We need to do this after we create
-the `QApplication` instance but before we enter the event loop.
-
-
-    window = MainWindow()
-    window.show()
-
+If you launch the application you should now
+see your main window. Notice that Qt automatically creates a window with the normal
+window decorations, and you can drag it around and resize it like any normal window.
 
 E> ### I can't see my window!
 E> 
 E> You must *always* call  `.show()` on a newly created `QMainWindow` as they
 E> are created invisible by default.
 
+Congratulations — you've created your first Qt application! It's not very
+interesting at the moment, so lets add some content to the window.
 
-If you launch the application you should now
-see your main window. Notice that Qt automatically creates a window with the normal
-window decorations, and you can drag it around and resize it like any normal window.
+If you want to create a custom window, the best approach is to subclass 
+`QMainWindow` and then include the setup for the window in the `__init__`
+block. This allows the window behaviour to be self contained. So 
+lets add our own subclass of `QMainWindow` — we can call it `MainWindow` to
+keep things simple.
 
-Congratulations — you've created your first Qt application!
+<<(code/creating_a_window_end.py)
 
-That’s not very interesting so the next step is to add some content to
-the window.  We’ve already created our MainWindow subclass so we’re
-going to extend it in the __init__ function for the class.
+We write the `__init__` block with a small bit of boilerplate to take
+the arguments (none currently) and pass them up to the `__init__` of
+the parent `QMainWindow` class.
 
-A small bit of boilerplate to take the arguments and keyword arguments
-(none in this case) and pass them up to the init for the parent class.
-Note that when you subclass a Qt class you must always call the super
-__init__ function or it won’t work and you’ll get an error.
+I> When you subclass a Qt class you must *always* call the super
+I> `__init__` function to allow Qt to set up the object.
 
-So the first thing we’re going to do is set the window title.
+Next we use `.setWindowTitle()` to change the title of our main window.
 
-    window.setWindowTitle("My Awesome App")
+Then we add our first widget — a `QLabel` — to the middle of the window.
+This is one of the simplest widgets available in Qt. You create the object
+by passing in the text that you want the widget to display.
 
-
-If you run this you should now see your window title displayed on the top
-of the window. This is commonly used to display application names, or 
-the name of the currently opened document.
+We set the alignment of the widget to the center, so it will show up in
+the middle of the window.
 
 
-And here we have it. The window title is now on the top of the window.
-
-Now lets add something to middle of the window. We’re going to create a
-QLabel here. It’s one of the simplest widgets that’s available. You just
-type some text and that’s your widget.
-
-We’re going to set the alignment on the widget to the center. That Qt
-namespace (Qt “dot”) is full of all sorts of attributes that you can use
-to customise and control Qt widgets. We’ll cover that a bit more later,
-it’s worth a look.
+T> The Qt namespace (`Qt.`) is full of all sorts of attributes that you can use
+T> to customise and control Qt widgets. We’ll cover that a bit more later,
+T> [it’s worth a look][qt5-doc-qt-namespace].
 
 Finally, we call `.setCentralWidget()` on the the window. This is a
 `QMainWindow` specific function that allows you to set the widget that
@@ -177,7 +159,7 @@ goes in the middle of the window.
 If you launch your application you should see your window again, but this time
 with the `QLabel` widget in the middle. 
 
-I> ### Widget hunger?
+I> ### Hungry for widgets?
 I>
 I> We'll cover more widgets in detail shortly
 I> but if you're impatient and would like to jump ahead you can take a look at the
@@ -219,8 +201,9 @@ interpreting and handling these events.
             # My custom event handling
             super(CustomButton99, self).keyPressEvent(e)
 
+### Signals
 
-Thankfully, Qt offers something a little neater: Signals. Instead of
+Thankfully, Qt offers something a little neater: *Signals*. Instead of
 intercepting the raw event, signals allow you to ‘listen’ and receive a
 notification when an event has occurred. Unlike raw events, these
 signals can represent more complex occurrences - such as an updated
@@ -239,13 +222,13 @@ If you take a look at the documentation for the `QMainWindow` we’ve
 created you’ll see that it has all 3 defined. Some signals are inherited
 from `QWidget`, which means they are shared by every type of widget.
 
-For example the signal `.windowTitleChanged` is actually a global QWidget
+For example the signal `.windowTitleChanged` is actually a global `QWidget`
 signal.
 
 So lets demonstrate the `.windowTitleChanged` signal.
 
 We start by creating an function that will behave as a ‘slot’ for our
-signal.
+signals.
 
 Then we use .connect on the `.windowTitleChanged` signal. We pass the
 function that we want to be called with the signal data. In this case
@@ -264,37 +247,42 @@ a function that accepts two parameters, with default values. However,
 neither of these is a string. How can we connect our
 `.windowTitleChanged` signal to this function?
 
-We can use a lambda.
+We can do this by using a wrapper function, or a lambda. When the signal is
+emitted this wrapper function will be called and can add or remove data
+from the signal as required, before passing it on to the real slot.
 
-The basic principle is to use a lambda as the slot, then in the lambda
-throw away the unwanted value while calling the real target. So, 
+So, for example, to discard data from a signal we could use the following 
+construction. The lambda accepts a single parameter `x`, then discards it
+calling the *real* target `fn` with no parameters:
 
     lamba x: fn()
 
-Let’s try that.
-
-Now, imagine we want to send more data. We can do the same thing, right?
-Well, mostly.
+If we want to send *more* data we can use a similar construction, but 
+instead of discarding a parameter we add another. For example:
 
     lamba x: fn(x, some_more_data)
 
-Let’s test that.
 
-It works!
+
 
 However, lets try that again with a loop. Here we’re going to use a
 layout to create a list of widgets, don’t worry about that it’ll be
 explained later.
 
 You’ll notice that clicking on all of the widgets gives the same result?
-That’s because the some_more_data value in the lambda is referencing the
-loop namespace. When it’s triggered it returns the last value that the
-variable had in that namespace.
 
 So, what can we do? If we pass the extra data in as a named parameter to
 the lambda, we create a new namespace and voila it works.
 
     lambda x, data=data: fn(x, data)
+
+E> You *must* use named parameters
+E>
+E> 
+E> That’s because the some_more_data value in the lambda is referencing the
+E> loop namespace. When it’s triggered it returns the last value that the
+E> variable had in that namespace.
+
 
 So, now you should be able to pass just about anything to any function
 using signals!
@@ -312,9 +300,7 @@ including multiple types, and compound types (e.g. dictionaries, lists).
 Then, you can connect and use your signal just as normal.
 
 
-That’s it! Easy.
-
-——
+### Events
 
 Next, let’s take a quick look at events. Thanks to signals, for most
 purposes you can happily avoid using events in Qt, but it’s worth
@@ -362,11 +348,15 @@ widget. See you next time.
 ## Actions, Toolbars and Menus
 
 tbc.
+### Actions
 
 QAction
 Customizable with labels, status tooltips, and icons
 Provides .hovered, .triggered and .toggled signals
 Can be added to toolbars and menus
+
+
+### Toolbars
 
 [toolbar image]
 Toolbars
@@ -379,6 +369,9 @@ Any widget can be inserted
 
 
 [qtdoc-buttonstyle]
+
+
+### Menus
 
 Menus 
 Drop-down menus at the top of your application
@@ -752,6 +745,7 @@ So, that’s it! A short and simple introduction to dialogs in Qt.
 
 [qt5-doc]: http://doc.qt.io/qt-5/  "Qt5 Documentation"
 [qt5-doc-widgets]: http://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes "Basic Qt Widgets"
+[qt5-doc-qt-namespace]: http://doc.qt.io/qt-5/qt.html
 [all-the-source-download]: http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip
 
 
