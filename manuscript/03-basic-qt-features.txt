@@ -248,7 +248,7 @@ find this information in the [Qt documentation][qt-doc-qmainwindow].
 Scroll down to the Signals section to see the signals implemented for 
 this class. 
 
-![QMainWindow Signals](images/signals-qmainwindow.png)
+![Qt 5 Documentation — QMainWindow Signals](images/qtdoc-signals-qmainwindow.png)
 
 As you can see, alongside the two `QMainWindow` signals, there are 
 4 signals inherited from `QWidget` and 2 signals inherited from `Object`.
@@ -256,7 +256,7 @@ If you click through to the `QWidget` signal documentation you can see a
 `.windowTitleChanged` signal implemented here. Next we'll demonstrate that
 signal within our application. 
 
-![QWidget Signals](images/signals-qwidget.png)
+![Qt 5 Documentation — Widget Signals](images/qtdoc-signals-qwidget.png)
 
 
 {pagebreak}
@@ -733,11 +733,21 @@ you to place widgets one on top of the other.
 With `QVBoxLayout` you arrange widgets one above the other linearly.
 Adding a widget adds it to the bottom of the column.
 
+![A QHBoxLayout, filled from top to bottom.](images/vboxlayout.png)
+
 `QHBoxLayout` is the same, except moving horizontally. Adding a widget
 adds it to the right hand side.
 
+![A QHBoxLayout, filled from left to right.](images/hboxlayout.png)
+
 `QGridLayout` allows you to specify using row,column indices where to
 place the widget.
+
+![A QGridLayout showing the grid positions for each location.](images/gridlayout1.png)
+
+Usefully, for `QGridLayout` you don't need to fill all the positions in the grid.
+
+![A QGridLayout with unfilled slots.](images/gridlayout2.png)
 
 Finally, `QStackedLayout` allows you to place widgets one in front of the
 other. You could use this for drawing layers in a graphics application,
@@ -746,7 +756,10 @@ which is a container widget that works in exactly the same way. This is
 useful if you want to add a stack directly to a `QMainWindow` with
 `.setCentralWidget`.
 
-So lets have a look at each of these.
+![QStackedLayout — in use only the uppermost widget is visible, which is by default the first widget added to the layout.](images/qstackedlayout1.png)
+
+![QStackedLayout, with the 2nd (1) widget selected and brought to the front ](images/qstackedlayout2.png)
+
 
 To demonstrate this we’re going to create a custom widget, with a solid
 color background. Don’t worry about this for now, it’s just for
