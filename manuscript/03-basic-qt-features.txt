@@ -713,10 +713,6 @@ Grid position
 Stacked (z) in front of one another
 QStackedLayout
 
-[layout-vboxlayout]
-[layout-hboxlayout]
-[layout-stackedlayout]
-
 
 So you have a window, and you want to put something in it. But how do
 you tell Qt where to place it? Layouts.
