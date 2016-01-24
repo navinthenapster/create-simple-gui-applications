@@ -522,9 +522,10 @@ There are actually more widgets than this, but they don’t fit so well!
 You can see them all by checking the documentation. Here we’re going to
 take a closer look at the a subset of the most useful.
 
-—
-
 {pagebreak}
+
+#### QLabel
+
 
 <<(code/widgets_1.py)
 
@@ -544,15 +545,24 @@ from the `Qt.` namespace.
 
 {pagebreak}
 
-You can also (weirdly) use QLabel to display an image using setPixmap.
+Weirdly, you can also use `QLabel` to display an image using `.setPixmap()`. 
+This accepts an *pixmap*, which you can create by passing an image filename
+to `QPixmap`. In the example files provided with this book you can find
+a file `hrh.jpg` which you can display in your window as follows:
 
-God Save the Queen
+    label.setPixMap(QPixmap('hrh.jpg'))
 
-Set `.setScaledContents(True)` and the image will scale to fit the window.
+God Save the Queen. By default the image scales while maintaining its
+aspect ratio. If you want it to stretch and scale to fit the window completely
+you can set `.setScaledContents(True)` on the `QLabel`.
 
-—
+
+    label.setScaledContents(True)
+
 
 {pagebreak}
+
+#### QCheckBox
 
 <<(code/widgets_3.py)
 
@@ -578,9 +588,10 @@ If you set the value to `Qt.PartiallyChecked` the checkbox will become
 tristate. You can also `.setTriState(True)` to set tristate support on a
 fully-checked or unchecked checkbox.
 
-—
 
 {pagebreak}
+
+#### QComboBox
 
 <<(code/widgets_4.py)
 
@@ -598,9 +609,9 @@ When connecting to the signal you can also request the string version of
 the signal by using [str] (think of the signal as a dict) to get that
 specific version.
 
-—
-
 {pagebreak}
+
+#### QListBox
 
 <<(code/widgets_5.py)
 
@@ -613,9 +624,9 @@ signals available.
 (the element of the list box), and a `currentTextChanged` signal which
 sends the text.
 
-—
-
 {pagebreak}
+
+#### QLineEdit
 
 <<(code/widgets_6.py)
 
@@ -637,10 +648,9 @@ For when the text in the box has been edited and when it has been
 changed. The distinction here is between user edits and programmatic
 changes. The `textEdited` signal is only sent when the user edits text. —
 
-
--
-
 {pagebreak}
+
+#### QSpinBox
 
 <<(code/widgets_7.py)
 
@@ -663,14 +673,13 @@ A valueChanged signal emits the current value whenever it updates.
 A string version of this same signal sends the value, but as a string
 including the prefix and suffix.
 
-—
+The related widget, `QDoubleSpinBox`, is basically identical, except 
+that is supports floats.
 
-`QDoubleSpinBox` is basically identical, except that is supports floats.
-
-
-—
 
 {pagebreak}
+
+#### QSlider
 
 <<(code/widgets_8.py)
 
@@ -682,9 +691,10 @@ There is an additional sliderMoved signal that is triggered whenever the
 slider moves position and a sliderPressed signal that emits whenever the
 slider is clicked.
 
-—
 
 {pagebreak}
+
+#### QDial
 
 <<(code/widgets_9.py)
 
