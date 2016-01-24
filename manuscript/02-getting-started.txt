@@ -7,6 +7,8 @@ You probably want the Community edition
 Are you releasing your project under GPL, LGPL license?
 Your platform will be automatically detected, and the correct files installed
 
+![The Windows system panel, where you can find out if you're running 64 or 32bit.](images/windows-system-panel.png)
+
 ## PyQt for Python 3
 
 Official build from PyQt developer
