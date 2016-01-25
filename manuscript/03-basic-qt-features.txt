@@ -350,25 +350,47 @@ Then, you can connect and use your signal just as normal.
 ### Events
 
 Next, let’s take a quick look at events. Thanks to signals, for most
-purposes you can happily avoid using events in Qt, but it’s worth
-knowing about them for when it’s neccessary.
+purposes you can happily avoid using events in Qt, but it’s important
+to understand how they work for when they are neccessary.
 
-Now we’re going to intercept the contextMenuEvent on the QMainWindow. We
-can see that it receives a single value: event.
+As an example, we're going to intercept the `.contextMenuEvent` on 
+`QMainWindow`. This event is fired whenever a context menu is 
+*about to be* shown, and is passed a single value `event` of type
+`QContextMenuEvent`.
 
-To intercept the signal, we simply override the object method with our
-new function of the same name.
+To intercept the event, we simply override the object method with our
+new method of the same name. So in this case we can create a method
+on our `MainWindow` subclass with the name `contextMenuEvent` and it
+will receive all events of this type.
 
-If we run that… and I start right-clicking (to trigger the context menu)
-you can see that the event is registered.
+    def contextMenuEvent(self, event):
+        print("Context menu event!")
 
-Sometimes you may wish to intercept an event, yet still trigger the
-parent (default) event handler. You can do this by calling the event
-handler on the parent class using super.
+If you add the above method to your `MainWindow` class and run your 
+program you will discover that right-clicking in your window now
+displays the message in the print statement.
 
-By default some widgets will also pass events to their parent widget if
-they are not handled. If you have dealt with an event and do not want it
-to propogate you can flag this by calling .accept() on the event.
+Sometimes you may wish to intercept an event, yet still trigger 
+the default (parent) event handler. You can do this by calling the
+event handler on the parent class using `super` as normal for
+Python class methods.
+
+    def contextMenuEvent(self, event):
+        print("Context menu event!")
+        super(self, MainWindow).contextMenuEvent(event)
+
+This allows you to propogate events up the object hierarchy, handling only
+those parts of an event handler that you wish to.
+
+
+However, in Qt there is another type of event hierarchy, constructed 
+around the UI relationships. Widgets that are added to a layout, within 
+another widget, may opt to pass their events to their UI parent. 
+In complex widgets with multiple sub-elements this can allow for 
+delegation of event handling to the containing widget for certain events.
+
+However, if you have dealt with an event and do not want it
+to propogate in this way you can flag this by calling .accept() on the event.
 
     class CustomButton(Qbutton)
     
@@ -383,13 +405,12 @@ achieve this.
         def event(self, e):
             e.ignore()
 
-
-So, that’s enough for this time. In this lesson we’ve covered signals,
-slots and events. We’ve demonstrated some simple signals, including
-showing how to pass less and more data using lambdas. We’ve created
-custom signals. We’ve show how to intercept events, pass on event
-handling, and use accept and ignore to hide/show events to the parent
-widget. See you next time.
+In this section we've covered signals, slots and events. We've demonstrated
+some simple signals, including how to pass less and more data using lambdas.
+We've created custom signals, and shown how to intercept events, pass on
+event handling and use `.accept()` and `.ignore()` to hide/show events
+to the UI-parent widget. In the next section we will go on to take 
+a look at two common features of the GUI — toolbars and menus.
 
 
 ## Actions, Toolbars and Menus
