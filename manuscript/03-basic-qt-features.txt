@@ -547,7 +547,6 @@ take a closer look at the a subset of the most useful.
 
 #### QLabel
 
-
 <<(code/widgets_1.py)
 
 {pagebreak}
@@ -563,8 +562,6 @@ from the `Qt.` namespace.
 {pagebreak}
 
 <<(code/widgets_2.py)
-
-{pagebreak}
 
 Weirdly, you can also use `QLabel` to display an image using `.setPixmap()`. 
 This accepts an *pixmap*, which you can create by passing an image filename
@@ -585,11 +582,9 @@ you can set `.setScaledContents(True)` on the `QLabel`.
 
 #### QCheckBox
 
-<<(code/widgets_3.py)
-
-{pagebreak}
-
 Next `QCheckBox()`. Pretty simple, click it to check it.
+
+<<(code/widgets_3.py)
 
 You can also set it checked using `.setChecked(True)`
 
@@ -614,12 +609,12 @@ fully-checked or unchecked checkbox.
 
 #### QComboBox
 
-<<(code/widgets_4.py)
-
-{pagebreak}
 
 Next is the `QComboBox` a drop-down list. You can add items to the list
 using addItems and passing in a Python list of strings.
+
+<<(code/widgets_4.py)
+
 
 The `currentIndexChanged` signal informs you when the selected item is
 updated.
@@ -634,12 +629,10 @@ specific version.
 
 #### QListBox
 
-<<(code/widgets_5.py)
-
-{pagebreak}
-
 Next `QListBox`. It’s very similar to `QComboBox`, differing mainly in the
 signals available.
+
+<<(code/widgets_5.py)
 
 `QListBox` offers an `currentItemChanged` signal which sends the `QListItem`
 (the element of the list box), and a `currentTextChanged` signal which
@@ -649,12 +642,10 @@ sends the text.
 
 #### QLineEdit
 
-<<(code/widgets_6.py)
-
-{pagebreak}
-
 `QLineEdit` is a box for entering a single line of text. You can type
 anything you like.
+
+<<(code/widgets_6.py)
 
 You can set a maximum length for the text with `.setMaxLength`.
 
@@ -673,12 +664,11 @@ changes. The `textEdited` signal is only sent when the user edits text. —
 
 #### QSpinBox
 
-<<(code/widgets_7.py)
-
-{pagebreak}
-
 `QSpinBox` provides a small numerical input box with arrows to increase
 and decrease the value. `QSpinBox` supports integers.
+
+<<(code/widgets_7.py)
+
 
 You can set the range using `setMinimum` and `setMaximum`, or `setRange` to
 set both simultaneously.
@@ -702,27 +692,23 @@ that is supports floats.
 
 #### QSlider
 
-<<(code/widgets_8.py)
-
-{pagebreak}
-
 `QSlider` is a slider functions much like a `QDoubleSpinBox`
 
 There is an additional sliderMoved signal that is triggered whenever the
 slider moves position and a sliderPressed signal that emits whenever the
 slider is clicked.
 
+<<(code/widgets_8.py)
+
 
 {pagebreak}
 
 #### QDial
 
-<<(code/widgets_9.py)
-
-{pagebreak}
-
 Finally `QDial` is a rotateable widget that functions just like the
 slider, but appears as an analogue dial.
+
+<<(code/widgets_9.py)
 
 — That’s the end of this brief tour through the Qt widgets available in
 PyQt. To see the full list of available widgets and their signals and
