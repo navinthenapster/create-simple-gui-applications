@@ -656,29 +656,32 @@ configurable options to change the widget behaviours.
 
 <<(code/widgets_3.py)
 
-You can also set it checked using `.setChecked(True)`
+You can set a checkbox state programmatically using `.setChecked` or `.setCheckState`.
+The former accepts either `True` or `False` representing checked or unchecked respectively.
+However, with `.setCheckState` you also specify a particially checked state using a
+`Qt.` namespace flag:
 
-…or using `.setCheckState` and `Qt.Checked`
+| Flag                  | Behaviour                                       |
+|-----------------------|-------------------------------------------------|
+| `Qt.Unchecked`        | Item is unchecked                               |
+| `Qt.PartiallyChecked` | Item is partially checked                       |
+| `Qt.Checked`          | Item is unchecked                               |
 
-Checkboxes also support tri-state, that is being on, off, or neither. To
-set this use `Qt.PartiallyChecked`
-
-Lets look at the signals. We can connect to stateChanged to receive the
-current state.
-
-I> ## Tri-state area
-I>
-I> A tri-state checkbox is a checkbox with three states (conditions) — unchecked,
-I> checked and *partially* checked. This sounds bizarre, but it is 
-I> useful when you have hierachical checkbox selections.
-
-Here we can see that checked = 2, unchecked = 0, and partially checked
-=1. You don’t need to remember these values, the `Qt.Checked` namespace
-variable == 2 for example.
+A checkbox that supports a partially-checked (`Qt.PartiallyChecked`) state is
+commonly referred to as 'tri-state', that is being neither on nor off. A checkbox
+in this state is commonly shown as a greyed out checkbox, and is commonly used in
+hierachical checkbox arrangements where sub-items are linked to parent checkboxes.
 
 If you set the value to `Qt.PartiallyChecked` the checkbox will become
 tristate. You can also `.setTriState(True)` to set tristate support on a
-fully-checked or unchecked checkbox.
+You can also set a checkbox to be tri-state without setting the current state to
+partially checked by using `.setTriState(True)` 
+
+I> If you run the script you may noticed that the number for the current states
+I> return are checked = 2, unchecked = 0, and partially 
+I> checked =1. You don’t need to remember these values, the `Qt.Checked` namespace
+I> variable == 2 for example. This is the value of these state's respective constants.
+
 
 
 {pagebreak}
