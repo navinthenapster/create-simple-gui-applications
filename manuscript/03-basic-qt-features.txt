@@ -547,28 +547,74 @@ take a closer look at the a subset of the most useful.
 
 #### QLabel
 
+We'll start the tour wit `QLabel`, arguably one of the simplest widgets
+available in the Qt toolbox. This is a simple one-line piece of text
+that you can position in your application. You can set the text by 
+passing in a str as you create it, or by using the `.setText()` method.
+
+    widget = QLabel("Hello")
+
+Or:
+
+    widget = QLabel("1") # The label is created with the text 1
+    widget.setText("2") # The label now shows 2
+    
+You can also adjust font parameters, such as the size of the font or
+the alignment of text in the widget.
+
 <<(code/widgets_1.py)
 
-{pagebreak}
+I> ## Font tips
+I> 
+I> Note that if you want to change the properties of a widget font it
+I> is usually better to get the *current* font, update it and then 
+I> apply it back. This ensures the font face remains in keeping with 
+I> the desktop conventions.
 
-So, lets start with `QLabel`. This is just a simple text label. You set
-the text by passing it in as you create it, or you can call setText.
+The alignment is specified by using a flag from the `Qt.` namespace.
+The flags available for horizontal alignment are:
 
-You can adjust the size of the font.
 
-You can set the alignment on text using `.setAlignment` and an alignment
-from the `Qt.` namespace.
+| Flag            | Behaviour                   
+|-----------------|-------------------------------------------------|
+| Qt.AlignLeft    | Aligns with the left edge.                      |
+| Qt.AlignRight   | Aligns with the right edge.                     |
+| Qt.AlignHCenter | Centers horizontally in the available space.    |
+| Qt.AlignJustify | Justifies the text in the available space.      |
 
-{pagebreak}
+The flags available for vertical alignment are:
 
-<<(code/widgets_2.py)
+
+| Flag            | Behaviour                   
+|-----------------|-------------------------------------------------|
+| Qt.AlignTop     | Aligns with the top.                            |
+| Qt.AlignBottom  | Aligns with the bottom.                         |
+| Qt.AlignVCenter | Centers vertically in the available space.      |
+
+
+You can combine flags together using pipes (`|`), however note that you
+can only use vertical or horizontal alignment flag at a time.
+There is also a shorthand flag that centers in both directions simultaneously:
+
+    Qt.AlignCenter = Qt.AlignVCenter | Qt.AlignHCenter
+
 
 Weirdly, you can also use `QLabel` to display an image using `.setPixmap()`. 
 This accepts an *pixmap*, which you can create by passing an image filename
 to `QPixmap`. In the example files provided with this book you can find
 a file `hrh.jpg` which you can display in your window as follows:
 
+
+<<(code/widgets_2.py)
+
+
     label.setPixMap(QPixmap('hrh.jpg'))
+    
+
+{pagebreak}
+
+![HRH Queen Lizzy (by NASA/Bill Ingalls — Public domain.](images/hrh.jpg)
+
 
 God Save the Queen. By default the image scales while maintaining its
 aspect ratio. If you want it to stretch and scale to fit the window completely
