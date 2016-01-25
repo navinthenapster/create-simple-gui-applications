@@ -156,7 +156,7 @@ Then we add our first widget — a `QLabel` — to the middle of the window.
 This is one of the simplest widgets available in Qt. You create the object
 by passing in the text that you want the widget to display.
 
-We set the alignment of the widget to the center, so it will show up in
+We set the alignment of the widget to the center, so it will show up inin
 the middle of the window.
 
 
@@ -526,18 +526,34 @@ layout, which we will cover shortly - and then add the `QWidget` as the
 central widget for the window. The result is that we fill the window
 with widgets, with the `QWidget` acting as a container.
 
-Note that it’s possible to use this `QWidget` layout trick to create
-custom compound widgets.
+T> Compound widgets
+T>
+T> Note that it’s possible to use this `QWidget` layout trick to create
+T> custom compound widgets. For example you can take a base `QWidget` and
+T> overlay a layout containing multiple widgets of different types. This
+T> 'widget' can then be inserted into other layouts as normal. We'll
+T> cover custom widgets in more detail later.
 
-Lets have a look at the widgets. From top to bottom
+Lets have a look at all the example widgets, from top to bottom:
 
-`QCheckbox` - a checkbox `QComboBox` - a dropdown list box `QDateEdit` &
-`QDateTimeEdit` - for editing dates and datetimes `QDial` - rotateable dial
-`QDoubleSpinbox` - a number spinner for floats `QFontComboBox` - a list of
-fonts `QLCDNumber` - a quite ugly LCD display `QLabel` - just a label, not
-interactive `QLineEdit` - enter a line of text `QProgressBar` - a progress
-bar `QPushButton` - a button `QRadioButton` - a toggle set `QSlider` - a
-slider `QSpinBox` - an integer spinner `QTimeEdit` - for editing times
+Widget            | What it does                      
+------------------|-----------------------------------
+`QCheckbox`       | A checkbox 
+`QComboBox`       | A dropdown list box 
+`QDateEdit`       | For editing dates and datetimes 
+`QDateTimeEdit`   | For editing dates and datetimes 
+`QDial`           | Rotateable dial
+`QDoubleSpinbox`  | A number spinner for floats
+`QFontComboBox`   | A list of fonts 
+`QLCDNumber`      | A quite ugly LCD display 
+`QLabel`          | Just a label, not interactive 
+`QLineEdit`       | Enter a line of text 
+`QProgressBar`    | A progress bar 
+`QPushButton`     | A button 
+`QRadioButton`    | A toggle set, with only one active item 
+`QSlider`         | A slider 
+`QSpinBox`        | An integer spinner 
+`QTimeEdit`       | For editing times
 
 There are actually more widgets than this, but they don’t fit so well!
 You can see them all by checking the documentation. Here we’re going to
@@ -547,17 +563,17 @@ take a closer look at the a subset of the most useful.
 
 #### QLabel
 
-We'll start the tour wit `QLabel`, arguably one of the simplest widgets
+We'll start the tour with `QLabel`, arguably one of the simplest widgets
 available in the Qt toolbox. This is a simple one-line piece of text
 that you can position in your application. You can set the text by 
-passing in a str as you create it, or by using the `.setText()` method.
+passing in a str as you create it:
 
     widget = QLabel("Hello")
 
-Or:
+Or, by using the `.setText()` method:
 
     widget = QLabel("1") # The label is created with the text 1
-    widget.setText("2") # The label now shows 2
+    widget.setText("2")  # The label now shows 2
     
 You can also adjust font parameters, such as the size of the font or
 the alignment of text in the widget.
@@ -575,28 +591,44 @@ The alignment is specified by using a flag from the `Qt.` namespace.
 The flags available for horizontal alignment are:
 
 
-| Flag            | Behaviour                   
-|-----------------|-------------------------------------------------|
-| Qt.AlignLeft    | Aligns with the left edge.                      |
-| Qt.AlignRight   | Aligns with the right edge.                     |
-| Qt.AlignHCenter | Centers horizontally in the available space.    |
-| Qt.AlignJustify | Justifies the text in the available space.      |
+Flag              | Behaviour                   
+------------------|-----------------------------------------------
+`Qt.AlignLeft`    | Aligns with the left edge.                    
+`Qt.AlignRight`   | Aligns with the right edge.                   
+`Qt.AlignHCenter` | Centers horizontally in the available space.  
+`Qt.AlignJustify` | Justifies the text in the available space.    
 
 The flags available for vertical alignment are:
 
-
-| Flag            | Behaviour                   
-|-----------------|-------------------------------------------------|
-| Qt.AlignTop     | Aligns with the top.                            |
-| Qt.AlignBottom  | Aligns with the bottom.                         |
-| Qt.AlignVCenter | Centers vertically in the available space.      |
+Flag              | Behaviour                   
+------------------|-----------------------------------------------
+`Qt.AlignTop`     | Aligns with the top.                          
+`Qt.AlignBottom`  | Aligns with the bottom.                       
+`Qt.AlignVCenter` | Centers vertically in the available space.    
 
 
 You can combine flags together using pipes (`|`), however note that you
 can only use vertical or horizontal alignment flag at a time.
-There is also a shorthand flag that centers in both directions simultaneously:
 
-    Qt.AlignCenter = Qt.AlignVCenter | Qt.AlignHCenter
+
+    align_top_left = Qt.AlignLeft | Qt.AlignTop
+
+I> Qt Flags
+I>
+I> Note that you use an *OR* to combine the two flags (not `A & B`).
+I> This is because the flags are non-overlapping bitmasks.
+I> e.g. `Qt.AlignLeft` has the hex value `0x0001`, while `Qt.AlignBottom` is `0x0040`.
+I> By ORing together we get the value `0x0041` representing 'bottom left'.
+I> This principle applies to all other combinatorial Qt flags.
+I>
+I> If this is gibberish to you, feel free to ignore and move on.
+
+
+Finally, there is also a shorthand flag that centers in both directions simultaneously:
+
+| Flag              | Behaviour                   
+|-------------------|-------------------------------------------------|
+| `Qt.AlignCenter`  | Centers horizontally *and* vertically           |
 
 
 Weirdly, you can also use `QLabel` to display an image using `.setPixmap()`. 
@@ -604,31 +636,28 @@ This accepts an *pixmap*, which you can create by passing an image filename
 to `QPixmap`. In the example files provided with this book you can find
 a file `hrh.jpg` which you can display in your window as follows:
 
-
-<<(code/widgets_2.py)
-
-
-    label.setPixMap(QPixmap('hrh.jpg'))
+    widget.setPixMap(QPixmap('hrh.jpg'))
     
 
 {pagebreak}
 
 ![HRH Queen Lizzy (by NASA/Bill Ingalls — Public domain.](images/hrh.jpg)
 
-
 God Save the Queen. By default the image scales while maintaining its
 aspect ratio. If you want it to stretch and scale to fit the window completely
 you can set `.setScaledContents(True)` on the `QLabel`.
 
 
-    label.setScaledContents(True)
+    widget.setScaledContents(True)
 
 
 {pagebreak}
 
 #### QCheckBox
 
-Next `QCheckBox()`. Pretty simple, click it to check it.
+The next widget to look at is `QCheckBox()` which, as the name suggests, presents a
+checkable box to the user. However, as with all Qt widgets there are number of
+configurable options to change the widget behaviours.
 
 <<(code/widgets_3.py)
 
@@ -641,6 +670,12 @@ set this use `Qt.PartiallyChecked`
 
 Lets look at the signals. We can connect to stateChanged to receive the
 current state.
+
+I> ## Tri-state area
+I>
+I> A tri-state checkbox is a checkbox with three states (conditions) — unchecked,
+I> checked and *partially* checked. This sounds bizarre, but it is 
+I> useful when you have hierachical checkbox selections.
 
 Here we can see that checked = 2, unchecked = 0, and partially checked
 =1. You don’t need to remember these values, the `Qt.Checked` namespace
