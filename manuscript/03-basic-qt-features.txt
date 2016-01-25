@@ -63,7 +63,6 @@ what's wrong when you run it. If you don't feel like typing it all in, you can
 
 <<(code/creating_a_window_1.py)
 
-{pagebreak}
 
 Let's go through the code line by line. 
 
@@ -107,8 +106,6 @@ will always exit when the last main window is closed.
 
 Let's add a `QMainWindow` to our application.
 
-{pagebreak}
-
 <<(code/creating_a_window_2.py)
 
 {pagebreak}
@@ -141,9 +138,7 @@ keep things simple.
 
 <<(code/creating_a_window_end.py)
 
-{pagebreak}
-
-We write the `__init__` block with a small bit of boilerplate to take
+Notice how we write the `__init__` block with a small bit of boilerplate to take
 the arguments (none currently) and pass them up to the `__init__` of
 the parent `QMainWindow` class.
 
@@ -536,24 +531,24 @@ T> cover custom widgets in more detail later.
 
 Lets have a look at all the example widgets, from top to bottom:
 
-Widget            | What it does                      
-------------------|-----------------------------------
-`QCheckbox`       | A checkbox 
-`QComboBox`       | A dropdown list box 
-`QDateEdit`       | For editing dates and datetimes 
-`QDateTimeEdit`   | For editing dates and datetimes 
-`QDial`           | Rotateable dial
-`QDoubleSpinbox`  | A number spinner for floats
-`QFontComboBox`   | A list of fonts 
-`QLCDNumber`      | A quite ugly LCD display 
-`QLabel`          | Just a label, not interactive 
-`QLineEdit`       | Enter a line of text 
-`QProgressBar`    | A progress bar 
-`QPushButton`     | A button 
-`QRadioButton`    | A toggle set, with only one active item 
-`QSlider`         | A slider 
-`QSpinBox`        | An integer spinner 
-`QTimeEdit`       | For editing times
+| Widget            | What it does                              |
+|-------------------|-------------------------------------------|
+| `QCheckbox`       | A checkbox                                | 
+| `QComboBox`       | A dropdown list box                       |
+| `QDateEdit`       | For editing dates and datetimes           |
+| `QDateTimeEdit`   | For editing dates and datetimes           |
+| `QDial`           | Rotateable dial                           |
+| `QDoubleSpinbox`  | A number spinner for floats               |
+| `QFontComboBox`   | A list of fonts                           |
+| `QLCDNumber`      | A quite ugly LCD display                  |
+| `QLabel`          | Just a label, not interactive             |
+| `QLineEdit`       | Enter a line of text                      |
+| `QProgressBar`    | A progress bar                            |
+| `QPushButton`     | A button                                  |
+| `QRadioButton`    | A toggle set, with only one active item   |
+| `QSlider`         | A slider                                  |
+| `QSpinBox`        | An integer spinner                        |
+| `QTimeEdit`       | For editing times                         |
 
 There are actually more widgets than this, but they don’t fit so well!
 You can see them all by checking the documentation. Here we’re going to
@@ -591,20 +586,20 @@ The alignment is specified by using a flag from the `Qt.` namespace.
 The flags available for horizontal alignment are:
 
 
-Flag              | Behaviour                   
-------------------|-----------------------------------------------
-`Qt.AlignLeft`    | Aligns with the left edge.                    
-`Qt.AlignRight`   | Aligns with the right edge.                   
-`Qt.AlignHCenter` | Centers horizontally in the available space.  
-`Qt.AlignJustify` | Justifies the text in the available space.    
+| Flag              | Behaviour                                     |
+|-------------------|-----------------------------------------------|
+| `Qt.AlignLeft`    | Aligns with the left edge.                    |
+| `Qt.AlignRight`   | Aligns with the right edge.                   |
+| `Qt.AlignHCenter` | Centers horizontally in the available space.  |
+| `Qt.AlignJustify` | Justifies the text in the available space.    |
 
 The flags available for vertical alignment are:
 
-Flag              | Behaviour                   
-------------------|-----------------------------------------------
-`Qt.AlignTop`     | Aligns with the top.                          
-`Qt.AlignBottom`  | Aligns with the bottom.                       
-`Qt.AlignVCenter` | Centers vertically in the available space.    
+| Flag              | Behaviour                                     | 
+|-------------------|-----------------------------------------------|
+| `Qt.AlignTop`     | Aligns with the top.                          |
+| `Qt.AlignBottom`  | Aligns with the bottom.                       |
+| `Qt.AlignVCenter` | Centers vertically in the available space.    |
 
 
 You can combine flags together using pipes (`|`), however note that you
@@ -626,7 +621,7 @@ I> If this is gibberish to you, feel free to ignore and move on.
 
 Finally, there is also a shorthand flag that centers in both directions simultaneously:
 
-| Flag              | Behaviour                   
+| Flag              | Behaviour                                       |
 |-------------------|-------------------------------------------------|
 | `Qt.AlignCenter`  | Centers horizontally *and* vertically           |
 
