@@ -10,11 +10,11 @@ applications look and function well.
 
 | Resource | Description  |
 |----------|--------------|
-| Qt5.5 Documentation |
-| Qt 4.8 Documentation |
-| PyQt4 Library documentation |
-| PyQt5 Library documentation |
-| PySide Library documentation |
+| [Qt5.5 Documentation](http://doc.qt.io/qt-5/) |
+| [Qt 4.8 Documentation](http://doc.qt.io/qt-4.8/) |
+| [PyQt4 Library documentation](http://pyqt.sourceforge.net/Docs/PyQt4/) |
+| [PyQt5 Library documentation](http://pyqt.sourceforge.net/Docs/PyQt5/) |
+| [PySide Library documentation](https://srinikom.github.io/pyside-docs/) |
  
  
 
@@ -27,9 +27,9 @@ but the others are also worth a look.
 
 | Resource | Description  | License |
 |----------|--------------|---------|
-| Fugue by p.yusukekamiyamane |
-| Diagona by p.yusukekamiyamane |
-| Tango Icons by The Tango Desktop Project |
+| [Fugue by p.yusukekamiyamane](http://p.yusukekamiyamane.com/) | 3,570 16x16 icons in PNG format | CC BY 3.0 |
+| [Diagona by p.yusukekamiyamane](http://p.yusukekamiyamane.com/) | 400 16x16 and 10x10 icons in PNG format | CC BY 3.0 |
+| [Tango Icons by The Tango Desktop Project](http://tango.freedesktop.org/Tango_Icon_Library) | Icons using the Tango project colour theme. | Public domain |
 
 ## Source code
 
