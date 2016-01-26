@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to *Creating Simple UI Applications* where we will discover how
+Welcome to *Creating Simple GUI Applications* where we will discover how
 to use Python and Qt to do just that.
 
 If you want to learn how to write GUI applications it
@@ -27,8 +27,67 @@ http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_so
 
 But, do try and code yourself! You will learn much more if you experiment along the way.
 
-
 So, lets get started!
 
 
+## A brief history of the GUI
+
+
+
+{icon=rocket}
+G> ### Run it!
+G> `$ python3 MyApp.py`
+
+
+## Modern GUI concepts
+
+
+
+## Python GUI Frameworks
+
+While this book is centered around PyQt there are in fact a number of other
+GUI frameworks available for Python.
+
+
+
+## Qt and PyQt
+
+When you write applications using PyQt what you area *really* doing is writing
+applications in Qt. The PyQt library is simply[^pyqt-simple] a wrapper around the
+C++ Qt library, to allow it to be used in Python.
+
+Because this is a Python interface to a C++ library the naming conventions used 
+within PyQt do not adhere to PEP8 standards. Most notably functions and variables
+are named using `mixedCase` rather than `snake_case`. Whether you adhere to this
+standard in your own applications based on PyQt is entirely up to you, however
+you may find it useful to help clarify where the PyQt code ends and your own begins.
+
+Further, while there is PyQt specific documentation available, you will often find 
+yourself reading the Qt documentation itself as it is more complete. If you do
+you will need to translate object syntax and some Python-reserved function names to 
+as follows:
+
+| Qt                                | PyQt                                  |
+|-----------------------------------|---------------------------------------|
+| `Qt::SomeValue`                   | `Qt.SomeValue`                        |
+| `object.exec()`                   | `object.exec_()                       |
+| `object.print()`                  | `object.print_()                      |
+
+
+[^pyqt-simple]: Not really *that* simple.
+
+## A short note on Python 3
+
+This book is written to be compatible with Python 3.4+. The Python 3 branch is
+the future of the language, and if you're starting out now is where you should
+be focusing your efforts. However, in recognition of the fact that many 
+of you will be supporting or developing on legacy systems, the examples and 
+code used in this book is also tested to work on Python 2.7. Any incompatiblities
+will be flagged with a possible bug notice e.g.
+
+B> ### Python 2.7
+B>
+B> In Python 2.7 `map()` returns a `list`. 
+
+If you are using Python 3 you can safely ignore these warnings.
 

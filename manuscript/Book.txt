@@ -1,5 +1,4 @@
 01-introduction.txt
-02-getting-started.txt
-03-basic-qt-features.txt
-04-mozzarella-ashbadger.txt
-13-resources.txt
+03-getting-started.txt
+04-basic-qt-features.txt
+90-resources.txt

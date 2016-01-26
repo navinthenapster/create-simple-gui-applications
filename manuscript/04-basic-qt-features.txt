@@ -311,7 +311,7 @@ the lambda, we create a new namespace and voila it works.
     lambda x, data=data: fn(x, data)
 
 
-E> You *must* use named parameters
+E> ### You *must* use named parameters
 E>
 E> 
 E> That’s because the some_more_data value in the lambda is referencing the
@@ -430,17 +430,19 @@ Can be added to toolbars and menus
 
 {pagebreak}
 
-[toolbar image]
+
+![Standard GUI elements - Toolbars](images/toolbar.png)
+
 Toolbars
 Bar of icon buttons at the top of your application
 
 Icons, toggles, drop-down menus
 Any widget can be inserted
 
-[qtdoc-signals]
+![Qt Documentation - Signals](images/qtdoc-signals.png)
 
 
-[qtdoc-buttonstyle]
+![Qt Documentation - Button styles](images/qtdoc-buttonstyle.png)
 
 {pagebreak}
 
@@ -462,7 +464,8 @@ Keyboard shortcuts and icons
 
 {pagebreak}
 
-[menu-image]
+![Standard GUI elements - Menus](images/menus.png)
+
 
 [keysequence]
 
@@ -520,7 +523,7 @@ layout, which we will cover shortly - and then add the `QWidget` as the
 central widget for the window. The result is that we fill the window
 with widgets, with the `QWidget` acting as a container.
 
-T> Compound widgets
+T> ### Compound widgets
 T>
 T> Note that it’s possible to use this `QWidget` layout trick to create
 T> custom compound widgets. For example you can take a base `QWidget` and
@@ -676,32 +679,63 @@ tristate. You can also `.setTriState(True)` to set tristate support on a
 You can also set a checkbox to be tri-state without setting the current state to
 partially checked by using `.setTriState(True)` 
 
-I> If you run the script you may noticed that the number for the current states
-I> return are checked = 2, unchecked = 0, and partially 
-I> checked =1. You don’t need to remember these values, the `Qt.Checked` namespace
-I> variable == 2 for example. This is the value of these state's respective constants.
-
-
+I> If you run the script you may notice that the current state number is returned 
+I> as an `int` with checked = `2`, unchecked = `0`, and partially 
+I> checked = `1`. You don’t need to remember these values, the `Qt.Checked` namespace
+I> variable `== 2` for example. This is the value of these state's respective flags.
+I> This means you can test state using `state == Qt.Checked`.
 
 {pagebreak}
 
 #### QComboBox
 
+The `QComboBox` is a drop down list, closed by default with an arrow to open it.
+You can select a single item from the list, with the currently selected item being
+shown as a label on the widget. The combo box is suited to selection of a choice
+from a long list of options. 
 
-Next is the `QComboBox` a drop-down list. You can add items to the list
-using addItems and passing in a Python list of strings.
+I> You have probably seen the combo box used for selection of 
+I> font faces, or size, in word processing applications. Although Qt actually provides
+I> a specific font-selection combo box as `QFontComboBox`. 
+
+You can add items to a `QComboBox` by passing a list of strings to `.addItems()`. 
+Items will be added in the order they are provided. 
 
 <<(code/widgets_4.py)
 
+The `.currentIndexChanged` signal is triggered when the currently selected item
+is updated, by default passing the index of the selected item in the list.
+However, when connecting to the signal you can also request an alternative version
+of the signal by appending `[str]` (think of the signal as a `dict`). This alternative
+interface instead provides the label of the currently selected item, which is often
+more useful.
 
-The `currentIndexChanged` signal informs you when the selected item is
-updated.
+`QComboBox` can also be editable, allowing users to enter values not currently in the list
+and either have them inserted, or simply used as a value. To make the box editable:
 
-By default it passes the index of the item selected.
+    widget.setEditable(True)
 
-When connecting to the signal you can also request the string version of
-the signal by using [str] (think of the signal as a dict) to get that
-specific version.
+You can also set a flag to determine how the insert is handled. These flags are stored
+on the `QComboBox` class itself and are listed below:
+
+
+| Flag                              | Behaviour                                  |
+|-----------------------------------|--------------------------------------------|
+| `QComboBox.NoInsert`              | No insert                                  |
+| `QComboBox.InsertAtTop`           | Insert as first item                       |
+| `QComboBox.InsertAtCurrent`       | Replace currently selected item            |
+| `QComboBox.InsertAtBottom`        | Insert after last item                     |
+| `QComboBox.InsertAfterCurrent`    | Insert after current item                  |
+| `QComboBox.InsertBeforeCurrent`   | Insert before current item                 |
+| `QComboBox.InsertAlphabetically`  | Insert in alphabetical order               |
+
+To use these, apply the flag as follows:
+
+    widget.setInsertPolicy(QComboBox.InsertAlphabetically)
+
+You can also limit the number of items allowed in the box by using `.setMaxCount`, e.g.
+
+    widget.setMaxCount(10)
 
 {pagebreak}
 
@@ -720,8 +754,10 @@ sends the text.
 
 #### QLineEdit
 
-`QLineEdit` is a box for entering a single line of text. You can type
-anything you like.
+The `QLineEdit` widget is a simple single-line text editing box, into
+which users can type input. These are used for form fields, or settings
+where there is no restricted list of valid inputs. For example, when
+entering an email address, or computer name.
 
 <<(code/widgets_6.py)
 
@@ -737,6 +773,9 @@ selection has changed.
 For when the text in the box has been edited and when it has been
 changed. The distinction here is between user edits and programmatic
 changes. The `textEdited` signal is only sent when the user edits text. —
+
+Validation of input strings can be performed automatically by using 
+an *input mask* which you apply to the field.
 
 {pagebreak}
 
@@ -770,52 +809,67 @@ that is supports floats.
 
 #### QSlider
 
-`QSlider` is a slider functions much like a `QDoubleSpinBox`
+`QSlider` is a slider functions much like a `QDoubleSpinBox`. Rather than
+display the current value, it is represented by the position of the slider
+handle along the length of the widget. This is often useful when providing
+adjustment between two extremes, but where absolutel accuracy is not required.
+The most common use of this type of widget is for volume controls.
 
-There is an additional sliderMoved signal that is triggered whenever the
-slider moves position and a sliderPressed signal that emits whenever the
+There is an additional `.sliderMoved` signal that is triggered whenever the
+slider moves position and a `.sliderPressed` signal that emits whenever the
 slider is clicked.
 
 <<(code/widgets_8.py)
+
+You can also construct a slider with a vertical or horizontal orientation by 
+passing the orientation in as you create it. The orientiation flags are
+defined in the `Qt.` namespace. For example: 
+
+    widget.QSlider(Qt.Vertical)
+    
+Or:
+    
+    widget.QSlider(Qt.Horizontal)
 
 
 {pagebreak}
 
 #### QDial
 
-Finally `QDial` is a rotateable widget that functions just like the
-slider, but appears as an analogue dial.
+Finally, the `QDial` is a rotateable widget that functions just like the
+slider, but appears as an analogue dial. This looks nice, but from a UI
+perspective is not particularly userfriendly. However, they are often
+used in audio applications as representation of real-world analogue dials.
 
 <<(code/widgets_9.py)
 
-— That’s the end of this brief tour through the Qt widgets available in
-PyQt. To see the full list of available widgets and their signals and
-attributes, take a look at the Qt documentation.
 
+
+
+That is the conclusions of this brief tour through the Qt widgets available in
+PyQt. To see the full list of available widgets and their signals and
+attributes, take a look at the [Qt documentation][qt5-doc].
 
 
 ## Layouts
 
+So far we've successfully created a window, and we've added a widget to it. However
+we normally want to add more than one widget to a window, and have some control over 
+where it ends up. To do this in Qt we use *layouts*. 
 
-{icon=floppy-o}
-G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
-
-Linear position
-`QHBoxLayout` (horizontal)
-`QVBoxLayout` (vertical)
-Grid position
-`QGridLayout`
-Stacked (z) in front of one another
-QStackedLayout
+| Layout                            | Behaviour                               |
+|-----------------------------------|-----------------------------------------|
+| `QHBoxLayout`                     | Linear horizontal layout                |
+| `QVBoxLayout`                     | Linear vertical layout                  |
+| `QGridLayout`                     | In indexable grid XxY                   |
+| `QStackedLayout`                  | Stacked (z) in front of one another     |
 
 
-So you have a window, and you want to put something in it. But how do
-you tell Qt where to place it? Layouts.
-
-It is worth noting that you can actually design and lay out your
-interface graphically using the Qt Designer. However, in this tutorial
-we will be exploring using code only. It’s a better way to understand
-how these things work.
+T> ## Qt Designer
+T> 
+T> You can actually design and lay out your interface graphically using the Qt
+T> designer, which we will cover later. Here we're using code, as it's simpler
+T> to understand and experiment with the underlying system.
 
 There are three positional layouts available in Qt. The `VBoxLayout`,
 `QHBoxLayout` and `QGridLayout`. There is also `QStackedLayout` which allows
@@ -855,6 +909,11 @@ useful if you want to add a stack directly to a `QMainWindow` with
 To demonstrate this we’re going to create a custom widget, with a solid
 color background. Don’t worry about this for now, it’s just for
 demonstration purposes.
+
+
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+
 
 {pagebreak}
 
@@ -996,16 +1055,30 @@ Here I’m adding it to the function we added to the toolbar button click
 - meaning any toolbar button clicking will show a dialog.
 
 We create the dialog instance, giving it self - `QMainWindow` - as a
-parent. This will make the dialog a modal window of QMainWindow (meaning
+parent. This will make the dialog a modal window of `QMainWindow` (meaning
 it will completely block interaction with it).
 
-To start the dialog we use exec_() - just like we did for the event
-loop. That’s not a coincidence. When you exec the QDialog an entirely
-new event loop - specific for the dialog - is created. Remember I said
-there can only be one Qt event loop running at any time? I meant it. The
-QDialog completely blocks your application execution. Remember that!
+To start the dialog we use `exec_()` - just like we did for the event
+loop. That’s not a coincidence. When you exec the `QDialog` an entirely
+new event loop - specific for the dialog - is created. 
 
-So, anyway! It works. We click the buttona and we get a modal window.
+I> One event loop to rule them all
+I>
+I> Remember I said there can only be one Qt event loop running at any time? 
+I> I meant it! The `QDialog` completely blocks your application execution.
+I> Don't start a dialog and expect anything else to happen anywhere else in your application.
+
+
+
+{icon=rocket}
+G> ### Run it!
+G>
+G> The window will display, now click the button and a modal
+G> window should appear. You can exit by clicking the [x].
+
+Next let's customise our modal window by adding a dialog title and
+a standard set of OK and Cancel buttons to allow the user to *accept*
+or *reject* the modal.
 
 Ok. So lets make it a bit more interesting and set the dialog title.
 
@@ -1014,34 +1087,61 @@ Great. But what about some buttons?
 To extend it further we’re going to need to subclass the QDialog type,
 just like we did for `QMainWindow`. Init super init.
 
-Dialog box buttons are defined in a very specific way. You can ignore
-this and use `QButton`, but by following this standard you ensure your
-buttons will obey the host operating system layouts (Ok on left vs.
-right for example). You don’t want to mess with that unless you want to
-annoy people.
+Dialog box buttons are defined in a very specific way. You could choose
+to ignore this and use a standard `QButton` in a layout, but the approach
+outlined here ensures that your dialog respects the host desktop standards
+(Ok on left vs. right for example). Messing around with these behaviours 
+can be incredibly annoying to your users, so I wouldn't recommend it.
 
-So to define buttons we use namespace attributes from `QDialogButtonBox`.
-To get multiple buttons we just OR them together (using a pipe).
-
-We create a buttonbox instance, passing in the button definition we’ve
-created.
-
-We then connect the .accepted and .rejected signals to the handlers for
-`.accept()` and `.reject()` on the `QDialog` (that we’ve inhereted).
-
-So lets try that!
-
-Now, to see the buttons we need to add them to a layout and set the
-layout on the `QDialog`.
-
-…and there you go. A dialog with some buttons in it. Of course you can
-go ahead and add any other content you like to the layout as normal.
-
-So, that’s it! A short and simple introduction to dialogs in Qt.
+To define buttons we use namespace attributes from `QDialogButtonBox`.
+Construcing a line of multiple buttons is as simple as ORing them 
+together using a pipe (`|`). The full list of buttons available is below:
 
 
+| Layout                               |
+|--------------------------------------|
+| `QDialogButtonBox.Ok`                |
+| `QDialogButtonBox.Open`              |
+| `QDialogButtonBox.Save`              |
+| `QDialogButtonBox.Cancel`            |
+| `QDialogButtonBox.Close`             |
+| `QDialogButtonBox.Discard`           |
+| `QDialogButtonBox.Apply`             |
+| `QDialogButtonBox.Reset`             |
+| `QDialogButtonBox.RestoreDefaults`   |
+| `QDialogButtonBox.Help`              |
+| `QDialogButtonBox.SaveAll`           |
+| `QDialogButtonBox.Yes`               |
+| `QDialogButtonBox.YesToAll`          |
+| `QDialogButtonBox.No`                |
+| `QDialogButtonBox.NoToAll`           |
+| `QDialogButtonBox.Abort`             |
+| `QDialogButtonBox.Retry`             |
+| `QDialogButtonBox.Ignore`            |
+| `QDialogButtonBox.NoButton`          |
 
+These should be sufficient to create any dialog box you can think of.
 
+Next, you create the `QButtonBox` instance to hold your buttons, by 
+passing in the button defintion we've created as the first parameter.
+To make the buttons have any effect, you must connect the correct 
+`QButtonBox` signals to the slots on the dialog.
+
+In our case we've connected the `.accepted` and `.rejected` signals from 
+the `QButtonBox` to the handlers for `.accept()` and `.reject()` on 
+our subclass of `QDialog`.
+
+Lastly, we need to add the `QButtonBox` to the layout, and then set
+that layout on the `QDialog`.
+
+{icon=rocket}
+G> ### Run it!
+G>
+G> Click to launch the dialog and you will see a dialog box with some buttons in it.
+G> Of course you can go ahead and add any other content you like 
+G> to the layout as normal.
+
+That's the end of this brief introduction of dialog boxes in Qt.
 
 
 [qt5-doc]: http://doc.qt.io/qt-5/  "Qt5 Documentation"
