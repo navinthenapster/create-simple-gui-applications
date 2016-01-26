@@ -1122,16 +1122,16 @@ together using a pipe (`|`). The full list of buttons available is below:
 
 These should be sufficient to create any dialog box you can think of.
 
-Next, you create the `QButtonBox` instance to hold your buttons, by 
+Next, you create the `QDialogButtonBox` instance to hold your buttons, by 
 passing in the button defintion we've created as the first parameter.
 To make the buttons have any effect, you must connect the correct 
-`QButtonBox` signals to the slots on the dialog.
+`QDialogButtonBox` signals to the slots on the dialog.
 
 In our case we've connected the `.accepted` and `.rejected` signals from 
-the `QButtonBox` to the handlers for `.accept()` and `.reject()` on 
+the `QDialogButtonBox` to the handlers for `.accept()` and `.reject()` on 
 our subclass of `QDialog`.
 
-Lastly, we need to add the `QButtonBox` to the layout, and then set
+Lastly, we need to add the `QDialogButtonBox` to the layout, and then set
 that layout on the `QDialog`.
 
 {icon=rocket}
