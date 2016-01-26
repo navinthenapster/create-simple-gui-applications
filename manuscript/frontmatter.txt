@@ -9,12 +9,14 @@
 
 
 {icon=video-camera}
-G> #### Get the Udemy course
+G> ## Get the Udemy course for just $9
 G>
-G> Did you know this book is based on a Udemy course of the same name?  
-G> As a thankyou for buying this book, you can get 
-G> [the entire course for just $9](https://www.udemy.com/create-simple-gui-applications-with-python-and-qt/?couponCode=THANKS50ABL) 
-G> with the code: THANKS50ABL
+G> This book is based on a Udemy video tutorial course. As a thankyou for buying the 
+G> book you can get the entire course "Create Simple GUI Applications", with over 2½ hours of
+G> lecture content [for just $9](https://www.udemy.com/create-simple-gui-applications-with-python-and-qt/?couponCode=THANKS50ABL) 
+G> with the code: 
+G>
+G> THANKS50ABL
 
 
 {pagebreak}

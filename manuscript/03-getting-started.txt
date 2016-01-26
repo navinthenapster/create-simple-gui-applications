@@ -13,7 +13,7 @@ W> Note that the following instructions are ***only*** for installation of the G
 W> licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
 W> need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
 
-I> Documentation?
+I> #### Documentation?
 I>
 I> The PyQt packages from Riverbank do not include the Qt documentation. However this
 I> is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
@@ -79,7 +79,7 @@ To install homebrew run the following from the command line:
 
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-T> This is also available to copy and paste from the [Homebrew](http://brew.sh/) homepage.
+T> This is also available to copy and paste from the Homebrew homepage.
 
 Once the Homebrew installation has completed, you can then install Python 3 and PyQt5 
 as follows:
