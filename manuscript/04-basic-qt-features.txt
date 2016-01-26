@@ -80,7 +80,7 @@ pass in an empty list instead, e.g.
 
     app = QApplication([])
 
-Finally, we call `app..exec_()` to start up the event loop.
+Finally, we call `app.exec_()` to start up the event loop.
 
 I> The underscore is there because `exec` is a reserved word in Python and can’t
 I> be used as a function name. PyQt5 handles this by appending an underscore to the 
@@ -271,10 +271,10 @@ title has changed.
 
 #### Customising signal data
 
-—— As you use signals you’ll often find that you want to be able to
-customise the data that is sent with them. Unfortunately there is no way
-to do this in Qt directly, but we can exploit some features of Python to
-make it work.
+As you find yourself using signals more often, you'll often find that
+you want to be able to customise the data that is sent with them.
+Unfortunately there is no way to do this in Qt directly, but we can 
+exploit some features of Python to make it work for us.
 
 To start with, lets see how to send less data. For example we’ll create
 a function that accepts two parameters, with default values. However,
@@ -285,14 +285,32 @@ We can do this by using a wrapper function, or a lambda. When the signal is
 emitted this wrapper function will be called and can add or remove data
 from the signal as required, before passing it on to the real slot.
 
-So, for example, to discard data from a signal we could use the following 
-construction. The lambda accepts a single parameter `x`, then discards it
-calling the *real* target `fn` with no parameters:
+So, for example, to discard data from a signal that emits a single value
+we could use the following construction. 
+
+    def wrapper_function(x):
+        real_function()  # To call target, discarding x
+
+Here the `wrapper_function` accepts the `x` value, but does not pass it when
+calling `real_function`. We can also write this using a lambda as follows:
 
     lamba x: fn()
 
+Just like the function, the lambda accepts a single parameter `x`, then discards it
+calling the *real* target `fn` with no parameters:
+
+T> It doesn't matter whether you use a normal function or `lambda`
+T> (one-line function) for these. However, we use the lambda syntax here
+T> because it makes for clearer code. For example, the following are
+T> functionally identifical.
+
 If we want to send *more* data we can use a similar construction, but 
 instead of discarding a parameter we add another. For example:
+
+    def wrapper_function(x)
+        real_function(x, some_more_data)
+        
+Or again, with `lambda` syntax:
 
     lamba x: fn(x, some_more_data)
 
@@ -310,11 +328,13 @@ the lambda, we create a new namespace and voila it works.
 
 W> #### You *must* use named parameters
 W>
-W> 
-W> That’s because the some_more_data value in the lambda is referencing the
-W> loop namespace. When it’s triggered it returns the last value that the
-W> variable had in that namespace.
-
+W> Because of the way variables are bound in Python, if you just use the 
+W> variable inside the lambda/function it will remain bound to the loop.
+W> When any signal is triggered, that variable will equal the last value
+W> it had in the loop.
+W> However, when passing in as a named variable the value is bound directly
+W> each time the function/lambda is defined, and each signal gets a different
+W> value.
 
 So, now you should be able to pass just about anything to any function
 using signals! The final code now looks like this:

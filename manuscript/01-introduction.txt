@@ -29,20 +29,6 @@ But, do try and code yourself! You will learn much more if you experiment along 
 
 So, lets get started!
 
- 
-
-
-
-## A brief history of the GUI
-
-
-
-{icon=rocket}
-G> ### Run it!
-G> `$ python3 MyApp.py`
-
-
-## Modern GUI concepts
 
 
 

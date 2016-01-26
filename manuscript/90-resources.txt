@@ -8,14 +8,30 @@ applications look and function well.
 ## Documentation
 
 
+| Resource | Description  |
+|----------|--------------|
+| Qt5.5 Documentation |
+| Qt 4.8 Documentation |
+| PyQt4 Library documentation |
+| PyQt5 Library documentation |
+| PySide Library documentation |
+ 
+ 
 
 ## Icon sets
 
+The following icon sets are free to use, with the appropriate license,
+to give you applications a more professional and consistent look. The
+Fugue set are the icons suggested and used in the examples in this book 
+but the others are also worth a look.
 
+| Resource | Description  | License |
+|----------|--------------|---------|
+| Fugue by p.yusukekamiyamane |
+| Diagona by p.yusukekamiyamane |
+| Tango Icons by The Tango Desktop Project |
 
-## Extra widgets
+## Source code
 
-
-
-## Config management
-
+The complete source code all examples in this book is available to download from 
+[here](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip).
