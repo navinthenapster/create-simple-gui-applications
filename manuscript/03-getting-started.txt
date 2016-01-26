@@ -1,5 +1,11 @@
 # Getting Started
 
+Before you start coding you will first need to have a working installation of 
+PyQt and Qt on your system. The following sections will guide you through this
+process for the main available platforms. If you already have a working installation
+of PyQt on your Python system you can safely skip this part and get straight
+onto the fun.
+
 ## Installation Windows
 
 Download from www.qt.io

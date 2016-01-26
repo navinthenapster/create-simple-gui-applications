@@ -29,6 +29,9 @@ But, do try and code yourself! You will learn much more if you experiment along 
 
 So, lets get started!
 
+ 
+
+
 
 ## A brief history of the GUI
 
@@ -56,6 +59,8 @@ When you write applications using PyQt what you area *really* doing is writing
 applications in Qt. The PyQt library is simply[^pyqt-simple] a wrapper around the
 C++ Qt library, to allow it to be used in Python.
 
+[^pyqt-simple]: Not really *that* simple.
+
 Because this is a Python interface to a C++ library the naming conventions used 
 within PyQt do not adhere to PEP8 standards. Most notably functions and variables
 are named using `mixedCase` rather than `snake_case`. Whether you adhere to this
@@ -64,17 +69,15 @@ you may find it useful to help clarify where the PyQt code ends and your own beg
 
 Further, while there is PyQt specific documentation available, you will often find 
 yourself reading the Qt documentation itself as it is more complete. If you do
-you will need to translate object syntax and some Python-reserved function names to 
-as follows:
+you will need to translate object syntax and some methods containining Python-reserved function names as follows:
 
 | Qt                                | PyQt                                  |
 |-----------------------------------|---------------------------------------|
 | `Qt::SomeValue`                   | `Qt.SomeValue`                        |
-| `object.exec()`                   | `object.exec_()                       |
-| `object.print()`                  | `object.print_()                      |
+| `object.exec()`                   | `object.exec_()`                      |
+| `object.print()`                  | `object.print_()`                     |
 
 
-[^pyqt-simple]: Not really *that* simple.
 
 ## A short note on Python 3
 
@@ -85,9 +88,9 @@ of you will be supporting or developing on legacy systems, the examples and
 code used in this book is also tested to work on Python 2.7. Any incompatiblities
 will be flagged with a possible bug notice e.g.
 
-B> ### Python 2.7
-B>
-B> In Python 2.7 `map()` returns a `list`. 
+E> ### Python 2.7
+E>
+E> In Python 2.7 `map()` returns a `list`. 
 
 If you are using Python 3 you can safely ignore these warnings.
 

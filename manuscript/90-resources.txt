@@ -1,1 +1,21 @@
 # Resources
+
+This section is a short list of resources that you may find useful in
+writing your Qt applications. They include both sources of good 
+documentation and help, and also useful resources for making your
+applications look and function well.
+
+## Documentation
+
+
+
+## Icon sets
+
+
+
+## Extra widgets
+
+
+
+## Config management
+

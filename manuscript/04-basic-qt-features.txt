@@ -6,7 +6,7 @@ in any applications you create. We will develop a series of small applications,
 adding (and removing!) features step-by-step. Use the code given as your guide, and 
 feel free to experiment around it — particularly with reference to the [Qt Documentation][qt5-doc].
 
-T> ### Source Code
+T> #### Source Code
 T>
 T> If you get stuck at any time, the source code is available to download from:  
 T> [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip][all-the-source-download]
@@ -34,7 +34,7 @@ loop to wait for more events. There is only *one* running event loop per
 application.
 
 
-I> ### Key Points
+I> #### Key Points
 I>
 I> - QApplication holds the Qt event loop
 I> - One QApplication instance required
@@ -109,7 +109,7 @@ Let's add a `QMainWindow` to our application.
 
 {pagebreak}
 
-I> ### `QMainWindow`
+I> #### `QMainWindow`
 I>
 I> - Main focus for user of your application
 I> - Every application needs at least one (...but can have more)
@@ -119,7 +119,7 @@ If you launch the application you should now
 see your main window. Notice that Qt automatically creates a window with the normal
 window decorations, and you can drag it around and resize it like any normal window.
 
-E> ### I can't see my window!
+E> #### I can't see my window!
 E> 
 E> You must *always* call  `.show()` on a newly created `QMainWindow` as they
 E> are created invisible by default.
@@ -165,7 +165,7 @@ goes in the middle of the window.
 If you launch your application you should see your window again, but this time
 with the `QLabel` widget in the middle. 
 
-I> ### Hungry for widgets?
+I> #### Hungry for widgets?
 I>
 I> We'll cover more widgets in detail shortly
 I> but if you're impatient and would like to jump ahead you can take a look at the
@@ -296,9 +296,6 @@ instead of discarding a parameter we add another. For example:
 
     lamba x: fn(x, some_more_data)
 
-
-
-
 However, lets try that again with a loop. Here we’re going to use a
 layout to create a list of widgets, don’t worry about that it’ll be
 explained later.
@@ -311,12 +308,12 @@ the lambda, we create a new namespace and voila it works.
     lambda x, data=data: fn(x, data)
 
 
-E> ### You *must* use named parameters
-E>
-E> 
-E> That’s because the some_more_data value in the lambda is referencing the
-E> loop namespace. When it’s triggered it returns the last value that the
-E> variable had in that namespace.
+W> #### You *must* use named parameters
+W>
+W> 
+W> That’s because the some_more_data value in the lambda is referencing the
+W> loop namespace. When it’s triggered it returns the last value that the
+W> variable had in that namespace.
 
 
 So, now you should be able to pass just about anything to any function
@@ -414,6 +411,9 @@ G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for th
 
 
 tbc.
+
+
+
 ### Actions
 
 QAction
@@ -612,9 +612,10 @@ can only use vertical or horizontal alignment flag at a time.
 
 I> Qt Flags
 I>
-I> Note that you use an *OR* to combine the two flags (not `A & B`).
+I> Note that you use an *OR* pipe (`|`) to combine the two flags (not `A & B`).
 I> This is because the flags are non-overlapping bitmasks.
-I> e.g. `Qt.AlignLeft` has the hex value `0x0001`, while `Qt.AlignBottom` is `0x0040`.
+I> e.g. `Qt.AlignLeft` has the hexadecimal value `0x0001`, 
+I> while `Qt.AlignBottom` is `0x0040`.
 I> By ORing together we get the value `0x0041` representing 'bottom left'.
 I> This principle applies to all other combinatorial Qt flags.
 I>
@@ -679,11 +680,11 @@ tristate. You can also `.setTriState(True)` to set tristate support on a
 You can also set a checkbox to be tri-state without setting the current state to
 partially checked by using `.setTriState(True)` 
 
-I> If you run the script you may notice that the current state number is returned 
-I> as an `int` with checked = `2`, unchecked = `0`, and partially 
-I> checked = `1`. You don’t need to remember these values, the `Qt.Checked` namespace
-I> variable `== 2` for example. This is the value of these state's respective flags.
-I> This means you can test state using `state == Qt.Checked`.
+T> You may notice that when the script is running the current state number is displayed 
+T> as an `int` with checked = `2`, unchecked = `0`, and partially 
+T> checked = `1`. You don’t need to remember these values, the `Qt.Checked` namespace
+T> variable `== 2` for example. This is the value of these state's respective flags.
+T> This means you can test state using `state == Qt.Checked`.
 
 {pagebreak}
 
@@ -809,8 +810,9 @@ that is supports floats.
 
 #### QSlider
 
-`QSlider` is a slider functions much like a `QDoubleSpinBox`. Rather than
-display the current value, it is represented by the position of the slider
+`QSlider` provides a slide-bar widget, which functions internally much 
+like a `QDoubleSpinBox`. Rather than display the current value numerically,
+it is represented by the position of the slider
 handle along the length of the widget. This is often useful when providing
 adjustment between two extremes, but where absolutel accuracy is not required.
 The most common use of this type of widget is for volume controls.
@@ -865,7 +867,7 @@ where it ends up. To do this in Qt we use *layouts*.
 | `QStackedLayout`                  | Stacked (z) in front of one another     |
 
 
-T> ## Qt Designer
+T> #### Qt Designer
 T> 
 T> You can actually design and lay out your interface graphically using the Qt
 T> designer, which we will cover later. Here we're using code, as it's simpler
@@ -1071,7 +1073,7 @@ I> Don't start a dialog and expect anything else to happen anywhere else in your
 
 
 {icon=rocket}
-G> ### Run it!
+G> #### Run it!
 G>
 G> The window will display, now click the button and a modal
 G> window should appear. You can exit by clicking the [x].
@@ -1135,7 +1137,7 @@ Lastly, we need to add the `QDialogButtonBox` to the layout, and then set
 that layout on the `QDialog`.
 
 {icon=rocket}
-G> ### Run it!
+G> #### Run it!
 G>
 G> Click to launch the dialog and you will see a dialog box with some buttons in it.
 G> Of course you can go ahead and add any other content you like 
