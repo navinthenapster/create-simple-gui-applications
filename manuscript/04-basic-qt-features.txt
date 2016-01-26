@@ -4,12 +4,12 @@ Welcome to your first steps in create graphical applications! In this chapter yo
 be introduced to the key basic features of Qt (PyQt) that you will find yourself using
 in any applications you create. We will develop a series of small applications,
 adding (and removing!) features step-by-step. Use the code given as your guide, and 
-feel free to experiment around it — particularly with reference to the [Qt Documentation][qt5-doc].
+feel free to experiment around it — particularly with reference to the [Qt Documentation](http://doc.qt.io/qt-5/).
 
 T> #### Source Code
 T>
 T> If you get stuck at any time, the source code is available to download from:  
-T> [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip][all-the-source-download]
+T> [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip)
 
 ## My first Window
 
@@ -56,7 +56,7 @@ W> along the way. For example, after each section save a file named `MyApp_<sect
 The source code for your very first application is shown below. Type it in verbatim,
 and be careful not to make mistakes. If you do mess up, Python should let you know
 what's wrong when you run it. If you don't feel like typing it all in, you can 
-[download the source code][all-the-source-download].
+[download the source code](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip).
 
 {pagebreak}
 
@@ -156,7 +156,7 @@ the middle of the window.
 
 T> The Qt namespace (`Qt.`) is full of all sorts of attributes that you can use
 T> to customise and control Qt widgets. We’ll cover that a bit more later,
-T> [it’s worth a look][qt5-doc-qt-namespace].
+T> [it’s worth a look](http://doc.qt.io/qt-5/qt.html).
 
 Finally, we call `.setCentralWidget()` on the the window. This is a
 `QMainWindow` specific function that allows you to set the widget that
@@ -169,7 +169,7 @@ I> #### Hungry for widgets?
 I>
 I> We'll cover more widgets in detail shortly
 I> but if you're impatient and would like to jump ahead you can take a look at the
-I> [QWidget documentation][qt5-doc-widgets]. Try adding the different widgets to your window!
+I> [QWidget documentation](http://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes). Try adding the different widgets to your window!
 
 
 In this section we've covered the `QApplication` class, the `QMainWindow`
@@ -238,7 +238,7 @@ G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for th
 #### Basic signals
 
 First, let's look at the signals available for our `QMainWindow`. You can
-find this information in the [Qt documentation][qt-doc-qmainwindow].
+find this information in the [Qt documentation](http://doc.qt.io/qt-5/qmainwindow.html).
 Scroll down to the Signals section to see the signals implemented for 
 this class. 
 
@@ -870,7 +870,7 @@ used in audio applications as representation of real-world analogue dials.
 
 That is the conclusions of this brief tour through the Qt widgets available in
 PyQt. To see the full list of available widgets and their signals and
-attributes, take a look at the [Qt documentation][qt5-doc].
+attributes, take a look at the [Qt documentation](http://doc.qt.io/qt-5/).
 
 
 ## Layouts
@@ -1164,14 +1164,4 @@ G> Of course you can go ahead and add any other content you like
 G> to the layout as normal.
 
 That's the end of this brief introduction of dialog boxes in Qt.
-
-
-[qt5-doc]: http://doc.qt.io/qt-5/  "Qt5 Documentation"
-[qt5-doc-widgets]: http://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes "Basic Qt Widgets"
-[qt5-doc-qt-namespace]: http://doc.qt.io/qt-5/qt.html
-[qt-doc-qmainwindow]: http://doc.qt.io/qt-5/qmainwindow.html
-[all-the-source-download]: http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip
-
-
-
 

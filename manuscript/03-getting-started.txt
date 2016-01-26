@@ -64,7 +64,7 @@ Once that is done, you should be able to run `python` and `import PyQt5`.
 
 ## Installation Mac
 
-MacOS X comes with a pre-installed version of Python (2.7), however attempting to 
+OS X comes with a pre-installed version of Python (2.7), however attempting to 
 install PyQt5 into this is more trouble than it is worth. If you are planning to 
 do a lot of Python development, and you should, it will be easier in the long
 run to create a distinct installation of Python separate from the system.

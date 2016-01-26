@@ -19,27 +19,35 @@ the way.
 In no time at all you will have a fully functional Qt application - 
 ready to customise as you like.
 
-The source code for each step is included, which should be sufficient to follow along 
-and create the app yourself. However, in case you get stuck at any point, the source code 
-can also be downloaded from:
-
-http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip
+The source code for each step is included. However, if you get stuck at any point, the source code  can also be downloaded from: [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip).
 
 But, do try and code yourself! You will learn much more if you experiment along the way.
 
 So, lets get started!
 
 
+## A few notes
 
+The following sections include a few side notes that are worth looking over before
+starting, and at any point where you get stuck, or are not sure what this book is 
+trying to tell you.
 
-## Python GUI Frameworks
+### Book format
 
-While this book is centered around PyQt there are in fact a number of other
-GUI frameworks available for Python.
+This book is formatted as a series of coding exercises and snippets to allow you 
+to gradually explore and learn the details of PyQt5. However, it is not possible to give 
+you a *complete* overview of the Qt system in a book of this size (it's huge, this isn't),
+so you are encouraged to experiment and explore along the way.
 
+If you find yourself thinking "I wonder if I can do *that*" the best thing you
+can do is put this book down, then go and *find out!* Just keep regular backups of your 
+code along the way so you always have something to come back to if you royally mess it up.
 
+I> Throughout this books there are also boxes like this, giving info, tips and warnings.
+I> All of them can be safely skipped over if you are in a hurry, but reading them will
+I> give you a deeper and more rounded knowledge of the Qt framework.
 
-## Qt and PyQt
+### Qt and PyQt
 
 When you write applications using PyQt what you area *really* doing is writing
 applications in Qt. The PyQt library is simply[^pyqt-simple] a wrapper around the
@@ -65,18 +73,18 @@ you will need to translate object syntax and some methods containining Python-re
 
 
 
-## A short note on Python 3
+### Python 3
 
-This book is written to be compatible with Python 3.4+. The Python 3 branch is
+This book is written to be compatible with Python 3.4+. Python 3 is
 the future of the language, and if you're starting out now is where you should
 be focusing your efforts. However, in recognition of the fact that many 
-of you will be supporting or developing on legacy systems, the examples and 
-code used in this book is also tested to work on Python 2.7. Any incompatiblities
-will be flagged with a possible bug notice e.g.
+people are stuck supporting or developing on legacy systems, the examples and 
+code used in this book are also tested and confirmed to work on Python 2.7. Any notable incompatiblities or gotchas will be flagged with a meh-face to accurately 
+portray the sentiment e.g.
 
-E> ### Python 2.7
-E>
-E> In Python 2.7 `map()` returns a `list`. 
+{icon=fa-meh-o}
+G> ### Python 2.7
+G>
+G> In Python 2.7 `map()` returns a `list`. 
 
-If you are using Python 3 you can safely ignore these warnings.
-
+If you are using Python 3 you can safely ignore their indifferent gaze.
