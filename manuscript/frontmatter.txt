@@ -1,0 +1,20 @@
+{pagebreak}
+
+
+
+
+
+
+{icon=video-camera}
+G> #### Get the Udemy course!
+G>
+G> Did you know this book is based on a Udemy course of the same name?
+G> As a thankyou for buying this book, you can get get the entire course for
+G> just $9 with the code: [THANKS50ABL](https://www.udemy.com/create-simple-gui-applications-with-python-and-qt/?couponCode=THANKS50ABL)
+
+
+
+
+
+
+{pagebreak}
