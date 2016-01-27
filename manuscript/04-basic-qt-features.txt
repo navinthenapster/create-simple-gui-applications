@@ -897,7 +897,8 @@ attributes, take a look at the [Qt documentation](http://doc.qt.io/qt-5/).
 
 So far we've successfully created a window, and we've added a widget to it. However
 we normally want to add more than one widget to a window, and have some control over 
-where it ends up. To do this in Qt we use *layouts*. 
+where it ends up. To do this in Qt we use *layouts*. There are 4 basic layouts 
+available in Qt, which are listed in the following table. 
 
 | Layout                            | Behaviour                               |
 |-----------------------------------|-----------------------------------------|
@@ -913,19 +914,55 @@ T> You can actually design and lay out your interface graphically using the Qt
 T> designer, which we will cover later. Here we're using code, as it's simpler
 T> to understand and experiment with the underlying system.
 
-There are three positional layouts available in Qt. The `VBoxLayout`,
-`QHBoxLayout` and `QGridLayout`. There is also `QStackedLayout` which allows
-you to place widgets one on top of the other.
+As you can see, there are three positional layouts available in Qt. The `VBoxLayout`,
+`QHBoxLayout` and `QGridLayout`. In addition there is also `QStackedLayout` which 
+allows you to place widgets one on top of the other within the same space, yet
+showing only one layout at a time.
+
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+
+Before we start experimenting with the different layouts, we're first going to 
+create a very simple custom widget that we can use to visualise the layouts 
+that we use. Add the following code to your file as a new class at the top level:
+
+<<(code/layout_colorwidget.py)
+
+In this code we subclass `QWdiget` to create our own custom widget `Color`. We accept a
+single parameter when creating the widget — `color` (a `str`). We first set
+`.setAutoFillBackground` to `True` to tell the widget to automatically fill it's background
+with the window color. Next we get the current palette (which is the global desktop palette
+by default) and change the current `QPalette.Window` color to a new `QColor` described
+by the value `color` we passed in. Finally we apply this palette back to the widget. The
+end result is a widget that is filled with a solid color, that we specified when we
+created it.
+
+If you find the above confusing, don't worry too much. We'll cover custom widgets in 
+more detail later. For now it's sufficient that you understand that calling you
+can create a solid-filled red widget by doing the following:
+
+    Color('red')
+
+We'll look at each of the available layouts in turn.
+
+### `QVBoxLayout` vertically arranged widgets
 
 With `QVBoxLayout` you arrange widgets one above the other linearly.
 Adding a widget adds it to the bottom of the column.
 
-![A QHBoxLayout, filled from top to bottom.](images/vboxlayout.png)
+
+![A QVBoxLayout, filled from top to bottom.](images/vboxlayout.png)
+
+### `QHBoxLayout` horizontally arranged widgets
+
 
 `QHBoxLayout` is the same, except moving horizontally. Adding a widget
 adds it to the right hand side.
 
 ![A QHBoxLayout, filled from left to right.](images/hboxlayout.png)
+
+### `QGridLayout` widgets arranged in a grid
+
 
 `QGridLayout` allows you to specify using row,column indices where to
 place the widget.
@@ -935,6 +972,8 @@ place the widget.
 Usefully, for `QGridLayout` you don't need to fill all the positions in the grid.
 
 ![A QGridLayout with unfilled slots.](images/gridlayout2.png)
+
+### `QStackedLayout` multiple widgets in the same space
 
 Finally, `QStackedLayout` allows you to place widgets one in front of the
 other. You could use this for drawing layers in a graphics application,
@@ -1076,68 +1115,85 @@ In this lesson we introduced the 3 main classes of positional layouts
 
 ## Dialogs
 
+Dialogs are useful GUI components that allow you to *communicate* with the user (hence
+the name dialog). They are commonly used for file Open/Save, settings, preferences, 
+or for functions that do not fit into the main UI of the application. They are small 
+modal (or *blocking*) windows that sit in front of the main application until they are 
+dismissed.  Qt actually provides a number of 'special' dialogs for the most common
+use-cases, allowing you to take advantage of desktop-specific tools for a better
+user experience.
+
 {icon=floppy-o}
 G> Load up a fresh copy of `MyApp_menus.py` and save it under a new name for this section.
 
+![Standard GUI features — A search dialog](images/dialog-find.png)
 
-Get input from the user
-Settings, configuration
-OK and Cancel buttons
-“Special dialogs”
-e.g. file open, save
+![Standard GUI features — A file Open dialog](images/dialog-open.png)
 
-[dialog]
+In Qt dialog boxes are handled by the `QDialog` class. To create a new dialog
+box simply create a new object of `QDialog` type (or a subclass), passing in 
+a parent widget, e.g. `QMainWindow`, as its parent.
 
-So, time for another standard feature of GUIs - dialog boxes.
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_menus.py` and save it under a new name for this section.
 
-In Qt, Dialog boxes are handled by the `QDialog` class. Creating a dialog
-box is incredibly easy, so lets do it.
+Let's create our own `QDialog`, we'll use our menu example code so we can start a dialog
+window when a button on the toolbar is pressed.
 
-Here I’m adding it to the function we added to the toolbar button click
-- meaning any toolbar button clicking will show a dialog.
+<<(code/dialog_1.py)
 
-We create the dialog instance, giving it self - `QMainWindow` - as a
-parent. This will make the dialog a modal window of `QMainWindow` (meaning
-it will completely block interaction with it).
+In the triggered function (that receives the signal from the button )
+we create the dialog instance, passing our `QMainWindow` instance as a
+parent. This will make the dialog a *modal window* of `QMainWindow`. This means the
+dialog will completely block interaction with the parent window.
 
-To start the dialog we use `exec_()` - just like we did for the event
-loop. That’s not a coincidence. When you exec the `QDialog` an entirely
-new event loop - specific for the dialog - is created. 
+Once we have created the dialog, we start it using `.exec_()` - just like we did for 
+`QApplication` to create the main event loop of our application. That’s not a coincidence:
+when you exec the `QDialog` an entirely new event loop - specific for the dialog - is created. 
 
 I> One event loop to rule them all
 I>
 I> Remember I said there can only be one Qt event loop running at any time? 
 I> I meant it! The `QDialog` completely blocks your application execution.
 I> Don't start a dialog and expect anything else to happen anywhere else in your application.
-
-
+I> 
+I> We'll cover how you can use multithreading to get you out of this pickle in a later chapter.
 
 {icon=rocket}
 G> #### Run it!
 G>
-G> The window will display, now click the button and a modal
+G> The window will display, now click the bug button and a modal
 G> window should appear. You can exit by clicking the [x].
 
-Next let's customise our modal window by adding a dialog title and
-a standard set of OK and Cancel buttons to allow the user to *accept*
+Like our very first window, this isn't very interesting. Let's fix that by 
+adding a dialog title and a set of OK and Cancel buttons to allow the user to *accept* 
 or *reject* the modal.
 
-Ok. So lets make it a bit more interesting and set the dialog title.
+To customise the `QDialog` we can subclass it — again you *can* customise the dialog
+without subclassing, but it's nicer if you do. 
 
-Great. But what about some buttons?
+<<(code/dialog_2.py)
 
-To extend it further we’re going to need to subclass the QDialog type,
-just like we did for `QMainWindow`. Init super init.
+In the above code, we first create our subclass of `QDialog` which we've called `CustomDialog`.
+As for the `QMainWindow` we customise it within the `__init__` block to ensure that our
+customisations are created as the object is created. First we set a title for the `QDialog` using
+`.setWindowTitle()`, exactly the same as we did for our main window.
 
-Dialog box buttons are defined in a very specific way. You could choose
-to ignore this and use a standard `QButton` in a layout, but the approach
-outlined here ensures that your dialog respects the host desktop standards
-(Ok on left vs. right for example). Messing around with these behaviours 
-can be incredibly annoying to your users, so I wouldn't recommend it.
+The next block of code is concerned with creating and displaying the dialog buttons. This
+is probably a bit more involved than you were expecting. However, this is due to Qt's flexibility
+in handling dialog button positioning on different platforms.
 
-To define buttons we use namespace attributes from `QDialogButtonBox`.
-Construcing a line of multiple buttons is as simple as ORing them 
-together using a pipe (`|`). The full list of buttons available is below:
+I> #### Easy way out?
+I>
+I> You could of course choose to ignore this and use a standard `QButton` in a layout, but the approach
+I> outlined here ensures that your dialog respects the host desktop standards
+I> (Ok on left vs. right for example). Messing around with these behaviours 
+I> can be incredibly annoying to your users, so I wouldn't recommend it.
+
+The first step in creating a dialog button box is to define the buttons want to show,
+using  namespace attributes from `QDialogButtonBox`. Constructing a line of multiple buttons is 
+as simple as ORing them together using a pipe (`|`). The full list of buttons available 
+is below:
 
 
 | Layout                               |
@@ -1162,26 +1218,32 @@ together using a pipe (`|`). The full list of buttons available is below:
 | `QDialogButtonBox.Ignore`            |
 | `QDialogButtonBox.NoButton`          |
 
-These should be sufficient to create any dialog box you can think of.
 
-Next, you create the `QDialogButtonBox` instance to hold your buttons, by 
-passing in the button defintion we've created as the first parameter.
+These should be sufficient to create any dialog box you can think of. For example, to show an
+OK and a Cancel button we used:
+
+    buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+    
+The variable `buttons` now contains a bitmask flag representing those two buttons. Next,
+we must create the `QDialogButtonBox` instance to hold the buttons. The flag for the 
+buttons to display is passed in as the first parameter.
+
 To make the buttons have any effect, you must connect the correct 
-`QDialogButtonBox` signals to the slots on the dialog.
+`QDialogButtonBox` signals to the slots on the dialog. In our case we've connected the
+`.accepted` and `.rejected` signals from  the `QDialogButtonBox` to the handlers for 
+`.accept()` and `.reject()` on  our subclass of `QDialog`.
 
-In our case we've connected the `.accepted` and `.rejected` signals from 
-the `QDialogButtonBox` to the handlers for `.accept()` and `.reject()` on 
-our subclass of `QDialog`.
-
-Lastly, we need to add the `QDialogButtonBox` to the layout, and then set
-that layout on the `QDialog`.
+Lastly, to make the `QDialogButtonBox` appear in our dialog box we must add it to the 
+dialog layout. So, as for the main window we create a layout, and add our `QDialogButtonBox`
+to it (`QDialogButtonBox` is a widget), and then set that layout on our dialog.
 
 {icon=rocket}
 G> #### Run it!
 G>
-G> Click to launch the dialog and you will see a dialog box with some buttons in it.
-G> Of course you can go ahead and add any other content you like 
-G> to the layout as normal.
+G> Click to launch the dialog and you will see a dialog box with buttons in it.
 
-That's the end of this brief introduction of dialog boxes in Qt.
+Congratulations! You've created your first dialog box. Of course, you can continue to 
+add any other content to the dialog box that you like. Simply insert it into the 
+layout as normal.
+
 
