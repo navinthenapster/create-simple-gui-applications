@@ -423,6 +423,7 @@ event handling and use `.accept()` and `.ignore()` to hide/show events
 to the UI-parent widget. In the next section we will go on to take 
 a look at two common features of the GUI — toolbars and menus.
 
+{pagebreak}
 
 ## Actions, Toolbars and Menus
 
@@ -441,28 +442,48 @@ Customizable with labels, status tooltips, and icons
 Provides .hovered, .triggered and .toggled signals
 Can be added to toolbars and menus
 
+{pagebreak}
 
 ### Toolbars
 
-{pagebreak}
+Toolbars are bars of icons and/or text used to perform common tasks within an
+application, for which accessing via a menu would be cumbersome.
+They are one of the most common UI features seen in many applications. While 
+some complex applications, particularly in the Microsoft Office suite, have 
+migrated to contextual 'ribbon' interfaces, the standard toolbar is usually 
+sufficient for the majority of applications you will create.
+
+![Standard GUI elements - The toolbar](images/toolbar.png)
+
+Qt toolbars support display of icons, text, and can also contain any standard
+Qt widget. However, for buttons the best approach is to make use of the 
+QAction system to place buttons on the toolbar.
+
 
 <<(code/toolbars_and_menus_1.py)
 
 {pagebreak}
 
 
-![Standard GUI elements - Toolbars](images/toolbar.png)
-
-Toolbars
-Bar of icon buttons at the top of your application
-
-Icons, toggles, drop-down menus
-Any widget can be inserted
-
 ![Qt Documentation - Signals](images/qtdoc-signals.png)
 
+You can also set whether to use icons, text or both on your toolbars, using
+`.setToolButtonStyle`. This slot accepts any of the following flags from the `Qt.`
+namespace:
 
-![Qt Documentation - Button styles](images/qtdoc-buttonstyle.png)
+| Flag                          | Behaviour                                 |
+|-------------------------------|-------------------------------------------|
+| `Qt.ToolButtonIconOnly`       | Icon only, no text                        |
+| `Qt.ToolButtonTextOnly`       | Text only, no icon                        |
+| `Qt.ToolButtonTextBesideIcon` | Icon and text, with text beside the icon  |
+| `Qt.ToolButtonTextUnderIcon`  | Icon and text, with text under the icon   |
+| `Qt.ToolButtonIconOnly`       | Icon only, no text                        |
+| `Qt.ToolButtonFollowStyle`    | Follow the host desktop style             |
+
+The default value is `Qt.ToolButtonFollowStyle`, meaning that your application
+will default to following the standard/global setting for the desktop on
+which the application runs. This is generally recommended to make your 
+application feel as *native* as possible. 
 
 {pagebreak}
 
@@ -505,11 +526,10 @@ The completed code, showing the toolbar buttons and menus is shown below.
 
 <<(code/toolbars_and_menus_end.py)
 
-{pagebreak}
-
 {icon=floppy-o}
 G> Save a copy of your file as `MyApp_menus.py` as we'll need it again later.
 
+{pagebreak}
 
 ## Widgets
 
