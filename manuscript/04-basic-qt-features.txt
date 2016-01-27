@@ -1140,7 +1140,7 @@ G> Load up a fresh copy of `MyApp_menus.py` and save it under a new name for thi
 Let's create our own `QDialog`, we'll use our menu example code so we can start a dialog
 window when a button on the toolbar is pressed.
 
-<<(code/dialog_1.py)
+<<(code/dialogs_1.py)
 
 In the triggered function (that receives the signal from the button )
 we create the dialog instance, passing our `QMainWindow` instance as a
@@ -1151,7 +1151,7 @@ Once we have created the dialog, we start it using `.exec_()` - just like we did
 `QApplication` to create the main event loop of our application. That’s not a coincidence:
 when you exec the `QDialog` an entirely new event loop - specific for the dialog - is created. 
 
-I> One event loop to rule them all
+I> #### One event loop to rule them all
 I>
 I> Remember I said there can only be one Qt event loop running at any time? 
 I> I meant it! The `QDialog` completely blocks your application execution.
@@ -1172,7 +1172,7 @@ or *reject* the modal.
 To customise the `QDialog` we can subclass it — again you *can* customise the dialog
 without subclassing, but it's nicer if you do. 
 
-<<(code/dialog_2.py)
+<<(code/dialogs_2.py)
 
 In the above code, we first create our subclass of `QDialog` which we've called `CustomDialog`.
 As for the `QMainWindow` we customise it within the `__init__` block to ensure that our
