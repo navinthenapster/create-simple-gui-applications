@@ -1111,7 +1111,7 @@ In this lesson we introduced the 3 main classes of positional layouts
 `QHBoxLayout`, `QVBoxLayout`, `QGridLayout` and the special layout
 `QStackedLayout`. Until next time!
 
-
+{pagebreak}
 
 ## Dialogs
 
