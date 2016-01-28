@@ -946,41 +946,118 @@ more detail later. For now it's sufficient that you understand that calling you
 can create a solid-filled red widget by doing the following:
 
     Color('red')
+    
+First let's test our new `Color` widget by using it to fill the entire window in a 
+single color. Once it’s complete we can add it to the mainwindow using `.setCentralWidget`
+and we get a solid red window.
 
-We'll look at each of the available layouts in turn.
+<<(code/layout_1.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> The window will appear, filled completely with the color red.
+G> Notice how the widget expands to fill all the available space.
+
+Next we'll look at each of the available Qt layouts in turn. Note
+that to add our layouts to the window we will need a dummy
+`QWidget` to hold the layout.
 
 ### `QVBoxLayout` vertically arranged widgets
 
 With `QVBoxLayout` you arrange widgets one above the other linearly.
 Adding a widget adds it to the bottom of the column.
 
-
 ![A QVBoxLayout, filled from top to bottom.](images/vboxlayout.png)
 
-### `QHBoxLayout` horizontally arranged widgets
+Lets add our widget to a layout. Note that in order to add a layout to the 
+`QMainWindow` we need to apply it to a dummy `QWidget`. This allows us to then
+use `.setCentralWidget` to apply the widget (and the layout) to the window.
+Our coloured widgets will arrange themselves in the layout,
+contained within the `QWidget` in the window. First we just add the red widget 
+as before.
 
+<<(code/layout_2a.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> Notice the border now visible around the red widget. This is the layout
+G> spacing — we'll see how to adjust that later.
+
+Next add a few more coloured widgets to the layout:
+
+As we add widgets they line themselves up vertically in the order they
+are added.
+
+### `QHBoxLayout` horizontally arranged widgets
 
 `QHBoxLayout` is the same, except moving horizontally. Adding a widget
 adds it to the right hand side.
 
 ![A QHBoxLayout, filled from left to right.](images/hboxlayout.png)
 
+To use it we can simply change the `QVBoxLayout` to a `QHBoxLayout`.
+The boxes now flow left to right.
+
+<<(code/layout_3.py)
+
+
+### Nesting layouts
+
+For more complex layouts you can nest layouts inside one another using 
+.addLayout` on a layout. Below we add a `QVBoxLayout` into the main `QHBoxLayout`.
+If we add some widgets to the `QVBoxLayout`, they’ll be arranged vertically in the first slot of the
+parent layout.
+
+<<(code/layout_4.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> The widgets should arrange themselves in 3 columns horizontally, with the 
+G> first column also containing 3 widgets stacked vertically. Experiment!
+
+You can set the spacing around the layout using `.setContentMargins`.
+
+…or set the spacing between elements using `.setSpacing`.
+
+    layout1.setContentsMargins(0,0,0,0)
+    layout1.setSpacing(20)
+    
+The following code shows the combination of nested widgets and layout margins
+and spacing. Experiment with the numbers til you get a feel for them.
+    
+<<(code/layout_5.py)
+
 ### `QGridLayout` widgets arranged in a grid
 
-
-`QGridLayout` allows you to specify using row,column indices where to
-place the widget.
+As useful as they are, if you try and using `QVBoxLayout` and `QHBoxLayout` for
+laying out multiple elements, e.g. for a form, you’ll find it very
+difficult to ensure differently sized widgets line up. The solution to
+this is `QGridLayout`.
 
 ![A QGridLayout showing the grid positions for each location.](images/gridlayout1.png)
+
+`QGridLayout` allows you to position items specifically in a grid. You
+specify row and column positions for each widget. You can skip elements,
+and they will be left empty.
 
 Usefully, for `QGridLayout` you don't need to fill all the positions in the grid.
 
 ![A QGridLayout with unfilled slots.](images/gridlayout2.png)
 
+
+<<(code/layout_6.py)
+
+
 ### `QStackedLayout` multiple widgets in the same space
 
-Finally, `QStackedLayout` allows you to place widgets one in front of the
-other. You could use this for drawing layers in a graphics application,
+
+The final layout we’ll cover is the `QStackedLayout`. As described, this
+layout allows you to position elements directly in front of one another.
+You can then select which widget you want to show.
+You could use this for drawing layers in a graphics application,
 or for imitating a tab-like interface. Note there is also `QStackedWidget`
 which is a container widget that works in exactly the same way. This is
 useful if you want to add a stack directly to a `QMainWindow` with
@@ -990,132 +1067,29 @@ useful if you want to add a stack directly to a `QMainWindow` with
 
 ![QStackedLayout, with the 2nd (1) widget selected and brought to the front ](images/qstackedlayout2.png)
 
-
-To demonstrate this we’re going to create a custom widget, with a solid
-color background. Don’t worry about this for now, it’s just for
-demonstration purposes.
-
-
-{icon=floppy-o}
-G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
-
-
-{pagebreak}
-
-<<(code/layout_1.py)
-
-{pagebreak}
-
-Once it’s complete we add it to the mainwindow using `.setCentralWidget`
-and we get a solid red window.
-
-So lets add some things to a `QVBoxLayout`. We still need to add a widget
-to the mainwindow so we create a empty `QWidget` and set the layout on
-that. Our coloured widgets will arrange themselves in the layout,
-contained within the `QWidget` in the window.
-
-First lets just add the red widget again.
-
-{pagebreak}
-
-<<(code/layout_2.py)
-
-{pagebreak}
-
-Notice the border, this is the layout spacing.
-
-We can add two more colours.
-
-As we add widgets they line themselves up vertically in the order they
-are added.
-
-If we change the `QVBoxLayout` to a `QHBoxLayout` the boxes now flow left to
-right.
-
-    layout = QHBoxLayout()
-
-You can nest widgets inside one another using addLayout. Let’s add a
-`QVBoxLayout` into the main `QHBoxLayout`. If we add some widgets to the
-`QVBoxLayout`, they’ll be arranged vertically in the first slot of the
-parent layout.
-
-{pagebreak}
-
-<<(code/layout_4.py)
-
-{pagebreak}
-
-You can set the spacing around the layout using `.setContentMargins`.
-
-…or set the spacing between elements using `.setSpacing`.
-
-    layout1.setContentsMargins(0,0,0,0)
-    layout1.setSpacing(20)
-
-As useful as they are, if you try and using `QVBoxLayout` and `QHBoxLayout` for
-laying out multiple elements, e.g. for a form, you’ll find it very
-difficult to ensure differently sized widgets line up. The solution to
-this is `QGridLayout`.
-
-`QGridLayout` allows you to position items specifically in a grid. You
-specify row and column positions for each widget. You can skip elements,
-and they will be left empty.
-
-{pagebreak}
-
-<<(code/layout_6.py)
-
-{pagebreak}
-
-—
-
-The final layout we’ll cover is the `QStackedLayout`. As described, this
-layout allows you to position elements directly in front of one another.
-You can then select which widget you want to show.
-
-{pagebreak}
-
 <<(code/layout_7.py)
 
-{pagebreak}
+`QStackedWidget` is exactly how tabbed views in applications work. Only one view
+('tab') is visible at any one time. You can control which widget to show at
+any time by using `.setCurrentIndex()` or `.setCurrentWidget()` to set the item
+by either the index (in order the widgets were added) or by the widget itself.
 
-This is exactly how tabbed views work - only one view (‘tab’) is show at
-any one time.
-
-You can add elements to a `QStackedLayout` as normal. By default the
-latest-added widget is shown.
-
-You can choose to show another widget by calling `.setCurrentIndex()` or
-`.setCurrentWidget()`.
-
-I’m going to create a quick demo to show how you could use
-`QStackedLayout` to provide a tab-like interface.
-
-{pagebreak}
+Below is a short demo using `QStackedLayout` in combination with `QButton` to 
+to provide a tab-like interface to an application:
 
 <<(code/layout_8.py)
 
-{pagebreak}
-
-But… helpfully. Qt actually provide a built-in TabWidget that provides
+Helpfully. Qt actually provide a built-in TabWidget that provides
 this kind of layout out of the box - albeit in widget form.
-
-I’ll re-create the demo using `QTabWidget` and demonstrate some features.
-
-{pagebreak}
+Below the tab demo is recreated using `QTabWidget`:
 
 <<(code/layout_9.py)
 
-{pagebreak}
+As you can see, it's a little more straightforward — and a bit more attractive!
+You can set the position of the tabs using the cardinal directions, toggle
+whether tabs are moveable with `.setMoveable` and turn a 'document mode' on 
+and off which (on OS X) shows a slimmer tab interface.
 
-
-So that’s it!
-
-In this lesson we introduced the 3 main classes of positional layouts
-`QHBoxLayout`, `QVBoxLayout`, `QGridLayout` and the special layout
-`QStackedLayout`. Until next time!
-
-{pagebreak}
 
 ## Dialogs
 
