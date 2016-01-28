@@ -41,9 +41,3 @@ class MainWindow(QMainWindow):
     # SLOT: This has default parameters and can be called without a value
     def my_custom_fn(self, a="HELLLO!", b=5):
         print(a, b)
-
-
-
-
-
-

@@ -39,9 +39,3 @@ class MainWindow(QMainWindow):
     # SLOT: This function will receive the single value passed from the signal
     def my_custom_fn(self, a):
         print(a)
-
-
-
-
-
-
