@@ -840,49 +840,53 @@ entering an email address, or computer name.
 
 <<(code/widgets_6.py)
 
-You can set a maximum length for the text with `.setMaxLength`.
+As demonstrated in the above code, you can set a maximum length for the 
+text field by using `.setMaxLength`. Placeholder text, which is text shown 
+until something is entered by the user can be added using `.setPlaceholderText`.
 
-You can add placeholder text to be shown when nothing is entered.
+The `QLineEdit` has a number of signals available for different editing 
+events including when return is pressed (by the user), when the user selection
+is changed. There are also two edit signals, one for when the text in the box 
+has been edited and one for when it has been changed. The distinction here is 
+between user edits and programmatic changes. The `textEdited` signal is only 
+sent when the user edits text.
 
-You can also set the text box to be read only, so it cannot be edited.
+Additionally, it is possible to perform input validation using an *input mask*
+to define which characters are supported and where. This can be applied
+to the field as follows:
 
-There is a signal to detect when return has been pressed, when the text
-selection has changed.
+    widget.setInputMask('000.000.000.000;_')
 
-For when the text in the box has been edited and when it has been
-changed. The distinction here is between user edits and programmatic
-changes. The `textEdited` signal is only sent when the user edits text. —
-
-Validation of input strings can be performed automatically by using 
-an *input mask* which you apply to the field.
+The above would allow a series of 3-digit numbers separated with periods, and
+could therefore be used to validate IPv4 addresses.
 
 {pagebreak}
 
-#### QSpinBox
+#### QSpinBox and QDoubleSpinBox
 
 `QSpinBox` provides a small numerical input box with arrows to increase
-and decrease the value. `QSpinBox` supports integers.
+and decrease the value. `QSpinBox` supports integers while the related widget
+`QDoubleSpinBox` supports floats.
 
 <<(code/widgets_7.py)
 
+The demonstration code above shows the various features that are available 
+for the widget.
 
-You can set the range using `setMinimum` and `setMaximum`, or `setRange` to
-set both simultaneously.
+To set the range of acceptable values you can use `setMinimum` and `setMaximum`,
+or alternatively use `setRange` to set both simultaneously. Annotation of value
+types is supported with both prefixes and suffixes that can be added to the number,
+e.g. for currency markers or units using `.setPrefix` and `.setSuffix` respectively.
 
-Prefixes and suffixes can be added to the number, for example currency
-markers or units.
+Clicking on the up and down arrows on the widget will increase or decrease the 
+value in the widget by an amount, which can be set using `.setSingleStep`. Note
+that this has no effect on the values that are acceptable to the widget.
 
-The size of the step determines how much the value increases or
-decreases for each arrow button click.
-
-A valueChanged signal emits the current value whenever it updates.
-
-A string version of this same signal sends the value, but as a string
-including the prefix and suffix.
-
-The related widget, `QDoubleSpinBox`, is basically identical, except 
-that is supports floats.
-
+Both `QSpinBox` and `QDoubleSpinBox` have a `.valueChanged` signal which 
+fires whenever their value is altered. The raw `.valueChanged` signal
+sends the numeric value (either an `int` or a `float`) while the `str` 
+alternate signal, accessible via `.valueChanged[str]` sends the value as a
+string, including both the prefix and suffix characters.
 
 {pagebreak}
 
@@ -923,11 +927,11 @@ used in audio applications as representation of real-world analogue dials.
 
 <<(code/widgets_9.py)
 
+The signals are the same as for `QSlider` and retain the same names
+(e.g. `.sliderMoved`).
 
-
-
-That is the conclusions of this brief tour through the Qt widgets available in
-PyQt. To see the full list of available widgets and their signals and
+This concludes our brief tour through the Qt widgets available in
+PyQt. To see the full list of available widgets, including all their signals and
 attributes, take a look at the [Qt documentation](http://doc.qt.io/qt-5/).
 
 
