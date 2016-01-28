@@ -5,5 +5,10 @@ class MainWindow(QMainWindow):
         
         self.setWindowTitle("My Awesome App")
 
-        widget = Color('red')
+        layout = QVBoxLayout()
+
+        layout.addWidget(Color('red'))
+        
+        widget = QWidget()
+        widget.setLayout(layout)
         self.setCentralWidget(widget)
