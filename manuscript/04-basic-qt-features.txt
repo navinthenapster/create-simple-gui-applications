@@ -427,31 +427,19 @@ a look at two common features of the GUI — toolbars and menus.
 
 ## Actions, Toolbars and Menus
 
-{icon=floppy-o}
-G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
-
-
-tbc.
-
-
-
-### Actions
-
-QAction
-Customizable with labels, status tooltips, and icons
-Provides .hovered, .triggered and .toggled signals
-Can be added to toolbars and menus
-
-{pagebreak}
+Next we'll look at some of the common user interface elements, that you've probably seen
+in many other applications — toolbars and menus. We'll also explore the neat system 
+Qt provides for minimising the duplication between different UI areas — `QAction`.
 
 ### Toolbars
 
-Toolbars are bars of icons and/or text used to perform common tasks within an
+One of the most commonly seen user interface elements is the toolbar.Toolbars are bars of icons and/or text used to perform common tasks within an
 application, for which accessing via a menu would be cumbersome.
 They are one of the most common UI features seen in many applications. While 
 some complex applications, particularly in the Microsoft Office suite, have 
 migrated to contextual 'ribbon' interfaces, the standard toolbar is usually 
 sufficient for the majority of applications you will create.
+
 
 ![Standard GUI elements - The toolbar](images/toolbar.png)
 
@@ -459,13 +447,63 @@ Qt toolbars support display of icons, text, and can also contain any standard
 Qt widget. However, for buttons the best approach is to make use of the 
 QAction system to place buttons on the toolbar.
 
+Let's start by adding a toolbar to our application.
+
+{icon=floppy-o}
+G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+
+In Qt toolbars are created from the QToolBar class. To start you create an instance of the class
+and then call `.addToolbar` on the QMainWindow. Passing a string in as the first
+parameter to `QToolBar` sets the toolbar's name, which will be used to identify the toolbar 
+in the UI.
 
 <<(code/toolbars_and_menus_1.py)
 
-{pagebreak}
+{icon=rocket}
+G> #### Run it!
+G>
+G> You'll see a thin grey bar at the top of the window. This is your toolbar. Right click
+G> and click the name to toggle it off.
 
 
-![Qt Documentation - Signals](images/qtdoc-signals.png)
+E> #### I can't get my toolbar back!?
+E> 
+E>  Unforutnately once you remove a toolbar there is now no place to right click to re-add
+E> it. So as a general rule you want to either keep one toolbar unremoveable, or provide
+E> an alternative interface to turn toolbars on and off.
+
+Lets make the toolbar a bit more interesting. We could just add a `QButton` widget, but there
+is a better approach in Qt that gets you some cool features — and that is via `QAction`.
+`QAction` is a class that provides a way to describe abstract user interfaces. What this means
+in English, is that you can define multiple interface elements within a single object, unified
+by the effect that interacting with that element has. For example, it is common to have functions
+that are represented in the toolbar but also the menu — think of something like Edit->Cut
+which is present both in the Edit menu but also on the toolbar as a pair of scissors, and 
+also through the keyboard shortcut `Ctrl-X` (`Cmd-X` on Mac). 
+
+Without `QAction` you would have to define this in multiple places. But with `QAction` you can 
+define a single `QAction`, defining the triggered action, and then add this action to both the 
+menu and the toolbar. Each `QAction` has names, status messages, icons and signals that you \
+can connect to (and much more).
+
+So lets add our first `QAction`.
+
+<<(code/toolbars_and_menus_2.py)
+
+
+To start with we create the function that will accept the signal from teh QAction so we can
+see if it is working. 
+
+Next we define teh QAction itself. When creating the instance we can pass a label for the action
+and/or an icon. You must also pass as a QObject to act as the parent for the action — here we're
+passing self to reference the same menu. Strangely for QAction the parent element is passed
+in as the final parameter. 
+
+Next to set a status tip — the text to be displayed on the status bar (once we have one).
+
+Finally we connect the triggered action to the custom function.
+
+
 
 You can also set whether to use icons, text or both on your toolbars, using
 `.setToolButtonStyle`. This slot accepts any of the following flags from the `Qt.`
