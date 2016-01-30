@@ -492,16 +492,58 @@ So lets add our first `QAction`.
 
 
 To start with we create the function that will accept the signal from teh QAction so we can
-see if it is working. 
+see if it is working.  Next we define the `QAction` itself. When creating the instance we can 
+pass a label for the action and/or an icon. You must also pass in any `QObject` to act as the 
+parent for the action — here we're passing `self` as a reference to our main window.
+Strangely for QAction the parent element is passed in as the final parameter.
 
-Next we define teh QAction itself. When creating the instance we can pass a label for the action
-and/or an icon. You must also pass as a QObject to act as the parent for the action — here we're
-passing self to reference the same menu. Strangely for QAction the parent element is passed
-in as the final parameter. 
 
-Next to set a status tip — the text to be displayed on the status bar (once we have one).
+Next, we can opt to set a status tip — this text will be displayed on the status bar 
+once we have one. Finally we connect the `.triggered` signal to the custom function. This 
+signal will fire whenever the `QAction` is 'triggered' (or activated).
 
-Finally we connect the triggered action to the custom function.
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> You should see your button with the label that you have defined. Click on it and the 
+G> our custom function will emit "click" and the status of the button.
+
+
+I> #### Why is the signal always false?
+I>
+I> The signal passed indicates whether the button is *checked*,
+I> and since our button is not checkable — just clickable — it is always false.
+I> We'll show how to make it checkable shortly.
+
+Lets add a statusbar.
+
+We create a status bar object by calling `QStatusBar` and passing the result into `.setStatusBar`. Since we
+don't need to change the statusBar settings we can just pass it in as we create it. We can
+create and define the statusbar in a single line:
+
+<<(code/toolbars_and_menus_3.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> Hover your mouse over the toolbar button and you will see the status text in the status bar.
+
+Next we're going to turn our QAction toggleable — so clicking will turn it on, clicking again
+will turn it off. To do this, we simple call `setCheckable(True)` on the `QAction` object.
+
+<<(code/toolbars_and_menus_3.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> Click on the button to see it toggle from checked to unchecked state. Note that custom slot
+G> function we create now alternates outputting `True` and `False`.
+
+I> `.toggled`
+I>
+I> There is also a `.toggled` signal, which only emits a signal when the button 
+I> is toggled. But the effect is identical so it is mostly pointless.
 
 
 
