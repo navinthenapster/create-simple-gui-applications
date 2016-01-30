@@ -532,7 +532,7 @@ G> Hover your mouse over the toolbar button and you will see the status text in 
 Next we're going to turn our QAction toggleable — so clicking will turn it on, clicking again
 will turn it off. To do this, we simple call `setCheckable(True)` on the `QAction` object.
 
-<<(code/toolbars_and_menus_3.py)
+<<(code/toolbars_and_menus_4.py)
 
 {icon=rocket}
 G> #### Run it!
@@ -545,11 +545,34 @@ I>
 I> There is also a `.toggled` signal, which only emits a signal when the button 
 I> is toggled. But the effect is identical so it is mostly pointless.
 
+Things look pretty shabby right now — so let's add an icon to our button. For this I recommend
+you download the [fugue icon set](http://p.yusukekamiyamane.com/) by designer Yusuke Kamiyamane. 
+It's a great set of beautiful 16x16 icons that can give your apps a nice professional look.
+It is freely available with only attribution required when you distribute your application — 
+although I am sure the designer would appreciate some cash too if you have some spare.
 
+![Fugue Icon Set — Yusuke Kamiyamane](images/fugue-icons.png)
 
-You can also set whether to use icons, text or both on your toolbars, using
-`.setToolButtonStyle`. This slot accepts any of the following flags from the `Qt.`
-namespace:
+Select an image from the set (in the examples here I've selected the file `bug.png`) and copy
+it into the same folder as your source code. To add the icon to the `QAction` (and therefore
+the button) we simply pass it in as the first parameter when creating the `QAction`. If
+the icon is in the same folder as your source code you can just copy it to 
+
+You also need to let the toolbar know how large your icons are, otherwise your icon will
+be surrounded by a lot of padding. You can do this by calling `.setIconSize()` with a `QSize` object.
+
+<<(code/toolbars_and_menus_4.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> The QAction is now represented by an icon. Everything should function exactly as it did before.
+
+Note that Qt uses your operating system
+default settings to determine whether to show an icon, text or an icon and text in the toolbar.
+But you can override this by using `.setToolButtonStyle`. This slot accepts any of the 
+following flags from the `Qt.` namespace:
+
 
 | Flag                          | Behaviour                                 |
 |-------------------------------|-------------------------------------------|
@@ -560,51 +583,86 @@ namespace:
 | `Qt.ToolButtonIconOnly`       | Icon only, no text                        |
 | `Qt.ToolButtonFollowStyle`    | Follow the host desktop style             |
 
-The default value is `Qt.ToolButtonFollowStyle`, meaning that your application
-will default to following the standard/global setting for the desktop on
-which the application runs. This is generally recommended to make your 
-application feel as *native* as possible. 
 
-{pagebreak}
+T> #### Which style should I use?
+T>
+T> The default value is `Qt.ToolButtonFollowStyle`, meaning that your application
+T> will default to following the standard/global setting for the desktop on
+T> which the application runs. This is generally recommended to make your 
+T> application feel as *native* as possible. 
 
-<<(code/toolbars_and_menus_2.py)
+Finally, lets just add a few more bits and bobs to the toolbar. We'll add a second button
+and a checkbox widget. As mentioned you can literally put any widget in here, so 
+feel free to go crazy. Don't worry about the QCheckBox type, we'll cover that later.
 
-{pagebreak}
+<<(code/toolbars_and_menus_6.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> Now you see multiple buttons and a checkbox.
+
 
 ### Menus
 
-Menus 
-Drop-down menus at the top of your application
-Standards include File, Edit
-Nested, hierarchical
-Keyboard shortcuts and icons
-
-{pagebreak}
-
-<<(code/toolbars_and_menus_3.py)
-
-{pagebreak}
+Menus are another standard component of UIS. Typically they are on the top of the window,
+or the top of a screen on a Mac. They allow access to all standard application functions.
+A few standard menus exist — for example File, Edit, Help.
+Menus can be nested to create hierarchical trees of functions and they often support and
+display keyboard shortcuts for fast access to their functions. 
 
 ![Standard GUI elements - Menus](images/menus.png)
 
+To create a menu, we create a menubar we call `.menuBar()` on the QMainWindow.
+We add a menu on our menu bar by calling `.addMenu()`, passing in the name of the menu. 
+I've called it `'&File'`.  The amspersand defines a quick key to jump to this menu when pressing Alt. 
 
-[keysequence]
+<<(code/toolbars_and_menus_7.py)
 
+B> Quick Keys on Mac
+B> 
+B> This won't be visible on Mac. Note that this is different to a keyboard shortcut — we'll 
+B> cover that shortly.
 
-QToolbar
-QAction
-Icons
-Status tips
-Signals .triggered and .toggled
-QMenu
-Including accelerator keys for Windows
-Keyboard shortcuts
+Next we add something to menu. This is where the power of QActions comes in to play. We can
+reuse the already existing QAction to add the same function to the menu. Click it and you will
+notice that it is toggleable — it inherits the features of the QAction.
+
+Lets add some more things to the menu. Here we'll add a separator to the menu, which will
+appear as a horizontal line in the menu, and then add the second QAction we created.
+
+<<(code/toolbars_and_menus_8.py)
+
+{icon=rocket}
+G> #### Run it!
+G>
+G> You should see two menu items with a line between them.
+
+You can also use ampersand to add accelerator keys to the menu to allow a single key to be used to jump to a
+menu item when it is open.  Again this doesn't work on Mac.
+
+To add a submenu, you simply create a new menu by calling `addMenu()` on the parent menu.
+You can then add actions to it as normal. For example:
+
+<<(code/toolbars_and_menus_9.py)
+
+Finally lets add a keyboard shortcut to the `QAction`. 
+You define a keyboard shortcut by passing setKeySequence() and passing in the key sequence.
+Any defined key sequences will appear in the menu.
+
+T> Hidden shortcuts
+T>
+T> Note that the keyboard shortcut is associated
+T> with the `QAction` and will still work whether or not the `QAction` is added to a menu or a toolbar.
+
+Key sequences can be defined in multiple ways - either by passing as text, using key names from the 
+Qt namespace, or using the defined keysequences from the Qt namespace. Use the latter wherever you can
+to ensure compliance with the operating system standards.
 
 The completed code, showing the toolbar buttons and menus is shown below.
 
-{pagebreak}
+<<(code/toolbars_and_menus_10.py)
 
-<<(code/toolbars_and_menus_end.py)
 
 {icon=floppy-o}
 G> Save a copy of your file as `MyApp_menus.py` as we'll need it again later.
@@ -759,7 +817,7 @@ a file `hrh.jpg` which you can display in your window as follows:
 
 {pagebreak}
 
-![HRH Queen Lizzy (by NASA/Bill Ingalls — Public domain.](images/hrh.jpg)
+![HRH Queen Lizzy — Public domain.](images/hrh.jpg)
 
 God Save the Queen. By default the image scales while maintaining its
 aspect ratio. If you want it to stretch and scale to fit the window completely
