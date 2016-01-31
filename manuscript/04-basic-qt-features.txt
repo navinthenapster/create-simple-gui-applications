@@ -6,11 +6,6 @@ in any applications you create. We will develop a series of small applications,
 adding (and removing!) features step-by-step. Use the code given as your guide, and 
 feel free to experiment around it — particularly with reference to the [Qt Documentation](http://doc.qt.io/qt-5/).
 
-T> #### Source Code
-T>
-T> If you get stuck at any time, the source code is available to download from:  
-T> [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip)
-
 ## My first Window
 
 So, lets get started by creating our very first windowed application. Before getting

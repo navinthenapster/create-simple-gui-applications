@@ -19,12 +19,10 @@ the way.
 In no time at all you will have a fully functional Qt application - 
 ready to customise as you like.
 
-The source code for each step is included. However, if you get stuck at any point, the source code  can also be downloaded from: [http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip).
-
-But, do try and code yourself! You will learn much more if you experiment along the way.
+The source code for each step is included, but don't just copy and paste and move on.
+You will learn much more if you experiment along the way!
 
 So, lets get started!
-
 
 
 ## Book format
