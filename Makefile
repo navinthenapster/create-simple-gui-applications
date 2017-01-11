@@ -1,4 +1,4 @@
-all: clean build
+all: clean build publish
 
 build:
 	asciidoctor -a stylesheet=html.css -a stylesdir=./styles -b html -o build/index.html Book.adoc
@@ -8,7 +8,7 @@ build:
 	cp -r ./images ./build/images
 
 publish:
-    cp -r ./build ~/webapps/martinfitzpatrick_books/create-simple-gui-applications
+	cp -r ./build ~/webapps/martinfitzpatrick_books/create-simple-gui-applications
 
 clean:
 	rm -r ./build
