@@ -1,36 +1,36 @@
-# Mozzarella Ashbadger
+== Mozzarella Ashbadger
 
 ![Mozzarella Ashbadger — A revolution in web browsing](images/mozzarella-ashbadger.png)
 
 
-## Web browser
+=== Web browser
 
 tbc.
 
 
-## Navigation
+=== Navigation
 
 tbc.
 
 
-## Printing 
+=== Printing 
 
 tbc.
 
 
-## File operations
+=== File operations
 
 tbc.
 
 
-## Help
+=== Help
 
 ![Help! A dialog box is on the loose.](images/help.png)
 
 tbc.
 
 
-## Tabbed browsing
+=== Tabbed browsing
 
 tbc.
 

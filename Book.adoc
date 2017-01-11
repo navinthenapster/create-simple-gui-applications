@@ -1,0 +1,10 @@
+= Create Simple GUI Applications: Quick, awesome applications in Python with Qt
+include::./preamble.adoc[]
+
+include::./frontmatter.adoc[]
+include::./01-introduction.adoc[]
+include::./03-getting-started.adoc[]
+include::./04-basic-qt-features.adoc[]
+include::./90-resources.adoc[]
+
+include::./postamble.adoc[]

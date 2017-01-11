@@ -1,0 +1,14 @@
+@import url('/usr/local/lib/ruby/gems/2.2.0/gems/asciidoctor-epub3-1.5.0.alpha.6/data/styles/epub3.css');
+.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+pre.CodeRay {
+    border:1px solid #ddd;
+    }
+.literalblock pre {background:#fffff0;}
+.terminal .content pre {
+    background: #000;
+    color: #0f0;
+    }
+.chapter-header p.byline {
+    display: none;
+}
+    

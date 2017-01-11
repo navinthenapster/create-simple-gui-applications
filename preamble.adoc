@@ -1,0 +1,8 @@
+:doctype: book
+:source-highlighter: coderay
+:listing-caption: Listing
+:pdf-page-size: Letter
+:icons: font
+:toc: left
+:imagesdir: images
+:front-cover-image: image:title_page.png[width=2550,height=3300]

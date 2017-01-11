@@ -1,0 +1,35 @@
+== Resources
+
+This section is a short list of resources that you may find useful in
+writing your Qt applications. They include both sources of good 
+documentation and help, and also useful resources for making your
+applications look and function well.
+
+=== Documentation
+
+[options="header"]
+|===
+| Resource 
+| http://doc.qt.io/qt-5/[Qt5.5 Documentation]
+| http://doc.qt.io/qt-4.8/[Qt 4.8 Documentation]
+| http://pyqt.sourceforge.net/Docs/PyQt4/[PyQt4 Library documentation]
+| http://pyqt.sourceforge.net/Docs/PyQt5/[PyQt5 Library documentation]
+| https://srinikom.github.io/pyside-docs/[PySide Library documentation]
+|===
+ 
+
+=== Icon sets
+
+The following icon sets are free to use, with the appropriate license,
+to give you applications a more professional and consistent look. The
+Fugue set are the icons suggested and used in the examples in this book 
+but the others are also worth a look.
+
+[options="header"]
+|===
+| Resource | Description  | License
+| http://p.yusukekamiyamane.com/[Fugue by p.yusukekamiyamane] | 3,570 16x16 icons in PNG format | CC BY 3.0
+| http://p.yusukekamiyamane.com/[Diagona by p.yusukekamiyamane] | 400 16x16 and 10x10 icons in PNG format | CC BY 3.0
+| http://tango.freedesktop.org/Tango_Icon_Library[Tango Icons by The Tango Desktop Project] | Icons using the Tango project colour theme. | Public domain
+|===
+
