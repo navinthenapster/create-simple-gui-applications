@@ -8,7 +8,7 @@ build:
 	cp -r ./images ./build/images
 
 publish:
-	cp -r ./build ~/webapps/martinfitzpatrick_books/create-simple-gui-applications
+	cp -r ./build/. ~/webapps/martinfitzpatrick_books/create-simple-gui-applications
 
 clean:
 	rm -r ./build
