@@ -412,23 +412,16 @@ pre.CodeRay {
 /* Modal Gumroad styles */
 .modal {
     position:fixed;
-    top:1%;
-    right:1%;
+    top:0;
+    right:0;
     background-color: #fff;
     box-shadow: 5px 5px 20px #888888;
-    width: 325px;
-    max-width: 100%;
+    width: 100%;
     padding: 0 1rem;
-    border-radius: 5px;
-}
-
-.modal h3 {
-    line-height: 1.2em;
-    margin-bottom: 0;
 }
 
 .modal .author {
-    margin-top: 0.5em;
+    margin-top: -0.5rem;
     color: #888;
     font-size: small;
     font-style: italic;
@@ -437,14 +430,22 @@ pre.CodeRay {
 .modal .extra { display: none; }
 
 @media only screen and (min-width: 37.5em) {
+    .modal {
+        top:1%;
+        right:1%;        
+        width: 325px;
+        max-width: 100%;    
+        border-radius: 5px;
+    }
     .modal .extra { display: block; }
 }
 
 .modal .close {
     font-family: "Open Sans","DejaVu Sans",sans-serif;
-    color: #F44339;
+    color: #ba3925;
     text-decoration: none;
     position: absolute;
     top: 1em;
     right: 1em;
 } 
+
