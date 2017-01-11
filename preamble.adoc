@@ -6,3 +6,4 @@
 :toc: left
 :imagesdir: images
 :front-cover-image: image:title_page.png[width=2550,height=3300]
+:docinfo: shared
