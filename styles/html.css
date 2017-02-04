@@ -449,3 +449,28 @@ pre.CodeRay {
     right: 1em;
 } 
 
+a.product-button {
+    margin: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: #000;
+    border:1px solid #aaa;
+    box-shadow: #eee 0 0 5px 1px;
+    background-color: #fff !important;
+    
+    display: inline-block;
+    font-family: -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 50px;
+    padding: 0 15px;
+    text-shadow: none;
+    text-decoration: none;
+}
+
+a.product-button:hover {
+    color: #000;
+    border:1px solid #aaa;
+    box-shadow: #fdce71 0 0 5px 1px !important;
+}
+
