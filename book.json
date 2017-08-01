@@ -1,6 +1,6 @@
 {
     "gitbook": "2.x.x",
-    "plugins": ["gitbook-plugin-bootstrap-callout"],
+    "plugins": ["bootstrap-callout"],
     "links": {
         "sidebar": {
             "Author": "https://www.mfitzp.io"
