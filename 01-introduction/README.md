@@ -1,3 +1,5 @@
+# Introduction
+
 Welcome to *Creating Simple GUI Applications* where we will discover how
 to use Python and Qt to do just that.
 
@@ -34,9 +36,11 @@ If you find yourself thinking "I wonder if I can do *that*" the best thing you
 can do is put this book down, then *go and find out!* Just keep regular backups of your 
 code along the way so you always have something to come back to if you royally mess it up.
 
-I> Throughout this books there are also boxes like this, giving info, tips and warnings.
-I> All of them can be safely skipped over if you are in a hurry, but reading them will
-I> give you a deeper and more rounded knowledge of the Qt framework.
+> #### info::Lookout!
+>
+> Throughout this books there are also boxes like this, giving info, tips and warnings.
+> All of them can be safely skipped over if you are in a hurry, but reading them will
+> give you a deeper and more rounded knowledge of the Qt framework.
 
 ## Qt and PyQt
 
@@ -70,12 +74,12 @@ This book is written to be compatible with Python 3.4+. Python 3 is
 the future of the language, and if you're starting out now is where you should
 be focusing your efforts. However, in recognition of the fact that many 
 people are stuck supporting or developing on legacy systems, the examples and 
-code used in this book are also tested and confirmed to work on Python 2.7. Any notable incompatiblities or gotchas will be flagged with a meh-face to accurately 
+code used in this book are also tested and confirmed to work on Python 2.7. Any notable 
+incompatiblities or gotchas will be flagged to accurately 
 portray the sentiment e.g.
 
-{icon=meh-o}
-G> #### Python 2.7
-G>
-G> In Python 2.7 `map()` returns a `list`. 
+> #### warning::💩 Python 2.7
+>
+> In Python 2.7 `map()` returns a `list`. 
 
 If you are using Python 3 you can safely ignore their indifferent gaze.

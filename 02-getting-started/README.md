@@ -7,17 +7,17 @@ of PyQt on your Python system you can safely skip this part and get straight
 onto the fun.
 
 
-W> #### GPL Only
-W>
-W> Note that the following instructions are ***only*** for installation of the GPL
-W> licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
-W> need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
+> #### warning::GPL Only
+>
+> Note that the following instructions are ***only*** for installation of the GPL
+> licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
+> need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
 
-I> #### Documentation?
-I>
-I> The PyQt packages from Riverbank do not include the Qt documentation. However this
-I> is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
-I> download the documentation you can do so from [www.qt.io](http://www.qt.io).
+> #### info::Documentation?
+>
+> The PyQt packages from Riverbank do not include the Qt documentation. However this
+> is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
+> download the documentation you can do so from [www.qt.io](http://www.qt.io).
 
 
 ## Installation Windows
