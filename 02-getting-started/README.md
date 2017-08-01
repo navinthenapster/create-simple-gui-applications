@@ -13,6 +13,8 @@ onto the fun.
 > licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
 > need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
 
+  
+
 > #### info::Documentation?
 >
 > The PyQt packages from Riverbank do not include the Qt documentation. However this
