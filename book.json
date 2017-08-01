@@ -1,0 +1,10 @@
+{
+    "gitbook": "2.x.x",
+    "plugins": [],
+    "links": {
+        "sidebar": {
+            "Author": "https://www.mfitzp.io"
+        }
+    },
+    "pluginsConfig": {"gitbook-plugin-bootstrap-callout"}
+}
