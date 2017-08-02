@@ -13,14 +13,6 @@ onto the fun.
 > licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
 > need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
 
-  
-
-> #### info::Documentation?
->
-> The PyQt packages from Riverbank do not include the Qt documentation. However this
-> is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
-> download the documentation you can do so from [www.qt.io](http://www.qt.io).
-
 
 ## Installation Windows
 
@@ -47,6 +39,13 @@ A PyQt5 installer for Windows is available direct from the developer [Riverbank 
 systme. You can install this file as for any other Windows application/library.
 
 After install is finished, you should be able to run `python` and `import PyQt5`.
+
+> #### info::Documentation?
+>
+> The PyQt packages from Riverbank do not include the Qt documentation. However this
+> is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
+> download the documentation you can do so from [www.qt.io](http://www.qt.io).
+
 
 ## PyQt5 for Python 2.7
 
