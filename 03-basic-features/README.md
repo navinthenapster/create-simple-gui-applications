@@ -29,12 +29,12 @@ loop to wait for more events. There is only *one* running event loop per
 application.
 
 
-I> #### Key Points
-I>
-I> - QApplication holds the Qt event loop
-I> - One QApplication instance required
-I> - You application sits waiting in the event loop until an action is taken
-I> - There is only *one* event loop
+{% hint style='tip' %}
+- QApplication holds the Qt event loop
+- One QApplication instance required
+- You application sits waiting in the event loop until an action is taken
+- There is only *one* event loop
+{% endhint %}
 
 
 ### Creating your App
@@ -241,7 +241,7 @@ find this information in the [Qt documentation](http://doc.qt.io/qt-5/qmainwindo
 Scroll down to the Signals section to see the signals implemented for 
 this class. 
 
-![Qt 5 Documentation — QMainWindow Signals](images/qtdoc-signals-qmainwindow.png)
+![Qt 5 Documentation — QMainWindow Signals](../images/qtdoc-signals-qmainwindow.png)
 
 As you can see, alongside the two `QMainWindow` signals, there are 
 4 signals inherited from `QWidget` and 2 signals inherited from `Object`.

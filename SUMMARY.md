@@ -5,5 +5,4 @@
 1. [App: Mozzarella Ashbadger](04-app-browser/app-browser.md)
 1. [Qt Designer](05-qt-designer/README.md)
 1. [Calculon](07-calculon/README.md)
-1. [Calculon](07-calculon/README.md)
 1. [Moonsweeper](07-app-minesweeper/app-minesweeper.md)

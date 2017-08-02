@@ -10,10 +10,10 @@ vicinity.
 
 [TIP]
 .Suggested reading
-====
+##
 This application makes use of features covered in <<signals>>,
 <<events>> and <<custom-widgets>>.
-====
+##
 
 .Moonsweeper.
 image::app/minesweeper-playing.png[scaledwidth=50%,align="center"]
@@ -34,17 +34,14 @@ which would require us to recalculate the adjacencies.
 We can explain this away as the "initial exploration around the rocket"
 and make it sound completely sensible.
 
-[TIP]
-.Challenge
-====
-If you want to implement this, you can catch the first click on a
+{% hint style='tip' %}
+**CHALLENGE** If you want to implement this, you can catch the first click on a
 position and at that point generate mines/adjacencies,
 excluding your location, before handling the click.
-You will need to give your custom widgets access
-to the parent window object.
-====
+You will need to give your custom widgets access to the parent window object.
+{% endhint %}
 
-==== Source code
+## Source code
 
 The full source for the _Moonsweeper_ game is included in the downloads for this
 book. The game file is saved with the name `minesweeper.py`.
@@ -53,7 +50,7 @@ book. The game file is saved with the name `minesweeper.py`.
 python3 minesweeper.py
 {% endhint %}
 
-==== Playing Field
+## Playing Field
 
 The playing area for Moonsweeper is a NxN grid, containing a set number of mines.
 The dimensions and mine counts we'll used are taken from the default values for
@@ -139,9 +136,9 @@ we can cheat a bit.
 
 [TIP]
 .Challenge
-====
+##
 Update this code to add/remove the neccessary tiles to size the new level dimensions.
-====
+##
 
 Notice that we both remove the item from the grid with `self.grid.removeItem(c)` and
 clear the parent `c.widget().setParent(None)`. This second step is necessary, since
@@ -208,10 +205,10 @@ the number of these that is a mine `is_mine == True` and store.
 
 [TIP]
 .Pre-calculation
-====
+##
 Pre-calculating the adjacent counts in this way helps simplify the
 reveal logic later.
-====
+##
 
 [source,python]
 ----
@@ -237,7 +234,7 @@ include::code/app/minesweeper.py[tags=resetMap4]
 .Initial exploration around rocket.
 image::app/minesweeper-start.png[scaledwidth=50%,align="center"]
 
-==== Position Tiles
+## Position Tiles
 
 As previously described, we've structured the game so that individual
 tile positions hold their own state information. This means that
@@ -334,12 +331,12 @@ passing through `QPixmap` by passing.
 
 [TIP]
 .QPixmap vs. QImages
-====
+##
 You might think "why not just store these as `QPixmap` objects
 since that's what we're using? We can't do this and store them
 in constants because you can't create `QPixmap`
 objects before your `QApplication` is up and running.
-====
+##
 
 For empty positions (not rockets, not bombs) we optionally show
 the adjacency number if it is larger than zero. To draw text onto
@@ -357,7 +354,7 @@ over the top of the tile using `drawPixmap` and the tile `QRect`.
 include::code/app/minesweeper.py[tags=positionsPaint]
 ----
 
-==== Mechanics
+## Mechanics
 
 We commonly need to get all tiles surrounding a given point, so we have a custom
 function for that purpose. It simple iterates across a 3x3 grid around the point,
@@ -407,7 +404,7 @@ visit a tile more than once.
 include::code/app/minesweeper.py[tags=expandReveal]
 ----
 
-==== Endgames
+## Endgames
 
 Endgame states are detected during the reveal process following
 a click on a title. There are two possible outcomes — 
@@ -430,7 +427,7 @@ include::code/app/minesweeper.py[tags=endGame]
 image::app/minesweeper-lose.png[scaledwidth=50%,align="center"]
 
 
-==== Status
+## Status
 
 The user interface for Moonsweeper is pretty simple: one display
 showing the number of mines, one showing the amount of time elapsed,
@@ -464,7 +461,7 @@ or lost `self.status == STATUS_FAILED` the press is taken to mean
 include::code/app/minesweeper.py[tags=statusButton]
 ----
 
-==== Menus
+## Menus
 
 There is only a single menu for Moonsweeper which holds the
 game controls. We create a `QMenu` by calling `.addMenu()` on
@@ -487,17 +484,16 @@ along the level number.
 include::code/app/minesweeper.py[tags=menuGame]
 ----
 
-==== Going further
+## Going further
 
 Take a look through the rest of the source code we've not covered.
 
-[TIP]
-.Challenges
-====
-You might like to try make the following changes —
+
+{% hint style='tip' %}
+**CHALLENGE** You might like to try make the following changes —
 
 * Try changing the graphics to make you're own themed version of Minesweeper.
 * Add support for non-square playing fields. Rectangular? Try a circle!
 * Change the timer to count down — explore the Moon against the clock!
 * Add power-ups: squares give bonuses, extra time, invincibility.
-====
+{% endhint %}
