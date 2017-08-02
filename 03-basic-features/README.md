@@ -249,7 +249,7 @@ If you click through to the `QWidget` signal documentation you can see a
 `.windowTitleChanged` signal implemented here. Next we'll demonstrate that
 signal within our application. 
 
-![Qt 5 Documentation — Widget Signals](images/qtdoc-signals-qwidget.png)
+![Qt 5 Documentation — Widget Signals](../images/qtdoc-signals-qwidget.png)
 
 
 <div style="page-break-after: always;"></div>
@@ -442,7 +442,7 @@ migrated to contextual 'ribbon' interfaces, the standard toolbar is usually
 sufficient for the majority of applications you will create.
 
 
-![Standard GUI elements - The toolbar](images/toolbar.png)
+![Standard GUI elements - The toolbar](../images/toolbar.png)
 
 Qt toolbars support display of icons, text, and can also contain any standard
 Qt widget. However, for buttons the best approach is to make use of the 
@@ -552,7 +552,7 @@ It's a great set of beautiful 16x16 icons that can give your apps a nice profess
 It is freely available with only attribution required when you distribute your application — 
 although I am sure the designer would appreciate some cash too if you have some spare.
 
-![Fugue Icon Set — Yusuke Kamiyamane](images/fugue-icons.png)
+![Fugue Icon Set — Yusuke Kamiyamane](../images/fugue-icons.png)
 
 Select an image from the set (in the examples here I've selected the file `bug.png`) and copy
 it into the same folder as your source code. To add the icon to the `QAction` (and therefore
@@ -613,7 +613,7 @@ A few standard menus exist — for example File, Edit, Help.
 Menus can be nested to create hierarchical trees of functions and they often support and
 display keyboard shortcuts for fast access to their functions. 
 
-![Standard GUI elements - Menus](images/menus.png)
+![Standard GUI elements - Menus](../images/menus.png)
 
 To create a menu, we create a menubar we call `.menuBar()` on the QMainWindow.
 We add a menu on our menu bar by calling `.addMenu()`, passing in the name of the menu. 
@@ -821,7 +821,7 @@ widget.setPixMap(QPixmap('hrh.jpg'))
 
 <div style="page-break-after: always;"></div>
 
-![HRH Queen Lizzy — Public domain.](images/hrh.jpg)
+![HRH Queen Lizzy — Public domain.](../images/hrh.jpg)
 
 God Save the Queen. By default the image scales while maintaining its
 aspect ratio. If you want it to stretch and scale to fit the window completely
@@ -1123,7 +1123,7 @@ that to add our layouts to the window we will need a dummy
 With `QVBoxLayout` you arrange widgets one above the other linearly.
 Adding a widget adds it to the bottom of the column.
 
-![A QVBoxLayout, filled from top to bottom.](images/vboxlayout.png)
+![A QVBoxLayout, filled from top to bottom.](../images/vboxlayout.png)
 
 Lets add our widget to a layout. Note that in order to add a layout to the 
 `QMainWindow` we need to apply it to a dummy `QWidget`. This allows us to then
@@ -1150,7 +1150,7 @@ are added.
 `QHBoxLayout` is the same, except moving horizontally. Adding a widget
 adds it to the right hand side.
 
-![A QHBoxLayout, filled from left to right.](images/hboxlayout.png)
+![A QHBoxLayout, filled from left to right.](../images/hboxlayout.png)
 
 To use it we can simply change the `QVBoxLayout` to a `QHBoxLayout`.
 The boxes now flow left to right.
@@ -1193,7 +1193,7 @@ laying out multiple elements, e.g. for a form, you’ll find it very
 difficult to ensure differently sized widgets line up. The solution to
 this is `QGridLayout`.
 
-![A QGridLayout showing the grid positions for each location.](images/gridlayout1.png)
+![A QGridLayout showing the grid positions for each location.](../images/gridlayout1.png)
 
 `QGridLayout` allows you to position items specifically in a grid. You
 specify row and column positions for each widget. You can skip elements,
@@ -1201,7 +1201,7 @@ and they will be left empty.
 
 Usefully, for `QGridLayout` you don't need to fill all the positions in the grid.
 
-![A QGridLayout with unfilled slots.](images/gridlayout2.png)
+![A QGridLayout with unfilled slots.](../images/gridlayout2.png)
 
 
 <<(code/layout_6.py)
@@ -1219,9 +1219,9 @@ which is a container widget that works in exactly the same way. This is
 useful if you want to add a stack directly to a `QMainWindow` with
 `.setCentralWidget`.
 
-![QStackedLayout — in use only the uppermost widget is visible, which is by default the first widget added to the layout.](images/qstackedlayout1.png)
+![QStackedLayout — in use only the uppermost widget is visible, which is by default the first widget added to the layout.](../images/qstackedlayout1.png)
 
-![QStackedLayout, with the 2nd (1) widget selected and brought to the front ](images/qstackedlayout2.png)
+![QStackedLayout, with the 2nd (1) widget selected and brought to the front ](../images/qstackedlayout2.png)
 
 <<(code/layout_7.py)
 
@@ -1260,9 +1260,9 @@ user experience.
 {icon=floppy-o}
 G> Load up a fresh copy of `MyApp_menus.py` and save it under a new name for this section.
 
-![Standard GUI features — A search dialog](images/dialog-find.png)
+![Standard GUI features — A search dialog](../images/dialog-find.png)
 
-![Standard GUI features — A file Open dialog](images/dialog-open.png)
+![Standard GUI features — A file Open dialog](../images/dialog-open.png)
 
 In Qt dialog boxes are handled by the `QDialog` class. To create a new dialog
 box simply create a new object of `QDialog` type (or a subclass), passing in 
