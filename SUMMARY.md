@@ -6,4 +6,4 @@
 1. [Qt Designer](05-qt-designer/README.md)
 1. [Calculon](07-calculon/README.md)
 1. [Calculon](07-calculon/README.md)
-1. [Calculon](07-app-moonsweeper/app-moonsweeper.md)
+1. [Moonsweeper](07-app-moonsweeper/app-moonsweeper.md)

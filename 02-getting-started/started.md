@@ -26,7 +26,9 @@ If your system *does* support 64bit (and most modern systems do) then you
 should also check whether your current Python install is 32 or 64 bit. Open a command
 prompt (Start > `cmd`):
 
+{% hint style='terminal' %}
     C:\> python3
+{% endhint %}
     
 Look at the top line of the Python output, where you should be able to see whether
 you have 32bit or 64bit Python installed. If you want to switch to 32bit or 64bit 
@@ -77,15 +79,19 @@ has a pre-built version of PyQt5 in their repositories.
 
 To install homebrew run the following from the command line:
 
+{% hint style='terminal' %}
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+{% endhint %}
 
 T> This is also available to copy and paste from the Homebrew homepage.
 
 Once the Homebrew installation has completed, you can then install Python 3 and PyQt5 
 as follows:
 
+{% hint style='terminal' %}
     brew install python3
     brew install pyqt5 --with-python-3
+{% endhint %}
     
 After that has completed, you should be able to run `python3` and `import PyQt5`.    
 
@@ -98,11 +104,15 @@ named `python3-pyqt5` or `python-pyqt5` depending on which version you are insta
 
 You can also install these from the command line as follows:
 
+{% hint style='terminal' %}
     apt-get install python3-pyqt5
+{% endhint %}
     
 Or for Python 2.7:
 
+{% hint style='terminal' %}
     apt-get install python-pyqt5
+{% endhint %}
 
 Once the installtion is finished, you should be able to run `python3` or `python` and `import PyQt5`.    
     

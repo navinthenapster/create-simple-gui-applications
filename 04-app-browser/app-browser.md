@@ -7,12 +7,10 @@ entirely coincidental.
 .Mozarella Ashbadger.
 image::app/browser-home.png[scaledwidth=50%,align="center"]
 
-[TIP]
-.Suggested reading
-====
+{% hint style='tip' %}
 This application makes use of features covered in <<signals>>,
 <<widgets>> and <<widgets-complex>>.
-====
+{% endhint %}
 
 The source code for Mozarella Ashbadger is provided in two forms, one
 with tabbed browsing and one without. Adding tabs complicates
@@ -25,7 +23,7 @@ The full source for the tab-less browser is included in the downloads for this
 book. The browser code has the name `browser.py`.
 
 {% hint style='terminal' %}
-python3 browser.py
+    python3 browser.py
 {% endhint %}
 
 ====

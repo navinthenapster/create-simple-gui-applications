@@ -1,4 +1,4 @@
-=== Moonsweeper
+# Moonsweeper
 
 Explore the mysterious moon of Q'tee without getting too close to the alien natives!
 
