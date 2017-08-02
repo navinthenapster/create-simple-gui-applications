@@ -36,11 +36,11 @@ If you find yourself thinking "I wonder if I can do *that*" the best thing you
 can do is put this book down, then *go and find out!* Just keep regular backups of your 
 code along the way so you always have something to come back to if you royally mess it up.
 
-> #### success::Look out
->
-> Throughout this books there are also boxes like this, giving info, tips and warnings.
-> All of them can be safely skipped over if you are in a hurry, but reading them will
-> give you a deeper and more rounded knowledge of the Qt framework.
+{% hint style='info' %}
+Throughout this books there are also boxes like this, giving info, tips and warnings.
+All of them can be safely skipped over if you are in a hurry, but reading them will
+give you a deeper and more rounded knowledge of the Qt framework.
+{% endhint %}
 
 ## Qt and PyQt
 

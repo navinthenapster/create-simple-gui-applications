@@ -1,5 +1,5 @@
 {
-    "plugins": ["bootstrap-callout"],
+    "plugins": ["hints"],
     "links": {
         "sidebar": {
             "Author": "https://www.mfitzp.io"
