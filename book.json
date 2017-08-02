@@ -13,7 +13,7 @@
          "note":"fa fa-sticky-note",
          "info":"fa fa-info-circle",
          "tip":"fa fa-check",
-         "danger":"fa fa-exclamation-cicle",
+         "danger":"fa fa-exclamation-circle",
          "working":"fa fa-wrench"
       }
    }

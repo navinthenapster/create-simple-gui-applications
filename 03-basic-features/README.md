@@ -785,8 +785,9 @@ The flags available for vertical alignment are:
 You can combine flags together using pipes (`|`), however note that you
 can only use vertical or horizontal alignment flag at a time.
 
-
-    align_top_left = Qt.AlignLeft | Qt.AlignTop
+```python
+align_top_left = Qt.AlignLeft | Qt.AlignTop
+```
 
 I> Qt Flags
 I>
@@ -812,8 +813,9 @@ This accepts an *pixmap*, which you can create by passing an image filename
 to `QPixmap`. In the example files provided with this book you can find
 a file `hrh.jpg` which you can display in your window as follows:
 
-    widget.setPixMap(QPixmap('hrh.jpg'))
-    
+```python
+widget.setPixMap(QPixmap('hrh.jpg'))
+```    
 
 <div style="page-break-after: always;"></div>
 
@@ -823,9 +825,9 @@ God Save the Queen. By default the image scales while maintaining its
 aspect ratio. If you want it to stretch and scale to fit the window completely
 you can set `.setScaledContents(True)` on the `QLabel`.
 
-
-    widget.setScaledContents(True)
-
+```python
+widget.setScaledContents(True)
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -892,7 +894,9 @@ more useful.
 `QComboBox` can also be editable, allowing users to enter values not currently in the list
 and either have them inserted, or simply used as a value. To make the box editable:
 
-    widget.setEditable(True)
+```python
+widget.setEditable(True)
+```
 
 You can also set a flag to determine how the insert is handled. These flags are stored
 on the `QComboBox` class itself and are listed below:
@@ -910,11 +914,15 @@ on the `QComboBox` class itself and are listed below:
 
 To use these, apply the flag as follows:
 
-    widget.setInsertPolicy(QComboBox.InsertAlphabetically)
+```python
+widget.setInsertPolicy(QComboBox.InsertAlphabetically)
+```
 
 You can also limit the number of items allowed in the box by using `.setMaxCount`, e.g.
 
-    widget.setMaxCount(10)
+```python
+widget.setMaxCount(10)
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -955,7 +963,9 @@ Additionally, it is possible to perform input validation using an *input mask*
 to define which characters are supported and where. This can be applied
 to the field as follows:
 
-    widget.setInputMask('000.000.000.000;_')
+```python
+widget.setInputMask('000.000.000.000;_')
+```
 
 The above would allow a series of 3-digit numbers separated with periods, and
 could therefore be used to validate IPv4 addresses.
@@ -1009,12 +1019,15 @@ You can also construct a slider with a vertical or horizontal orientation by
 passing the orientation in as you create it. The orientiation flags are
 defined in the `Qt.` namespace. For example: 
 
-    widget.QSlider(Qt.Vertical)
+```python
+widget.QSlider(Qt.Vertical)
+```
     
 Or:
-    
-    widget.QSlider(Qt.Horizontal)
 
+```python    
+widget.QSlider(Qt.Horizontal)
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -1083,7 +1096,9 @@ If you find the above confusing, don't worry too much. We'll cover custom widget
 more detail later. For now it's sufficient that you understand that calling you
 can create a solid-filled red widget by doing the following:
 
-    Color('red')
+```python
+Color('red')
+```
     
 First let's test our new `Color` widget by using it to fill the entire window in a 
 single color. Once it’s complete we can add it to the mainwindow using `.setCentralWidget`
@@ -1160,8 +1175,10 @@ You can set the spacing around the layout using `.setContentMargins`.
 
 …or set the spacing between elements using `.setSpacing`.
 
-    layout1.setContentsMargins(0,0,0,0)
-    layout1.setSpacing(20)
+```python
+layout1.setContentsMargins(0,0,0,0)
+layout1.setSpacing(20)
+```
     
 The following code shows the combination of nested widgets and layout margins
 and spacing. Experiment with the numbers til you get a feel for them.
@@ -1338,7 +1355,9 @@ is below:
 These should be sufficient to create any dialog box you can think of. For example, to show an
 OK and a Cancel button we used:
 
-    buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+```python
+buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+```
     
 The variable `buttons` now contains a bitmask flag representing those two buttons. Next,
 we must create the `QDialogButtonBox` instance to hold the buttons. The flag for the 
