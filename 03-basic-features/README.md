@@ -73,7 +73,9 @@ command line arguments). This allows us to pass command line arguments to our
 application. If you know you won't be accepting command line arguments you can
 pass in an empty list instead, e.g.
 
-    app = QApplication([])
+````python
+app = QApplication([])
+````
 
 Finally, we call `app.exec_()` to start up the event loop.
 
@@ -1171,9 +1173,8 @@ G>
 G> The widgets should arrange themselves in 3 columns horizontally, with the 
 G> first column also containing 3 widgets stacked vertically. Experiment!
 
-You can set the spacing around the layout using `.setContentMargins`.
-
-…or set the spacing between elements using `.setSpacing`.
+You can set the spacing around the layout using `.setContentMargins`
+or set the spacing between elements using `.setSpacing`.
 
 ```python
 layout1.setContentsMargins(0,0,0,0)

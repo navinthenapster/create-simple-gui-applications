@@ -10,6 +10,7 @@
    "pluginsConfig":{  
       "hints":{  
          "meh":"fa fa-meh-o",
+         "terminal":"fa fa-terminal",
          "note":"fa fa-sticky-note",
          "info":"fa fa-info-circle",
          "tip":"fa fa-check",
