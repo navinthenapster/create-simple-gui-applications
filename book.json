@@ -1,9 +1,20 @@
-{
-    "plugins": ["hints"],
-    "links": {
-        "sidebar": {
-            "Author": "https://www.mfitzp.io"
-        }
-    },
-    "pluginsConfig": {}
+{  
+   "plugins":[  
+      "hints"
+   ],
+   "links":{  
+      "sidebar":{  
+         "Author":"https://www.mfitzp.io"
+      }
+   },
+   "pluginsConfig":{  
+      "hints":{  
+         "meh":"fa fa-meh-o",
+         "note":"fa fa-sticky-note",
+         "info":"fa fa-info-circle",
+         "tip":"fa fa-check",
+         "danger":"fa fa-exclamation-cicle",
+         "working":"fa fa-wrench"
+      }
+   }
 }

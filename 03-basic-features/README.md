@@ -53,7 +53,7 @@ and be careful not to make mistakes. If you do mess up, Python should let you kn
 what's wrong when you run it. If you don't feel like typing it all in, you can 
 [download the source code](http://download.martinfitzpatrick.name/create-simple-gui-applications/all_the_source.zip).
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 <<(code/creating_a_window_1.py)
 
@@ -102,7 +102,7 @@ Let's add a `QMainWindow` to our application.
 
 <<(code/creating_a_window_2.py)
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 I> #### `QMainWindow`
 I>
@@ -128,7 +128,7 @@ block. This allows the window behaviour to be self contained. So
 lets add our own subclass of `QMainWindow` — we can call it `MainWindow` to
 keep things simple.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 <<(code/creating_a_window_end.py)
 
@@ -148,10 +148,11 @@ by passing in the text that you want the widget to display.
 We set the alignment of the widget to the center, so it will show up inin
 the middle of the window.
 
-
-T> The Qt namespace (`Qt.`) is full of all sorts of attributes that you can use
-T> to customise and control Qt widgets. We’ll cover that a bit more later,
-T> [it’s worth a look](http://doc.qt.io/qt-5/qt.html).
+{% hint style='tip' %}
+The Qt namespace (`Qt.`) is full of all sorts of attributes that you can use
+to customise and control Qt widgets. We’ll cover that a bit more later,
+[it’s worth a look](http://doc.qt.io/qt-5/qt.html).
+{% endhint %}
 
 Finally, we call `.setCentralWidget()` on the the window. This is a
 `QMainWindow` specific function that allows you to set the widget that
@@ -160,21 +161,21 @@ goes in the middle of the window.
 If you launch your application you should see your window again, but this time
 with the `QLabel` widget in the middle. 
 
-I> #### Hungry for widgets?
-I>
-I> We'll cover more widgets in detail shortly
-I> but if you're impatient and would like to jump ahead you can take a look at the
-I> [QWidget documentation](http://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes). Try adding the different widgets to your window!
-
+{% hint style='info' %}
+#### Hungry for widgets?
+We'll cover more widgets in detail shortly
+but if you're impatient and would like to jump ahead you can take a look at the
+[QWidget documentation](http://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes). Try adding the different widgets to your window!
+{% endhint %}
 
 In this section we've covered the `QApplication` class, the `QMainWindow`
 class, the event loop and experimented with adding a simple widget to a window. In the next
 section we'll take a look at the mechanisms Qt provides for widgets and windows to 
 communicate with one another and your own code.
 
-{icon=floppy-o}
-G> Save a copy of your file as `MyApp_window.py` as we'll need it again later.
-
+{% hint style='working' %}
+Save a copy of your file as `MyApp_window.py` as we'll need it again later.
+{% endhint %}
 
 ## Signals, Slots, Events
 
@@ -227,8 +228,9 @@ standard slots are provided on Qt classes to allow you to wire together
 different parts of your application. However, you can also use any Python
 function as a slot, and therefore receive the message yourself.
 
-{icon=floppy-o}
-G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+{% hint style='working' %}
+Load up a fresh copy of `MyApp_window.py` and save it under a new name for this section.
+{% endhint %}
 
 #### Basic signals
 
@@ -248,11 +250,11 @@ signal within our application.
 ![Qt 5 Documentation — Widget Signals](images/qtdoc-signals-qwidget.png)
 
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 <<(code/signals_slots_and_events_1.py)
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 We start by creating an function that will behave as a ‘slot’ for our
 signals.
@@ -321,24 +323,26 @@ the lambda, we create a new namespace and voila it works.
     lambda x, data=data: fn(x, data)
 
 
-W> #### You *must* use named parameters
-W>
-W> Because of the way variables are bound in Python, if you just use the 
-W> variable inside the lambda/function it will remain bound to the loop.
-W> When any signal is triggered, that variable will equal the last value
-W> it had in the loop.
-W> However, when passing in as a named variable the value is bound directly
-W> each time the function/lambda is defined, and each signal gets a different
-W> value.
+{% hint style='warning' %}
+#### You *must* use named parameters
+
+Because of the way variables are bound in Python, if you just use the 
+variable inside the lambda/function it will remain bound to the loop.
+When any signal is triggered, that variable will equal the last value
+it had in the loop.
+However, when passing in as a named variable the value is bound directly
+each time the function/lambda is defined, and each signal gets a different
+value.
+{% endhint %}
 
 So, now you should be able to pass just about anything to any function
 using signals! The final code now looks like this:
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 <<(code/signals_slots_and_events_2.py)
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### Custom Signals
 
@@ -418,7 +422,7 @@ event handling and use `.accept()` and `.ignore()` to hide/show events
 to the UI-parent widget. In the next section we will go on to take 
 a look at two common features of the GUI — toolbars and menus.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 ## Actions, Toolbars and Menus
 
@@ -454,18 +458,17 @@ in the UI.
 
 <<(code/toolbars_and_menus_1.py)
 
-{icon=rocket}
-G> #### Run it!
-G>
-G> You'll see a thin grey bar at the top of the window. This is your toolbar. Right click
-G> and click the name to toggle it off.
+{% hint style='tip' %}
+** Run it!** You'll see a thin grey bar at the top of the window. This is your toolbar. Right click
+and click the name to toggle it off.
+{% endhint %}
 
 
-E> #### I can't get my toolbar back!?
-E> 
-E>  Unforutnately once you remove a toolbar there is now no place to right click to re-add
-E> it. So as a general rule you want to either keep one toolbar unremoveable, or provide
-E> an alternative interface to turn toolbars on and off.
+{% hint style='note' %}
+**I can't get my toolbar back!?** Unfortunately once you remove a toolbar there is now no place to right click to re-add
+it. So as a general rule you want to either keep one toolbar unremoveable, or provide
+an alternative interface to turn toolbars on and off.
+{% endhint %}
 
 Lets make the toolbar a bit more interesting. We could just add a `QButton` widget, but there
 is a better approach in Qt that gets you some cool features — and that is via `QAction`.
@@ -498,18 +501,19 @@ once we have one. Finally we connect the `.triggered` signal to the custom funct
 signal will fire whenever the `QAction` is 'triggered' (or activated).
 
 
-{icon=rocket}
-G> #### Run it!
-G>
-G> You should see your button with the label that you have defined. Click on it and the 
-G> our custom function will emit "click" and the status of the button.
+{% hint style='working' %}
+#### Run it!
+You should see your button with the label that you have defined. Click on it and the 
+our custom function will emit "click" and the status of the button.
+{% endhint %}
 
 
-I> #### Why is the signal always false?
-I>
-I> The signal passed indicates whether the button is *checked*,
-I> and since our button is not checkable — just clickable — it is always false.
-I> We'll show how to make it checkable shortly.
+{% hint style='info' %}
+#### Why is the signal always false?
+The signal passed indicates whether the button is *checked*,
+and since our button is not checkable — just clickable — it is always false.
+We'll show how to make it checkable shortly.
+{% endhint %}
 
 Lets add a statusbar.
 
@@ -519,26 +523,26 @@ create and define the statusbar in a single line:
 
 <<(code/toolbars_and_menus_3.py)
 
-{icon=rocket}
-G> #### Run it!
-G>
-G> Hover your mouse over the toolbar button and you will see the status text in the status bar.
+{% hint style='working' %}
+#### Run it!
+Hover your mouse over the toolbar button and you will see the status text in the status bar.
+{% endhint %}
 
 Next we're going to turn our QAction toggleable — so clicking will turn it on, clicking again
 will turn it off. To do this, we simple call `setCheckable(True)` on the `QAction` object.
 
 <<(code/toolbars_and_menus_4.py)
 
-{icon=rocket}
-G> #### Run it!
-G>
-G> Click on the button to see it toggle from checked to unchecked state. Note that custom slot
-G> function we create now alternates outputting `True` and `False`.
+{% hint style='tip' %}
+#### **Run it!** Click on the button to see it toggle from checked to unchecked state. Note that custom slot
+function we create now alternates outputting `True` and `False`.
+{% endhint %}
 
-I> `.toggled`
-I>
-I> There is also a `.toggled` signal, which only emits a signal when the button 
-I> is toggled. But the effect is identical so it is mostly pointless.
+{% hint style='info' %}
+#### `.toggled`
+There is also a `.toggled` signal, which only emits a signal when the button 
+is toggled. But the effect is identical so it is mostly pointless.
+{% endhint %}
 
 Things look pretty shabby right now — so let's add an icon to our button. For this I recommend
 you download the [fugue icon set](http://p.yusukekamiyamane.com/) by designer Yusuke Kamiyamane. 
@@ -558,10 +562,11 @@ be surrounded by a lot of padding. You can do this by calling `.setIconSize()` w
 
 <<(code/toolbars_and_menus_4.py)
 
-{icon=rocket}
-G> #### Run it!
-G>
-G> The QAction is now represented by an icon. Everything should function exactly as it did before.
+{% hint style='success' %}
+#### Run it!
+
+The QAction is now represented by an icon. Everything should function exactly as it did before.
+{% endhint %}
 
 Note that Qt uses your operating system
 default settings to determine whether to show an icon, text or an icon and text in the toolbar.
@@ -662,7 +667,7 @@ The completed code, showing the toolbar buttons and menus is shown below.
 {icon=floppy-o}
 G> Save a copy of your file as `MyApp_menus.py` as we'll need it again later.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 ## Widgets
 
@@ -681,11 +686,11 @@ G> Load up a fresh copy of `MyApp_window.py` and save it under a new name for th
 A full list of widgets is available on the Qt documentation. But lets
 have a look at them quickly.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 <<(code/widgets_list.py)
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 To do this we’re going to take the skeleton of our application and
 replace the `QLabel` with a `QWidget`. This is the generic form of a Qt
@@ -729,7 +734,7 @@ There are actually more widgets than this, but they don’t fit so well!
 You can see them all by checking the documentation. Here we’re going to
 take a closer look at the a subset of the most useful.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QLabel
 
@@ -810,7 +815,7 @@ a file `hrh.jpg` which you can display in your window as follows:
     widget.setPixMap(QPixmap('hrh.jpg'))
     
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 ![HRH Queen Lizzy — Public domain.](images/hrh.jpg)
 
@@ -822,7 +827,7 @@ you can set `.setScaledContents(True)` on the `QLabel`.
     widget.setScaledContents(True)
 
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QCheckBox
 
@@ -859,7 +864,7 @@ T> checked = `1`. You don’t need to remember these values, the `Qt.Checked` na
 T> variable `== 2` for example. This is the value of these state's respective flags.
 T> This means you can test state using `state == Qt.Checked`.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QComboBox
 
@@ -911,7 +916,7 @@ You can also limit the number of items allowed in the box by using `.setMaxCount
 
     widget.setMaxCount(10)
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QListBox
 
@@ -924,7 +929,7 @@ signals available.
 (the element of the list box), and a `currentTextChanged` signal which
 sends the text.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QLineEdit
 
@@ -955,7 +960,7 @@ to the field as follows:
 The above would allow a series of 3-digit numbers separated with periods, and
 could therefore be used to validate IPv4 addresses.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QSpinBox and QDoubleSpinBox
 
@@ -983,7 +988,7 @@ sends the numeric value (either an `int` or a `float`) while the `str`
 alternate signal, accessible via `.valueChanged[str]` sends the value as a
 string, including both the prefix and suffix characters.
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QSlider
 
@@ -1011,7 +1016,7 @@ Or:
     widget.QSlider(Qt.Horizontal)
 
 
-{pagebreak}
+<div style="page-break-after: always;"></div>
 
 #### QDial
 

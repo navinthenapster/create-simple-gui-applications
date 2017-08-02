@@ -7,12 +7,11 @@ of PyQt on your Python system you can safely skip this part and get straight
 onto the fun.
 
 
-> #### warning::GPL Only
->
-> Note that the following instructions are ***only*** for installation of the GPL
-> licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
-> need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
-
+{% hint style='danger' %}
+Note that the following instructions are ***only*** for installation of the GPL
+licensed version of PyQt. If you need to use PyQt in a non-GPL project you will
+need to purchase an alternative license from [Riverbank Computing](https://www.riverbankcomputing.com) in order to release your software.
+{% endhint %}
 
 ## Installation Windows
 
@@ -40,11 +39,11 @@ systme. You can install this file as for any other Windows application/library.
 
 After install is finished, you should be able to run `python` and `import PyQt5`.
 
-> #### info::Documentation?
->
-> The PyQt packages from Riverbank do not include the Qt documentation. However this
-> is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
-> download the documentation you can do so from [www.qt.io](http://www.qt.io).
+{% hint style='info' %}
+The PyQt packages from Riverbank do not include the Qt documentation. However this
+is available online at [docs.qt.io](http://docs.qt.io). If you *do* want to 
+download the documentation you can do so from [www.qt.io](http://www.qt.io).
+{% endhint %}
 
 
 ## PyQt5 for Python 2.7
